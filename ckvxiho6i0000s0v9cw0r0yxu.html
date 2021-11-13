@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>03_node的使用方法 | 小豆子的博客</title>
+    <title>05_封装一个随机颜色 | 小豆子的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     
@@ -105,7 +105,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-ckumountd0000bwv92b8h4784" class="article article-type-post" itemscope
+    <article id="post-ckvxiho6i0000s0v9cw0r0yxu" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -121,7 +121,7 @@
             
   
     <h1 class="article-title" itemprop="name">
-      03_node的使用方法
+      05_封装一个随机颜色
     </h1>
   
 
@@ -131,7 +131,7 @@
         <div class="article-more-info article-more-info-post hairline">
 
             <div class="article-date">
-  <time datetime="2021-10-11T12:57:11.000Z" itemprop="datePublished">2021-10-11</time>
+  <time datetime="2021-11-13T07:41:53.000Z" itemprop="datePublished">2021-11-13</time>
 </div>
 
             
@@ -143,22 +143,24 @@
         </div>
 
         <div class="article-entry post-inner-html hairline" itemprop="articleBody">
-            <h2 id="如何用npm去安装工具包？"><a href="#如何用npm去安装工具包？" class="headerlink" title="如何用npm去安装工具包？"></a>如何用npm去安装工具包？</h2><p>1.可以在cmd中使用npm对要下载的工具包进行全局安装，如命令npm install hexo-cli -g（该命令是对hexo包进行全局安装）</p>
-<p>2.也可以在vscode中对文件右击从终端打开，使用npm对要下载的工具包进行全局安装，或者仅对建立的文件进行局部安装，如命令npm install express（该命令是对express包进行局部安装）。</p>
-<p>这里的从终端打开，有两种终端方式：一是powershell终端。在文件夹中按住shift键右击空白区，出现在此处打开powershell窗口，这是powershell在文件中的打开方式，而在vscode中打开powershell需要配置settings，设置–搜索框中输入settings–点击“在settings.json中编辑”–以json格式输入对应的设置powershell的代码。而是cmd终端。在桌面win+r，输入cmd，出现cmd窗口，这是cmd在电脑中的打开方式，而在vscode中打开cmd也需要配置settings，设置–搜索框中输入settings–点击“在settings.json中编辑”–以json格式输入对应的设置cmd的代码。如下图所示</p>
-<img src="imgs/2021.10.11.2/图片1.png">
-如何看vscode中的终端设置的是哪个终端？在vscode从终端打开后，终端窗口的右边显示powershell或者cmd。如下图所示
-
-<img src="imgs/2021.10.11.2/图片2.png">
-
-<h2 id="vscode安装工具包及使用步骤："><a href="#vscode安装工具包及使用步骤：" class="headerlink" title="vscode安装工具包及使用步骤："></a>vscode安装工具包及使用步骤：</h2><p>1.在vscode中，先建立一个空文件（注意文件名不要和工具包名一样）。</p>
-<p>2.把这个文件从终端打开，输入命令npm init -y（init是启动的意思，注意这个是使用的node，需要先在cmd中全局安装node，才可以在vscode中使用node和npm的命令），空文件夹下会自动出现package.json文件。</p>
-<img src="imgs/2021.10.11.2/图片3.png">
-
-<p>3.继续输入命令npm install 包名 –save ，如npm install express –save（这是安装express包的命令），下图是输入npm install express –save命令例子</p>
-<img src="imgs/2021.10.11.2/图片4.png">
-
-<p>4.安装完成，之后就可以根据你安装的工具包的官网，去查文档使用你的工具包了。</p>
+            <pre><code class="javas"> getRandonColor() &#123;
+      var r = parseInt(Math.random() * 255);
+      var g = parseInt(Math.random() * 255);
+      var b = parseInt(Math.random() * 255);
+      return `rgb($&#123;r&#125;,$&#123;g&#125;,$&#123;b&#125;)`;
+    &#125;
+</code></pre>
+<p><em>parseInt() 函数可解析一个字符串，并返回一个整数。</em></p>
+<p>parseInt(string, radix)中有两个参数：string和radix。string是要被解析的字符串，radix是可选的，表示要解析的数字的基数，该值介于2~36之间。</p>
+<p>当参数 radix 的值为 0，或没有设置该参数时，parseInt() 会根据 string 来判断数字的基数。</p>
+<p>当没有设置该参数 radix , JavaScript 默认数字的基数如下:</p>
+<ol>
+<li>如果 string 以 “0x” 开头，parseInt() 会把 string 的其余部分解析为十六进制的整数。</li>
+<li>如果 string 以 0 开头，那么 ECMAScript v3 允许 parseInt() 的一个实现把其后的字符解析为八进制或十六进制的数字。</li>
+<li>如果 string 以 1 ~ 9 的数字开头，parseInt() 将把它解析为十进制的整数。</li>
+</ol>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p>parseInt前面不要加任何东西，我之前写的时候在parseInt前加了个Math.造成报错，parseInt不是Math的方法。</p>
+<h3 id="小知识："><a href="#小知识：" class="headerlink" title="小知识："></a>小知识：</h3><p>不同的数据类型在console打印的颜色是不一样的。Number类型的数据是蓝色、Boolean类型的数据是紫红色，Null和Undefined的颜色是灰色，Array类型的数据带中括号，Object类型的数据带大括号。</p>
 
         </div>
 
@@ -183,19 +185,10 @@
     
 <nav class="article-nav">
   
-    <a href="/ckuo5p5po0000s8v93auf9ytg.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <div class="article-nav-caption">下一篇</div>
-      <div class="article-nav-title">
-        
-          04_vscode的几种打开方式及区别
-        
-      </div>
-    </a>
   
-  
-    <a href="/ckumokpl60000y8v9ezdx6p0g.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/ckuo5p5po0000s8v93auf9ytg.html" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-caption">上一篇</div>
-      <div class="article-nav-title">02_node的安装和配置淘宝镜像源</div>
+      <div class="article-nav-title">04_vscode的几种打开方式及区别</div>
     </a>
   
 </nav>
@@ -204,15 +197,15 @@
     <section class="share">
         <div class="share-title">分享</div>
         <a class="share-item" target="_blank"
-            href="https://twitter.com/share?text=03_node的使用方法 - 小豆子的博客&url=https://dtting.top/ckumountd0000bwv92b8h4784.html">
+            href="https://twitter.com/share?text=05_封装一个随机颜色 - 小豆子的博客&url=https://dtting.top/ckvxiho6i0000s0v9cw0r0yxu.html">
             <box-icon type='logo' name='twitter'></box-icon>
         </a>
         <a class="share-item" target="_blank"
-            href="https://www.facebook.com/sharer.php?title=03_node的使用方法 - 小豆子的博客&u=https://dtting.top/ckumountd0000bwv92b8h4784.html">
+            href="https://www.facebook.com/sharer.php?title=05_封装一个随机颜色 - 小豆子的博客&u=https://dtting.top/ckvxiho6i0000s0v9cw0r0yxu.html">
             <box-icon name='facebook-square' type='logo' ></box-icon>
         </a>
         <!-- <a class="share-item" target="_blank"
-            href="https://service.weibo.com/share/share.php?title=03_node的使用方法 - 小豆子的博客&url=https://dtting.top/ckumountd0000bwv92b8h4784.html&pic=">
+            href="https://service.weibo.com/share/share.php?title=05_封装一个随机颜色 - 小豆子的博客&url=https://dtting.top/ckvxiho6i0000s0v9cw0r0yxu.html&pic=">
             <div class="n-icon n-icon-weibo"></div>
         </a> -->
     </section>

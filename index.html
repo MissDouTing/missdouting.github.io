@@ -108,6 +108,67 @@
   
     
       <article
+id="post-05-封装一个随机颜色"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckvxiho6i0000s0v9cw0r0yxu.html">05_封装一个随机颜色</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <pre><code class="javas"> getRandonColor() &#123;
+      var r = parseInt(Math.random() * 255);
+      var g = parseInt(Math.random() * 255);
+      var b = parseInt(Math.random() * 255);
+      return `rgb($&#123;r&#125;,$&#123;g&#125;,$&#123;b&#125;)`;
+    &#125;
+</code></pre>
+<p><em>parseInt() 函数可解析一个字符串，并返回一个整数。</em></p>
+<p>parseInt(string, radix)中有两个参数：string和radix。string是要被解析的字符串，radix是可选的，表示要解析的数字的基数，该值介于2~36之间。</p>
+<p>当参数 radix 的值为 0，或没有设置该参数时，parseInt() 会根据 string 来判断数字的基数。</p>
+<p>当没有设置该参数 radix , JavaScript 默认数字的基数如下:</p>
+<ol>
+<li>如果 string 以 “0x” 开头，parseInt() 会把 string 的其余部分解析为十六进制的整数。</li>
+<li>如果 string 以 0 开头，那么 ECMAScript v3 允许 parseInt() 的一个实现把其后的字符解析为八进制或十六进制的数字。</li>
+<li>如果 string 以 1 ~ 9 的数字开头，parseInt() 将把它解析为十进制的整数。</li>
+</ol>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p>parseInt前面不要加任何东西，我之前写的时候在parseInt前加了个Math.造成报错，parseInt不是Math的方法。</p>
+<h3 id="小知识："><a href="#小知识：" class="headerlink" title="小知识："></a>小知识：</h3><p>不同的数据类型在console打印的颜色是不一样的。Number类型的数据是蓝色、Boolean类型的数据是紫红色，Null和Undefined的颜色是灰色，Array类型的数据带中括号，Object类型的数据带大括号。</p>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2021-11-13T07:41:53.000Z" itemprop="datePublished">2021-11-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
 id="post-04_vscode的几种打开方式及区别"
 class="article article-type-post"
 >
@@ -483,6 +544,10 @@ foo.prop = 123;
     <div class="widget-title"><span>Recent Posts</span></div>
     <div class="widget-inner">
       <ul>
+        
+          <li>
+            <a href="/ckvxiho6i0000s0v9cw0r0yxu.html">05_封装一个随机颜色</a>
+          </li>
         
           <li>
             <a href="/ckuo5p5po0000s8v93auf9ytg.html">04_vscode的几种打开方式及区别</a>
