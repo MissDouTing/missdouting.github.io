@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Archive | 2021/11 | 小豆子的博客</title>
+    <title>06_js基本类型和引用类型 | 小豆子的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     
@@ -26,7 +26,7 @@
 
 
     <script>
-        window.isPost = false
+        window.isPost = true
         window.aomori = {
             
             
@@ -104,47 +104,148 @@
         <div class="main">
             <section class="inner">
                 <section class="inner-main">
-                    <section class="archives-cover"></section>
+                    <div class="post">
+    <article id="post-ckwstwhy100008ov97drxan3v" class="article article-type-post" itemscope
+    itemprop="blogPost">
 
+    <div class="article-inner">
 
-    
-    
-    
-    
-    <section class="archives-wrap">
-        <div class="archive-year-wrap">
-        <a href="/archives/2021" class="archive-year">2021</a>
+        
+          
+        
+        
+        
+
+        
+        <header class="article-header">
+            
+  
+    <h1 class="article-title" itemprop="name">
+      06_js基本类型和引用类型
+    </h1>
+  
+
+        </header>
+        
+
+        <div class="article-more-info article-more-info-post hairline">
+
+            <div class="article-date">
+  <time datetime="2021-11-25T08:10:01.000Z" itemprop="datePublished">2021-11-25</time>
+</div>
+
+            
+
+            
+            <div class="article-tag">
+                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%AF%A6%E8%A7%A3/" rel="tag">js的基本数据类型和引用数据类型详解</a></li></ul>
+            </div>
+            
+
+            
+
         </div>
-        <div class="archives">
+
+        <div class="article-entry post-inner-html hairline" itemprop="articleBody">
+            <h2 id="js数据类型的种类"><a href="#js数据类型的种类" class="headerlink" title="js数据类型的种类"></a>js数据类型的种类</h2><p>js的数据类型分为两种：基本数据类型和引用数据类型（也叫对象类型）</p>
+<p>js的数据类型分为两种：基本数据类型和引用数据类型（也叫对象类型）</p>
+<ul>
+<li><p>常用的js基础数据类型有number, string, boolean, null, underfined</p>
+</li>
+<li><p>js引用数据类型有object,array,function,data等（除基本数据类型外都是引用数据类型）</p>
+</li>
+</ul>
+<h2 id="基本数据类型详解"><a href="#基本数据类型详解" class="headerlink" title="基本数据类型详解"></a>基本数据类型详解</h2><p>1.number类型。数字类型（整数和小数）</p>
+<p>2.string类型。字符串类型（通过单引号或者是双引号括起来的值）</p>
+<p>3.boolean类型。布尔类型（值只有两个：true和false）</p>
+<p>4.null类型。空类型（有值，但是不知道值属于什么数据类型，无法辨认。比如：number类型+boolean类型形成的值，这个值就是null）</p>
+<p>5.undefined类型。未定义数据类型（无值，因为没有值，所以不知道值的数据类型，js是通过值来判断数据类型的。比如：变量声明好了，但是没有赋值，这个值就是undefined）</p>
+<h2 id="引用数据类型详解"><a href="#引用数据类型详解" class="headerlink" title="引用数据类型详解"></a>引用数据类型详解</h2><p>1.object类型。对象类型（javaScript中所有对象的顶级父元素）</p>
+<p>2.array类型。数组类型</p>
+<p>3.function类型。函数类型（每个函数都是function类型的实例）</p>
+<p>4.data类型。数据类型（通过new Date()来定义Date对象）</p>
+<h2 id="两者区别"><a href="#两者区别" class="headerlink" title="两者区别"></a>两者区别</h2><ul>
+<li><p>基本数据类型是按值访问的，因为可以直接操作保存在变量中的实际值。</p>
+</li>
+<li><p>js的引用数据类型是保存在堆内存中的对象，与其他语言的不同是，你不可以直接访问堆内存空间中的位置和操作堆内存空间。只能操作对象在栈内存中的引用地址。</p>
+</li>
+<li><p>引用数据类型具有属性和方法，基本数据类型没有。</p>
+</li>
+</ul>
+<img src="imgs/2021.11.25/图片3.png">
+
+
+        </div>
+
+    </div>
+
     
-    <article class="archive-article archive-type-post">
+
+    
+
+    
+
+    
+<div class="article-copyright hairline">
+  <p>
+    本作品采用 <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a> 进行许可。
+  </p>
+</div>
+
+
+    
+
+    
+<nav class="article-nav">
+  
+    <a href="/ckwstx9ps0000mwv9ew0l4cy0.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-caption">下一篇</div>
+      <div class="article-nav-title">
+        
+          07_对象的引用、浅拷贝、深拷贝
+        
+      </div>
+    </a>
   
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/ckwstwhy100008ov97drxan3v.html">06_js基本类型和引用类型</a>
-    </h1>
+    <a href="/ckweotwk10000r0v99zsa8chl.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-caption">上一篇</div>
+      <div class="article-nav-title">05_封装一个随机颜色</div>
+    </a>
   
+</nav>
+
+
+    <section class="share">
+        <div class="share-title">分享</div>
+        <a class="share-item" target="_blank"
+            href="https://twitter.com/share?text=06_js基本类型和引用类型 - 小豆子的博客&url=https://dtting.top/ckwstwhy100008ov97drxan3v.html">
+            <box-icon type='logo' name='twitter'></box-icon>
+        </a>
+        <a class="share-item" target="_blank"
+            href="https://www.facebook.com/sharer.php?title=06_js基本类型和引用类型 - 小豆子的博客&u=https://dtting.top/ckwstwhy100008ov97drxan3v.html">
+            <box-icon name='facebook-square' type='logo' ></box-icon>
+        </a>
+        <!-- <a class="share-item" target="_blank"
+            href="https://service.weibo.com/share/share.php?title=06_js基本类型和引用类型 - 小豆子的博客&url=https://dtting.top/ckwstwhy100008ov97drxan3v.html&pic=">
+            <div class="n-icon n-icon-weibo"></div>
+        </a> -->
+    </section>
 
 </article>
 
-    
-    
-    <article class="archive-article archive-type-post">
-  
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/ckweotwk10000r0v99zsa8chl.html">05_封装一个随机颜色</a>
-    </h1>
-  
-
-</article>
-
-
-    </div></section>
 
 
 
 
+
+
+
+
+
+
+
+</div>
                 </section>
             </section>
 
@@ -156,6 +257,12 @@
 <div class="widget" id="widget">
     
       
+  <div class="widget-wrap">
+    <div class="widget-inner">
+      <div class="toc post-toc-html"></div>
+    </div>
+  </div>
+
     
       
 

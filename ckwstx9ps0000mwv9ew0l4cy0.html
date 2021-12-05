@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>02_node的安装和配置淘宝镜像源 | 小豆子的博客</title>
+    <title>07_对象的引用、浅拷贝、深拷贝 | 小豆子的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     
@@ -105,7 +105,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-ckumokpl60000y8v9ezdx6p0g" class="article article-type-post" itemscope
+    <article id="post-ckwstx9ps0000mwv9ew0l4cy0" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -121,7 +121,7 @@
             
   
     <h1 class="article-title" itemprop="name">
-      02_node的安装和配置淘宝镜像源
+      07_对象的引用、浅拷贝、深拷贝
     </h1>
   
 
@@ -131,11 +131,15 @@
         <div class="article-more-info article-more-info-post hairline">
 
             <div class="article-date">
-  <time datetime="2021-10-11T12:50:55.000Z" itemprop="datePublished">2021-10-11</time>
+  <time datetime="2021-12-05T05:16:30.000Z" itemprop="datePublished">2021-12-05</time>
 </div>
 
             
 
+            
+            <div class="article-tag">
+                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BC%95%E7%94%A8%E3%80%81%E6%B5%85%E6%8B%B7%E8%B4%9D%E3%80%81%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B%E3%80%81%E4%B8%89%E8%80%85%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="tag">对象的引用、浅拷贝、深拷贝在内存中的实现过程、三者的区别</a></li></ul>
+            </div>
             
 
             
@@ -143,27 +147,105 @@
         </div>
 
         <div class="article-entry post-inner-html hairline" itemprop="articleBody">
-            <h2 id="安装node的步骤："><a href="#安装node的步骤：" class="headerlink" title="安装node的步骤："></a>安装node的步骤：</h2><h3 id="1、下载node安装包"><a href="#1、下载node安装包" class="headerlink" title="1、下载node安装包"></a>1、下载node安装包</h3><p>Node.js安装包及源码下载地址：<a target="_blank" rel="noopener" href="http://nodejs.cn/download/%EF%BC%8C%E8%BF%99%E4%B8%AA%E6%98%AFnode%E4%B8%AD%E6%96%87%E7%BD%91%EF%BC%8C%E5%BA%94%E8%AF%A5%E5%9C%A8%E4%B8%AD%E6%96%87%E7%BD%91%E5%AE%89%E8%A3%85%E3%80%82">http://nodejs.cn/download/，这个是node中文网，建议在中文网安装。</a></p>
-<p><a target="_blank" rel="noopener" href="https://nodejs.org/en/download/%E8%BF%99%E4%B8%AA%E6%98%AF%E5%9B%BD%E5%A4%96%E7%9A%84node%E7%BD%91%E7%AB%99%EF%BC%8C%E5%AE%B9%E6%98%93%E4%B8%8B%E8%BD%BD%E4%B8%8D%E4%B8%8B%E6%9D%A5%E3%80%82">https://nodejs.org/en/download/这个是国外的node网站，容易下载不下来。</a></p>
-<p>根据不同平台系统选择需要的Node.js安装包。</p>
-<h3 id="2、安装"><a href="#2、安装" class="headerlink" title="2、安装"></a>2、安装</h3><p>1)、下载完成后，双击下载后的安装包 node-v6.10.3-x64，进入node的安装向导界面，直接点击next。</p>
-<p>2)、然后勾选接受协议选项，点击Next，开始下一步。</p>
-<p>3)、选择nodejs的安装位置，Node.js默认安装目录。为：”C:\Program Files\nodejs\”，你可以修改目录，并点击next（下一步）。</p>
-<p>4)、点击树形图标来选择你需要的安装模式，然后点击下一步。</p>
-<p>5)、点击Install（安装）开始安装Node.js。</p>
-<p>6)、等待一会，点击finish完成。</p>
-<p><strong>以上操作，和普通软件安装步骤一样</strong></p>
-<p>7)、打开cmd，输入命令，检查node是否安装成功，显示如下图所示版本号，即是安装成功。</p>
-<img src="imgs/2021.10.11/图片1.png">
+            <p>本文是对对象在内存中的三种表现形式进行讲解：</p>
+<h2 id="1-对象的引用赋值："><a href="#1-对象的引用赋值：" class="headerlink" title="1.对象的引用赋值："></a>1.对象的引用赋值：</h2><p>对象是引用类型，引用类型在不同的编程语言中叫法不同，在c语言、c++中引用类型叫指针，在java、javaScript语言中叫引用类型。（本文以javaScript语言为例）</p>
+<pre><code>&lt;script&gt;
+    const info = &#123;name:&quot;yoyo&quot;,age:18&#125;;
+    const obj = info;
+    info.name = &quot;kobe&quot;;
+    console.log(obj.name);//kobe
+&lt;/script&gt;
+</code></pre>
+<p>在内存中的表现：</p>
+<p>首先<code>const info = &#123;name :&quot;yoyo&quot; , age: 18&#125;;</code>在内存中实现：</p>
+<p>info是对象，一旦是对象，就会在堆内存里创建一个空间，用来存放对象里的相关内容。栈里放的是这块空间的地址，比如0x100（一般内存地址都是16进制，则以0x开头）</p>
+<img src="imgs/2021.12.05/图片1.png">
 
-<p>8)、Node.js安装完成后npm也就安装上了，可查看npm的版本，如下图：</p>
-<img src="imgs/2021.10.11/图片2.png">
+<img src="imgs/2021.12.05/图片2.png">
 
-<h2 id="配置淘宝镜像源："><a href="#配置淘宝镜像源：" class="headerlink" title="配置淘宝镜像源："></a>配置淘宝镜像源：</h2><p>9)、配置node的淘宝镜像源，在cmd中输入以下命令：</p>
-<p>npm config set registry <a target="_blank" rel="noopener" href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>
-<p>10)、 验证是否配置成功：</p>
-<p>在cmd中输入命令npm config get registry</p>
-<p>如果返回的<a target="_blank" rel="noopener" href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a> 说明镜像配置成功。</p>
+<p>若此时<code>const obj = info</code>，则在内存中的表现为：取出info的内存地址0x100，然后把该内存地址赋值给obj。</p>
+<img src="imgs/2021.12.05/图片3.png">
+
+<img src="imgs/2021.12.05/图片4.png">
+
+<p>若此时<code>info.name=&quot;kabe&quot;</code>，则意味着0x100.name=”kobe”</p>
+<img src="imgs/2021.12.05/图片5.png">
+
+<img src="imgs/2021.12.05/图片6.png">
+
+<p>此时打印<code>console.log(obj.name)</code>，结果为kobe，因为obj和info指向的同一个对象。</p>
+<p><strong>为什么叫对象的引用赋值？因为这个案例仅是把info对象的引用（地址）赋值给了obj</strong>。</p>
+<h2 id="2-对象的浅拷贝"><a href="#2-对象的浅拷贝" class="headerlink" title="2.对象的浅拷贝"></a>2.对象的浅拷贝</h2><h3 id="第一种类型："><a href="#第一种类型：" class="headerlink" title="第一种类型："></a>第一种类型：</h3><pre><code>&lt;script&gt;
+    const info = &#123;name:&quot;yoyo&quot;,age:18&#125;;
+    //assign方法会把info对象的所有属性拷贝一份放&#123;&#125;里，然后作为返回值返回给obj
+    //浅拷贝的方法有很多，我这里选择assign方法做演示
+    const obj = Object.assign(&#123;&#125;,info);
+    info.name = &quot;kobe&quot;;
+    console.log(obj.name)   //yoyo
+&lt;/script&gt;
+</code></pre>
+<p>在内存中的表现：</p>
+<p><code>const info = &#123;name :&quot;yoyo&quot; , age: 18&#125;;</code>在内存中的实现过程上面已展示。</p>
+<p><code>const obj = Object.assign(&#123;&#125;,info);</code>在内存中的实现过程</p>
+<img src="imgs/2021.12.05/图片7.png">
+
+<img src="imgs/2021.12.05/图片8.png">
+
+<p>若此时<code>info.name = &quot;kobe&quot;</code>，改变的是info对象的name，而不是拷贝后对象的name。</p>
+<img src="imgs/2021.12.05/图片9.png">
+
+<img src="imgs/2021.12.05/图片10.png">
+
+<p>打印<code>console.log(obj.name)</code>结果为yoyo，因为他们指向的不是同一个对象。</p>
+<h3 id="第二种类型："><a href="#第二种类型：" class="headerlink" title="第二种类型："></a>第二种类型：</h3><pre><code>&lt;script&gt;
+    const info = &#123;name:&quot;yoyo&quot;,age:18,friend:&#123;name:&quot;kobe&quot;,height:1.80&#125;&#125;;
+    //assign方法会把info对象的所有属性拷贝一份放&#123;&#125;里，然后作为返回值返回给obj
+    //浅拷贝的方法有很多，我这里选择assign方法做演示
+    const obj = Object.assign(&#123;&#125;,info);
+    info.friend.name = &quot;jame&quot;;
+    console.log(obj.frend.name)   //jame
+&lt;/script&gt;
+</code></pre>
+<p>在内存中的表现：</p>
+<p><code>const info = &#123;name:&quot;yoyo&quot;,age:18,friend:&#123;name:&quot;kobe&quot;,height:1.80&#125;&#125;;</code>在内存中的实现过程</p>
+<img src="imgs/2021.12.05/图片11.png">
+
+<img src="imgs/2021.12.05/图片12.png">
+
+<p><code>const obj = Object.assign(&#123;&#125;,info);</code>在内存中的实现过程</p>
+<img src="imgs/2021.12.05/图片13.png">
+
+<img src="imgs/2021.12.05/图片14.png">
+
+<p><code>info.friend.name = &quot;jame&quot;;</code>在内存中的实现过程</p>
+<img src="imgs/2021.12.05/图片15.png">
+
+<img src="imgs/2021.12.05/图片16.png">
+
+<p>打印<code>console.log(obj.frend.name)</code>结果为jame，原因是：虽然不是指向的同一个对象，但是不同对象里的对象是同一个。</p>
+<h2 id="3-对象的深拷贝"><a href="#3-对象的深拷贝" class="headerlink" title="3.对象的深拷贝"></a>3.对象的深拷贝</h2><pre><code>&lt;script&gt;
+    const info = &#123;name:&quot;yoyo&quot;,age:18,friend:&#123;name:&quot;kobe&quot;,height:1.80&#125;&#125;;
+    //JSOn.stringify方法把对象转化为字符串
+    //JSON.parse方法把字符串转化为对象（也就是还原），还原时会在内存中生成新的对象，和原来对象没有任何关系
+    const obj = JSON.parse(JSON.stringify(info));
+    info.friend.name = &quot;jame&quot;;
+    console.log(obj.friend.name);//kobe
+&lt;/script&gt;
+</code></pre>
+<p>上述借助了JSON方法对对象做了深拷贝，深拷贝后的对象和原先的对象没有任何关系，也就是对象里的所有内容都会拷贝一份新的，包括对象里的对象。（这里就不再重复画图了，原理一样，下面是关键步骤图）</p>
+<img src="imgs/2021.12.05/图片17.png">
+
+<img src="imgs/2021.12.05/图片18.png">
+
+<p>深拷贝实现还有其他方法，比如借助lodash第三方库，（用法是在js中先引入，再使用对应的方法）</p>
+<pre><code>&lt;script&gt;
+    const info = &#123;name:&quot;yoyo&quot;,age:18,friend:&#123;name:&quot;kobe&quot;,height:1.80&#125;&#125;;
+    //使用lodash库的方法进行深拷贝
+    const obj = _.cloneDeep(info);
+    info.friend.name = &quot;jame&quot;;
+    console.log(obj.friend.name);//kobe
+&lt;/script&gt;
+</code></pre>
 
         </div>
 
@@ -188,19 +270,10 @@
     
 <nav class="article-nav">
   
-    <a href="/ckumountd0000bwv92b8h4784.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <div class="article-nav-caption">下一篇</div>
-      <div class="article-nav-title">
-        
-          03_node的使用方法
-        
-      </div>
-    </a>
   
-  
-    <a href="/ckumokpli0001y8v9cgmb4ois.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/ckwstwhy100008ov97drxan3v.html" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-caption">上一篇</div>
-      <div class="article-nav-title">js常量、变量、函数的声明</div>
+      <div class="article-nav-title">06_js基本类型和引用类型</div>
     </a>
   
 </nav>
@@ -209,15 +282,15 @@
     <section class="share">
         <div class="share-title">分享</div>
         <a class="share-item" target="_blank"
-            href="https://twitter.com/share?text=02_node的安装和配置淘宝镜像源 - 小豆子的博客&url=https://dtting.top/ckumokpl60000y8v9ezdx6p0g.html">
+            href="https://twitter.com/share?text=07_对象的引用、浅拷贝、深拷贝 - 小豆子的博客&url=https://dtting.top/ckwstx9ps0000mwv9ew0l4cy0.html">
             <box-icon type='logo' name='twitter'></box-icon>
         </a>
         <a class="share-item" target="_blank"
-            href="https://www.facebook.com/sharer.php?title=02_node的安装和配置淘宝镜像源 - 小豆子的博客&u=https://dtting.top/ckumokpl60000y8v9ezdx6p0g.html">
+            href="https://www.facebook.com/sharer.php?title=07_对象的引用、浅拷贝、深拷贝 - 小豆子的博客&u=https://dtting.top/ckwstx9ps0000mwv9ew0l4cy0.html">
             <box-icon name='facebook-square' type='logo' ></box-icon>
         </a>
         <!-- <a class="share-item" target="_blank"
-            href="https://service.weibo.com/share/share.php?title=02_node的安装和配置淘宝镜像源 - 小豆子的博客&url=https://dtting.top/ckumokpl60000y8v9ezdx6p0g.html&pic=">
+            href="https://service.weibo.com/share/share.php?title=07_对象的引用、浅拷贝、深拷贝 - 小豆子的博客&url=https://dtting.top/ckwstx9ps0000mwv9ew0l4cy0.html&pic=">
             <div class="n-icon n-icon-weibo"></div>
         </a> -->
     </section>
