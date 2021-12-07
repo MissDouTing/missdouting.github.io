@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Tag | 对象的引用、浅拷贝、深拷贝在内存中的实现过程、三者的区别 | 小豆子的博客</title>
+    <title>08_js经典输出顺序问题 | 小豆子的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     
@@ -26,7 +26,7 @@
 
 
     <script>
-        window.isPost = false
+        window.isPost = true
         window.aomori = {
             
             
@@ -104,35 +104,154 @@
         <div class="main">
             <section class="inner">
                 <section class="inner-main">
-                    <section class="archives-cover"></section>
+                    <div class="post">
+    <article id="post-ckwvnv7iz0000l8v934zt8fgu" class="article article-type-post" itemscope
+    itemprop="blogPost">
 
+    <div class="article-inner">
 
-    
-    
-    
-    
-    <section class="archives-wrap">
-        <div class="archive-year-wrap">
-        <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
+        
+          
+        
+        
+        
+
+        
+        <header class="article-header">
+            
   
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/ckwstx9ps0000mwv9ew0l4cy0.html">07_对象的引用、浅拷贝、深拷贝</a>
+    <h1 class="article-title" itemprop="name">
+      08_js经典输出顺序问题
     </h1>
   
+
+        </header>
+        
+
+        <div class="article-more-info article-more-info-post hairline">
+
+            <div class="article-date">
+  <time datetime="2021-12-07T05:03:48.000Z" itemprop="datePublished">2021-12-07</time>
+</div>
+
+            
+
+            
+
+            
+
+        </div>
+
+        <div class="article-entry post-inner-html hairline" itemprop="articleBody">
+            <p>分析下面代码：</p>
+<pre><code class="javascript">&lt;script&gt;
+    console.log(11);
+    setTimeout(function()&#123;
+        console.log(22);
+    &#125;)
+    // Promise所入参的函数是立马执行的
+    new Promise(function(resolve)&#123;
+        console.log(33);
+        resolve();
+        console.log(44);
+    &#125;)
+    // Promise的then是在resolve和reject后执行的
+    .then(function()&#123;
+        console.log(55);
+    &#125;)
+    new Promise(function(resolve)&#123;
+        resolve()
+    &#125;)
+    .then(function()&#123;
+        console.log(77);
+    &#125;)
+    console.log(66);
+    // 打印顺序是  11  33  44  66  55  77  22
+&lt;/script&gt;
+</code></pre>
+<p>分析：</p>
+<img src="imgs/2021.12.07/图片1.png">
+
+<p>整个script代码会先进入主栈，从上向下运行，则先<strong>打印11</strong></p>
+<img src="imgs/2021.12.07/图片2.png">
+
+<p>然后是setTimeout定时器会放在线程里（这里不考虑线程，只需知道线程处理完后都会交给队列），由于定时器没有设置时间，然后会进入宏任务队列。然后是Promise，Promise所入参的函数立马执行，则会<strong>打印33</strong>，这里有resolve，一resolve这个then会立马执行，Promise的then会进入微任务队列，Promise里还剩下一个44，所以在主栈中<strong>打印44</strong>。然后还是一个Promise，Promise里没有打印，Promise的then会进入微任务队列，接着<strong>打印66</strong>。</p>
+<img src="imgs/2021.12.07/图片3.png">
+
+<p>主栈所有任务执行完毕，主栈清空，主栈清空后，会到任务队列拿任务执行，先把微任务队列的所有任务拿到主栈执行，根据队列的先进先出原则，会先拿微任务队列的55到主栈，<strong>55执行完毕</strong>，主栈清空，接着拿微任务队列的77,<strong>77执行完毕</strong>，主栈清空。</p>
+<img src="imgs/2021.12.07/图片4.png">
+
+<img src="imgs/2021.12.07/图片5.png">
+
+<img src="imgs/2021.12.07/图片6.png">
+
+<p>然后去宏任务队列拿任务22到主栈，<strong>22执行完毕</strong>，主栈清空，所有任务执行完毕。</p>
+<blockquote>
+<p>总结：默认情况下，script整个代码块会入主栈执行，当遇到setTimeout，setInterval等代码块的时候会入宏任务队列，当遇到process.nextTick，Promise.then的时候会入微任务队列，当主栈执行完整个script代码块的时候，会先从微任务队列把所有的微任务放到主栈执行（遵循先进先出原则），当微任务队列的所有任务清空后，再从宏任务队列拿一个任务到主栈执行，然后依次反复。</p>
+</blockquote>
+
+        </div>
+
+    </div>
+
+    
+
+    
+
+    
+
+    
+<div class="article-copyright hairline">
+  <p>
+    本作品采用 <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a> 进行许可。
+  </p>
+</div>
+
+
+    
+
+    
+<nav class="article-nav">
+  
+  
+    <a href="/ckwstx9ps0000mwv9ew0l4cy0.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-caption">上一篇</div>
+      <div class="article-nav-title">07_对象的引用、浅拷贝、深拷贝</div>
+    </a>
+  
+</nav>
+
+
+    <section class="share">
+        <div class="share-title">分享</div>
+        <a class="share-item" target="_blank"
+            href="https://twitter.com/share?text=08_js经典输出顺序问题 - 小豆子的博客&url=https://dtting.top/ckwvnv7iz0000l8v934zt8fgu.html">
+            <box-icon type='logo' name='twitter'></box-icon>
+        </a>
+        <a class="share-item" target="_blank"
+            href="https://www.facebook.com/sharer.php?title=08_js经典输出顺序问题 - 小豆子的博客&u=https://dtting.top/ckwvnv7iz0000l8v934zt8fgu.html">
+            <box-icon name='facebook-square' type='logo' ></box-icon>
+        </a>
+        <!-- <a class="share-item" target="_blank"
+            href="https://service.weibo.com/share/share.php?title=08_js经典输出顺序问题 - 小豆子的博客&url=https://dtting.top/ckwvnv7iz0000l8v934zt8fgu.html&pic=">
+            <div class="n-icon n-icon-weibo"></div>
+        </a> -->
+    </section>
 
 </article>
 
 
-    </div></section>
 
 
 
 
+
+
+
+
+
+
+</div>
                 </section>
             </section>
 
@@ -144,6 +263,12 @@
 <div class="widget" id="widget">
     
       
+  <div class="widget-wrap">
+    <div class="widget-inner">
+      <div class="toc post-toc-html"></div>
+    </div>
+  </div>
+
     
       
 
