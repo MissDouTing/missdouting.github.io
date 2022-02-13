@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>13_函数的去抖和节流 | 小豆子的博客</title>
+    <title>18_vue生命周期和生命周期钩子函数 | 小豆子的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     
@@ -105,7 +105,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-ckzks19kt00001wv9405u4kt5" class="article article-type-post" itemscope
+    <article id="post-ckzktd6qg00020wv9emgh00qy" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -121,7 +121,7 @@
             
   
     <h1 class="article-title" itemprop="name">
-      13_函数的去抖和节流
+      18_vue生命周期和生命周期钩子函数
     </h1>
   
 
@@ -131,7 +131,7 @@
         <div class="article-more-info article-more-info-post hairline">
 
             <div class="article-date">
-  <time datetime="2022-02-13T04:33:24.000Z" itemprop="datePublished">2022-02-13</time>
+  <time datetime="2022-02-13T05:05:33.000Z" itemprop="datePublished">2022-02-13</time>
 </div>
 
             
@@ -143,56 +143,84 @@
         </div>
 
         <div class="article-entry post-inner-html hairline" itemprop="articleBody">
-            <h2 id="函数的去抖"><a href="#函数的去抖" class="headerlink" title="函数的去抖"></a>函数的去抖</h2><p>函数调用n秒后才会执行，如果函数在n秒内被调用的话则函数不执行，重新计算执行时间。函数去抖主要避免快速多次执行函数（操作DOM，加载资源等等）给内存带来大量的消耗从而一定程度上降低性能问题。</p>
-<p>  函数去抖的应用场景：<br>    1.监控键盘keypress事件，每当内容变化的时候就向服务器发送请求<br>    2.在页面滚动的时候监控页面的滚动事件，会频繁执行scroll事件<br>    3.监控页面的resize事件，拉动窗口改变大小的时候，resize事件被频繁的执行</p>
-<p>上面三种场景中都会频繁触发指定事件，比如第一种情况，每当输入框内容变化之后就向服务器发送请求，可能会导致一秒钟向服务器请求很多次，这显然是不合理的，我们可以使用函数去抖来优化。</p>
-<pre><code>//loadsh里有去抖函数的封装
+            <h2 id="什么是vue生命周期？"><a href="#什么是vue生命周期？" class="headerlink" title="什么是vue生命周期？"></a>什么是vue生命周期？</h2><p><code>vue 的生命周期是：</code> vue 实例从创建到销毁，也就是从<code>开始创建</code>、<code>初始化数据</code>、<code>编译模板</code>、<code>挂载Dom→渲染</code>、<code>更新→渲染</code>、<code>卸载</code>等一系列过程。</p>
+<h2 id="什么是vue生命周期钩子函数？"><a href="#什么是vue生命周期钩子函数？" class="headerlink" title="什么是vue生命周期钩子函数？"></a>什么是vue生命周期钩子函数？</h2><p>在vue声明周期过程中也会<code>运行</code>一些叫做<code>生命周期钩子的函数</code>，这给了<code>用户</code>在不同阶段<code>添加自己的代码</code>的机会。</p>
+<h2 id="22-vue生命周期钩子函数有哪些"><a href="#22-vue生命周期钩子函数有哪些" class="headerlink" title="22.vue生命周期钩子函数有哪些?"></a>22.vue生命周期钩子函数有哪些?</h2><table>
+<thead>
+<tr>
+<th>生命周期钩子函数（11个）</th>
+<th>类型</th>
+<th>详细</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>beforeCreate</td>
+<td>Function</td>
+<td>在<code>实例初始化之后</code>，数据观测 (data observer) 和 event/watcher 事件配置之前被调用。</td>
+</tr>
+<tr>
+<td>created</td>
+<td>Function</td>
+<td>在<code>实例创建完成后</code>被立即调用。在这一步，实例已完成以下的配置：<code>数据观测 (data observer)</code>， <code>属性和方法的运算</code>，<code>watch/event 事件回调</code>。然而，挂载阶段还没开始，$el 属性目前不可见。</td>
+</tr>
+<tr>
+<td>beforeMount</td>
+<td>Function</td>
+<td>在<code>挂载开始之前</code>被调用：相关的 render 函数首次被调用。</td>
+</tr>
+<tr>
+<td>mounted</td>
+<td>Function</td>
+<td><code>el</code> 被新创建的 <code>vm.$el</code> 替换，并<code>挂载到实例上去之后</code>调用该钩子。如果 root 实例挂载了一个文档内元素，当 mounted 被调用时 vm.$el 也在文档内。</td>
+</tr>
+<tr>
+<td>beforeUpdate</td>
+<td>Function</td>
+<td><code>数据更新时调用</code>，发生在虚拟 DOM 打补丁之前。这里适合在更新之前访问现有的 DOM，比如手动移除已添加的事件监听器。<strong>该钩子在服务器端渲染期间不被调用，因为只有初次渲染会在服务端进行。</strong></td>
+</tr>
+<tr>
+<td>updated</td>
+<td>Function</td>
+<td>由于数据更改导致的<code>虚拟 DOM 重新渲染和打补丁</code>，在这<code>之后</code>会<code>调用</code>该钩子。</td>
+</tr>
+<tr>
+<td>activated</td>
+<td>Function</td>
+<td><code>keep-alive 组件激活时调用</code>。<strong>该钩子在服务器端渲染期间不被调用。</strong></td>
+</tr>
+<tr>
+<td>deactivated</td>
+<td>Function</td>
+<td><code>keep-alive 组件停用时调用</code>。<strong>该钩子在服务器端渲染期间不被调用。</strong></td>
+</tr>
+<tr>
+<td>beforeUnmounted</td>
+<td>Function</td>
+<td>实例销毁之前调用。在这一步，实例仍然完全可用。<strong>该钩子在服务器端渲染期间不被调用。</strong></td>
+</tr>
+<tr>
+<td>unmounted</td>
+<td>Function</td>
+<td>Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。<strong>该钩子在服务器端渲染期间不被调用。</strong></td>
+</tr>
+<tr>
+<td>errorCaptured（2.5.0+ 新增）</td>
+<td>(err: Error, vm: Component, info: string) =&gt; ?boolean</td>
+<td>当捕获一个来自子孙组件的错误时被调用。此钩子会收到三个参数：错误对象、发生错误的组件实例以及一个包含错误来源信息的字符串。此钩子可以返回 false 以阻止该错误继续向上传播。</td>
+</tr>
+</tbody></table>
+<p><strong>注意：</strong></p>
+<pre><code>1、mounted、updated不会承诺所有的子组件也都一起被挂载。如果你希望等到整个视图都渲染完毕，可以用vm.$nextTick替换掉mounted、updated：
 
- &lt;input type=&quot;text&quot; oninput=&quot;textInput()&quot;&gt;
-       
-       //模拟发送请求的方法
-        function ajax() &#123;
-            console.log(&quot;发送请求&quot;)
-        &#125;
-        //文本框输入内容的时候频繁的触发func方法
-        var func = debounce(ajax,1000)
-        function textInput() &#123;
-            func();
-        &#125;
-    
-        //函数去抖方法的封装
-        //debounce: 当调用动作n毫秒后，才会执行该动作，若在这n毫秒内又调用此动作则将重新计算执行时间。
-        function debounce(method, delay) &#123;
-            var timer = null;
-            return function () &#123;
-                var context = this
-                var args = arguments;
-                clearTimeout(timer);
-                timer = setTimeout(function () &#123;
-                    method.apply(context, args);
-                &#125;, delay);
-            &#125;
-        &#125;
-</code></pre>
-<h2 id="函数的节流"><a href="#函数的节流" class="headerlink" title="函数的节流"></a>函数的节流</h2><p>函数节流（throttle）：函数预先设定一个执行周期(或者节流阀)，当调用动作的时刻大于等于执行周期则执行该动作，然后进入下一个新周期。</p>
-<pre><code>function throttle(method,duration)&#123;
-        var  begin = new Date();
-        return function()&#123;
-            var context = this
-            var args=arguments
-            var current=new Date();
-            if(current-begin&gt;=duration)&#123;
-                 method.apply(context,args);
-                 begin = current;
-            &#125;
-        &#125;
+updated: function () &#123;
+    this.$nextTick(function () &#123;
+        // Code that will run only after the
+        // entire view has been re-rendered
+    &#125;)
 &#125;
-function resizehandler()&#123;
-    console.log(++n);
-&#125;
-window.onresize=throttle(resizehandler,500);
+
+2、http请求建议在 created 生命周期内发出
 </code></pre>
-<p>函数节流的应用场景：<br>1.上拉下拉刷新，每拉动一次彻底完毕之后才可以下一次拉动<br>2.图片轮播动画，每一张图片动画完成之后才开始下一个图片的动画</p>
 
         </div>
 
@@ -217,19 +245,19 @@ window.onresize=throttle(resizehandler,500);
     
 <nav class="article-nav">
   
-    <a href="/ckzks8ap00000vov939wggxj7.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/ckzktd6qe00010wv947ll8kzu.html" id="article-nav-newer" class="article-nav-link-wrap">
       <div class="article-nav-caption">下一篇</div>
       <div class="article-nav-title">
         
-          14_vue开发命令npm run dev输入后的执行过程
+          19_vue-cli工作中如何自定义一个过滤器
         
       </div>
     </a>
   
   
-    <a href="/ckzkrt8zl0000ycv9adxhabkz.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/ckzktd6q400000wv90edjdd1i.html" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-caption">上一篇</div>
-      <div class="article-nav-title">12_跨域问题的解决方案</div>
+      <div class="article-nav-title">17_vue监听键盘事件的按键修饰符</div>
     </a>
   
 </nav>
@@ -238,15 +266,15 @@ window.onresize=throttle(resizehandler,500);
     <section class="share">
         <div class="share-title">分享</div>
         <a class="share-item" target="_blank"
-            href="https://twitter.com/share?text=13_函数的去抖和节流 - 小豆子的博客&url=https://dtting.top/ckzks19kt00001wv9405u4kt5.html">
+            href="https://twitter.com/share?text=18_vue生命周期和生命周期钩子函数 - 小豆子的博客&url=https://dtting.top/ckzktd6qg00020wv9emgh00qy.html">
             <box-icon type='logo' name='twitter'></box-icon>
         </a>
         <a class="share-item" target="_blank"
-            href="https://www.facebook.com/sharer.php?title=13_函数的去抖和节流 - 小豆子的博客&u=https://dtting.top/ckzks19kt00001wv9405u4kt5.html">
+            href="https://www.facebook.com/sharer.php?title=18_vue生命周期和生命周期钩子函数 - 小豆子的博客&u=https://dtting.top/ckzktd6qg00020wv9emgh00qy.html">
             <box-icon name='facebook-square' type='logo' ></box-icon>
         </a>
         <!-- <a class="share-item" target="_blank"
-            href="https://service.weibo.com/share/share.php?title=13_函数的去抖和节流 - 小豆子的博客&url=https://dtting.top/ckzks19kt00001wv9405u4kt5.html&pic=">
+            href="https://service.weibo.com/share/share.php?title=18_vue生命周期和生命周期钩子函数 - 小豆子的博客&url=https://dtting.top/ckzktd6qg00020wv9emgh00qy.html&pic=">
             <div class="n-icon n-icon-weibo"></div>
         </a> -->
     </section>

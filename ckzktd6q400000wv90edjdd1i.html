@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>13_函数的去抖和节流 | 小豆子的博客</title>
+    <title>17_vue监听键盘事件的按键修饰符 | 小豆子的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     
@@ -105,7 +105,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-ckzks19kt00001wv9405u4kt5" class="article article-type-post" itemscope
+    <article id="post-ckzktd6q400000wv90edjdd1i" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -121,7 +121,7 @@
             
   
     <h1 class="article-title" itemprop="name">
-      13_函数的去抖和节流
+      17_vue监听键盘事件的按键修饰符
     </h1>
   
 
@@ -131,7 +131,7 @@
         <div class="article-more-info article-more-info-post hairline">
 
             <div class="article-date">
-  <time datetime="2022-02-13T04:33:24.000Z" itemprop="datePublished">2022-02-13</time>
+  <time datetime="2022-02-13T05:01:26.000Z" itemprop="datePublished">2022-02-13</time>
 </div>
 
             
@@ -143,56 +143,63 @@
         </div>
 
         <div class="article-entry post-inner-html hairline" itemprop="articleBody">
-            <h2 id="函数的去抖"><a href="#函数的去抖" class="headerlink" title="函数的去抖"></a>函数的去抖</h2><p>函数调用n秒后才会执行，如果函数在n秒内被调用的话则函数不执行，重新计算执行时间。函数去抖主要避免快速多次执行函数（操作DOM，加载资源等等）给内存带来大量的消耗从而一定程度上降低性能问题。</p>
-<p>  函数去抖的应用场景：<br>    1.监控键盘keypress事件，每当内容变化的时候就向服务器发送请求<br>    2.在页面滚动的时候监控页面的滚动事件，会频繁执行scroll事件<br>    3.监控页面的resize事件，拉动窗口改变大小的时候，resize事件被频繁的执行</p>
-<p>上面三种场景中都会频繁触发指定事件，比如第一种情况，每当输入框内容变化之后就向服务器发送请求，可能会导致一秒钟向服务器请求很多次，这显然是不合理的，我们可以使用函数去抖来优化。</p>
-<pre><code>//loadsh里有去抖函数的封装
+            <p>我们可以通过按键修饰符来监听键盘事件中的按键 。<code>Vue</code>允许为 <code>v-on</code>在监听键盘事件时添加<code>按键修饰符</code>：</p>
+<pre><code>&lt;input v-on:keyup.enter=&quot;submit&quot;&gt;
 
- &lt;input type=&quot;text&quot; oninput=&quot;textInput()&quot;&gt;
-       
-       //模拟发送请求的方法
-        function ajax() &#123;
-            console.log(&quot;发送请求&quot;)
-        &#125;
-        //文本框输入内容的时候频繁的触发func方法
-        var func = debounce(ajax,1000)
-        function textInput() &#123;
-            func();
-        &#125;
-    
-        //函数去抖方法的封装
-        //debounce: 当调用动作n毫秒后，才会执行该动作，若在这n毫秒内又调用此动作则将重新计算执行时间。
-        function debounce(method, delay) &#123;
-            var timer = null;
-            return function () &#123;
-                var context = this
-                var args = arguments;
-                clearTimeout(timer);
-                timer = setTimeout(function () &#123;
-                    method.apply(context, args);
-                &#125;, delay);
-            &#125;
-        &#125;
+&lt;!-- 缩写语法 --&gt;
+&lt;input @keyup.enter=&quot;submit&quot;&gt;
 </code></pre>
-<h2 id="函数的节流"><a href="#函数的节流" class="headerlink" title="函数的节流"></a>函数的节流</h2><p>函数节流（throttle）：函数预先设定一个执行周期(或者节流阀)，当调用动作的时刻大于等于执行周期则执行该动作，然后进入下一个新周期。</p>
-<pre><code>function throttle(method,duration)&#123;
-        var  begin = new Date();
-        return function()&#123;
-            var context = this
-            var args=arguments
-            var current=new Date();
-            if(current-begin&gt;=duration)&#123;
-                 method.apply(context,args);
-                 begin = current;
-            &#125;
-        &#125;
-&#125;
-function resizehandler()&#123;
-    console.log(++n);
-&#125;
-window.onresize=throttle(resizehandler,500);
+<p><strong>全部的按键别名：</strong></p>
+<pre><code>- .enter
+- .tab
+- .delete (捕获“删除”和“退格”键)
+- .esc
+- .space
+- .up
+- .down
+- .left
+- .right
 </code></pre>
-<p>函数节流的应用场景：<br>1.上拉下拉刷新，每拉动一次彻底完毕之后才可以下一次拉动<br>2.图片轮播动画，每一张图片动画完成之后才开始下一个图片的动画</p>
+<p><strong>系统修饰键：</strong></p>
+<blockquote>
+<p>2.1.0 新增</p>
+</blockquote>
+<pre><code>可以用如下修饰符来实现仅在按下相应按键时才触发鼠标或键盘事件的监听器。
+- .ctrl
+- .alt
+- .shift
+- .meta
+
+&lt;!-- Alt + C --&gt;
+&lt;input @keyup.alt.67=&quot;clear&quot;&gt;
+
+&lt;!-- Ctrl + Click --&gt;
+&lt;div @click.ctrl=&quot;doSomething&quot;&gt;Do something&lt;/div&gt;
+</code></pre>
+<blockquote>
+<p>2.5.0 新增</p>
+</blockquote>
+<pre><code>.exact修饰符允许你控制由精确的系统修饰符组合触发的事件。
+
+&lt;!-- 即使 Alt 或 Shift 被一同按下时也会触发 --&gt;
+&lt;button @click.ctrl=&quot;onClick&quot;&gt;A&lt;/button&gt;
+
+&lt;!-- 有且只有 Ctrl 被按下的时候才触发 --&gt;
+&lt;button @click.ctrl.exact=&quot;onCtrlClick&quot;&gt;A&lt;/button&gt;
+
+&lt;!-- 没有任何系统修饰符被按下的时候才触发 --&gt;
+&lt;button @click.exact=&quot;onClick&quot;&gt;A&lt;/button&gt;
+</code></pre>
+<p><strong>鼠标按钮修饰符：</strong></p>
+<blockquote>
+<p>2.2.0 新增</p>
+</blockquote>
+<pre><code>- .left
+- .right
+- .middle
+
+这些修饰符会限制处理函数仅响应特定的鼠标按钮。
+</code></pre>
 
         </div>
 
@@ -217,19 +224,19 @@ window.onresize=throttle(resizehandler,500);
     
 <nav class="article-nav">
   
-    <a href="/ckzks8ap00000vov939wggxj7.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/ckzktd6qg00020wv9emgh00qy.html" id="article-nav-newer" class="article-nav-link-wrap">
       <div class="article-nav-caption">下一篇</div>
       <div class="article-nav-title">
         
-          14_vue开发命令npm run dev输入后的执行过程
+          18_vue生命周期和生命周期钩子函数
         
       </div>
     </a>
   
   
-    <a href="/ckzkrt8zl0000ycv9adxhabkz.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/ckzksi8950000p0v9hlb9ajwq.html" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-caption">上一篇</div>
-      <div class="article-nav-title">12_跨域问题的解决方案</div>
+      <div class="article-nav-title">15_什么是vuex</div>
     </a>
   
 </nav>
@@ -238,15 +245,15 @@ window.onresize=throttle(resizehandler,500);
     <section class="share">
         <div class="share-title">分享</div>
         <a class="share-item" target="_blank"
-            href="https://twitter.com/share?text=13_函数的去抖和节流 - 小豆子的博客&url=https://dtting.top/ckzks19kt00001wv9405u4kt5.html">
+            href="https://twitter.com/share?text=17_vue监听键盘事件的按键修饰符 - 小豆子的博客&url=https://dtting.top/ckzktd6q400000wv90edjdd1i.html">
             <box-icon type='logo' name='twitter'></box-icon>
         </a>
         <a class="share-item" target="_blank"
-            href="https://www.facebook.com/sharer.php?title=13_函数的去抖和节流 - 小豆子的博客&u=https://dtting.top/ckzks19kt00001wv9405u4kt5.html">
+            href="https://www.facebook.com/sharer.php?title=17_vue监听键盘事件的按键修饰符 - 小豆子的博客&u=https://dtting.top/ckzktd6q400000wv90edjdd1i.html">
             <box-icon name='facebook-square' type='logo' ></box-icon>
         </a>
         <!-- <a class="share-item" target="_blank"
-            href="https://service.weibo.com/share/share.php?title=13_函数的去抖和节流 - 小豆子的博客&url=https://dtting.top/ckzks19kt00001wv9405u4kt5.html&pic=">
+            href="https://service.weibo.com/share/share.php?title=17_vue监听键盘事件的按键修饰符 - 小豆子的博客&url=https://dtting.top/ckzktd6q400000wv90edjdd1i.html&pic=">
             <div class="n-icon n-icon-weibo"></div>
         </a> -->
     </section>

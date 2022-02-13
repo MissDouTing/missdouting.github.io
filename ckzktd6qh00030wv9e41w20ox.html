@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>13_函数的去抖和节流 | 小豆子的博客</title>
+    <title>20_vue等单页面应用及其优缺点 | 小豆子的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     
@@ -105,7 +105,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-ckzks19kt00001wv9405u4kt5" class="article article-type-post" itemscope
+    <article id="post-ckzktd6qh00030wv9e41w20ox" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -121,7 +121,7 @@
             
   
     <h1 class="article-title" itemprop="name">
-      13_函数的去抖和节流
+      20_vue等单页面应用及其优缺点
     </h1>
   
 
@@ -131,7 +131,7 @@
         <div class="article-more-info article-more-info-post hairline">
 
             <div class="article-date">
-  <time datetime="2022-02-13T04:33:24.000Z" itemprop="datePublished">2022-02-13</time>
+  <time datetime="2022-02-13T05:13:45.000Z" itemprop="datePublished">2022-02-13</time>
 </div>
 
             
@@ -143,56 +143,9 @@
         </div>
 
         <div class="article-entry post-inner-html hairline" itemprop="articleBody">
-            <h2 id="函数的去抖"><a href="#函数的去抖" class="headerlink" title="函数的去抖"></a>函数的去抖</h2><p>函数调用n秒后才会执行，如果函数在n秒内被调用的话则函数不执行，重新计算执行时间。函数去抖主要避免快速多次执行函数（操作DOM，加载资源等等）给内存带来大量的消耗从而一定程度上降低性能问题。</p>
-<p>  函数去抖的应用场景：<br>    1.监控键盘keypress事件，每当内容变化的时候就向服务器发送请求<br>    2.在页面滚动的时候监控页面的滚动事件，会频繁执行scroll事件<br>    3.监控页面的resize事件，拉动窗口改变大小的时候，resize事件被频繁的执行</p>
-<p>上面三种场景中都会频繁触发指定事件，比如第一种情况，每当输入框内容变化之后就向服务器发送请求，可能会导致一秒钟向服务器请求很多次，这显然是不合理的，我们可以使用函数去抖来优化。</p>
-<pre><code>//loadsh里有去抖函数的封装
-
- &lt;input type=&quot;text&quot; oninput=&quot;textInput()&quot;&gt;
-       
-       //模拟发送请求的方法
-        function ajax() &#123;
-            console.log(&quot;发送请求&quot;)
-        &#125;
-        //文本框输入内容的时候频繁的触发func方法
-        var func = debounce(ajax,1000)
-        function textInput() &#123;
-            func();
-        &#125;
-    
-        //函数去抖方法的封装
-        //debounce: 当调用动作n毫秒后，才会执行该动作，若在这n毫秒内又调用此动作则将重新计算执行时间。
-        function debounce(method, delay) &#123;
-            var timer = null;
-            return function () &#123;
-                var context = this
-                var args = arguments;
-                clearTimeout(timer);
-                timer = setTimeout(function () &#123;
-                    method.apply(context, args);
-                &#125;, delay);
-            &#125;
-        &#125;
-</code></pre>
-<h2 id="函数的节流"><a href="#函数的节流" class="headerlink" title="函数的节流"></a>函数的节流</h2><p>函数节流（throttle）：函数预先设定一个执行周期(或者节流阀)，当调用动作的时刻大于等于执行周期则执行该动作，然后进入下一个新周期。</p>
-<pre><code>function throttle(method,duration)&#123;
-        var  begin = new Date();
-        return function()&#123;
-            var context = this
-            var args=arguments
-            var current=new Date();
-            if(current-begin&gt;=duration)&#123;
-                 method.apply(context,args);
-                 begin = current;
-            &#125;
-        &#125;
-&#125;
-function resizehandler()&#123;
-    console.log(++n);
-&#125;
-window.onresize=throttle(resizehandler,500);
-</code></pre>
-<p>函数节流的应用场景：<br>1.上拉下拉刷新，每拉动一次彻底完毕之后才可以下一次拉动<br>2.图片轮播动画，每一张图片动画完成之后才开始下一个图片的动画</p>
+            <h2 id="什么是单页面应用？"><a href="#什么是单页面应用？" class="headerlink" title="什么是单页面应用？"></a>什么是单页面应用？</h2><p>单页Web应用（single page web application，SPA）：就是只有一个页面的应用。单页应用程序 (SPA) 是加载单个HTML 页面并在用户与应用程序交互时动态更新该页面的Web应用程序。浏览器一开始会加载必需的HTML、CSS和JavaScript，所有的操作都在这张页面上完成，都由JavaScript来控制。因此，对单页应用来说模块化的开发和设计显得相当重要。</p>
+<h2 id="单页Web应用的优点："><a href="#单页Web应用的优点：" class="headerlink" title="单页Web应用的优点："></a>单页Web应用的优点：</h2><p>1、提供了更加吸引人的用户体验：具有桌面应用的即时性、网站的可移植性和可访问性。<br>2、单页应用的内容的改变不需要重新加载整个页面，web应用更具响应性和更令人着迷。<br>3、单页应用没有页面之间的切换，就不会出现“白屏现象”,也不会出现假死并有“闪烁”现象<br>4、单页应用相对服务器压力小，服务器只用出数据就可以，不用管展示逻辑和页面合成，吞吐能力会提高几倍。<br>5、良好的前后端分离。后端不再负责模板渲染、输出页面工作，后端API通用化，即同一套后端程序代码，不用修改就可以用于Web界面、手机、平板等多种客户端。</p>
+<h2 id="单页Web应用的缺点："><a href="#单页Web应用的缺点：" class="headerlink" title="单页Web应用的缺点："></a>单页Web应用的缺点：</h2><p>1、首屏加载慢<br>2、SEO问题，不利于百度，360等搜索引擎收录。<br>3、容易造成CSS命名冲突。<br>4、前进、后退、地址栏、书签等，都需要程序进行管理，页面的复杂度很高，需要一定的技能水平和开发成本高。</p>
 
         </div>
 
@@ -217,19 +170,10 @@ window.onresize=throttle(resizehandler,500);
     
 <nav class="article-nav">
   
-    <a href="/ckzks8ap00000vov939wggxj7.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <div class="article-nav-caption">下一篇</div>
-      <div class="article-nav-title">
-        
-          14_vue开发命令npm run dev输入后的执行过程
-        
-      </div>
-    </a>
   
-  
-    <a href="/ckzkrt8zl0000ycv9adxhabkz.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/ckzktd6qe00010wv947ll8kzu.html" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-caption">上一篇</div>
-      <div class="article-nav-title">12_跨域问题的解决方案</div>
+      <div class="article-nav-title">19_vue-cli工作中如何自定义一个过滤器</div>
     </a>
   
 </nav>
@@ -238,15 +182,15 @@ window.onresize=throttle(resizehandler,500);
     <section class="share">
         <div class="share-title">分享</div>
         <a class="share-item" target="_blank"
-            href="https://twitter.com/share?text=13_函数的去抖和节流 - 小豆子的博客&url=https://dtting.top/ckzks19kt00001wv9405u4kt5.html">
+            href="https://twitter.com/share?text=20_vue等单页面应用及其优缺点 - 小豆子的博客&url=https://dtting.top/ckzktd6qh00030wv9e41w20ox.html">
             <box-icon type='logo' name='twitter'></box-icon>
         </a>
         <a class="share-item" target="_blank"
-            href="https://www.facebook.com/sharer.php?title=13_函数的去抖和节流 - 小豆子的博客&u=https://dtting.top/ckzks19kt00001wv9405u4kt5.html">
+            href="https://www.facebook.com/sharer.php?title=20_vue等单页面应用及其优缺点 - 小豆子的博客&u=https://dtting.top/ckzktd6qh00030wv9e41w20ox.html">
             <box-icon name='facebook-square' type='logo' ></box-icon>
         </a>
         <!-- <a class="share-item" target="_blank"
-            href="https://service.weibo.com/share/share.php?title=13_函数的去抖和节流 - 小豆子的博客&url=https://dtting.top/ckzks19kt00001wv9405u4kt5.html&pic=">
+            href="https://service.weibo.com/share/share.php?title=20_vue等单页面应用及其优缺点 - 小豆子的博客&url=https://dtting.top/ckzktd6qh00030wv9e41w20ox.html&pic=">
             <div class="n-icon n-icon-weibo"></div>
         </a> -->
     </section>
