@@ -494,6 +494,83 @@ class="article article-type-post"
   
     
       <article
+id="post-16_vue常用的修饰符"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzktjh8p00007kv91brh8040.html">16_vue常用的修饰符</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <h2 id="v-on指令常用修饰符"><a href="#v-on指令常用修饰符" class="headerlink" title="v-on指令常用修饰符"></a>v-on指令常用修饰符</h2><pre><code>- .stop - 调用 event.stopPropagation()，禁止事件冒泡。
+- .prevent - 调用 event.preventDefault()，阻止事件默认行为。
+- .capture - 添加事件侦听器时使用 capture 模式。
+- .self - 只当事件是从侦听器绑定的元素本身触发时才触发回调。
+- .&#123;keyCode | keyAlias&#125; - 只当事件是从特定键触发时才触发回调。
+- .native - 监听组件根元素的原生事件。
+- .once - 只触发一次回调。
+- .left - (2.2.0) 只当点击鼠标左键时触发。
+- .right - (2.2.0) 只当点击鼠标右键时触发。
+- .middle - (2.2.0) 只当点击鼠标中键时触发。
+
+
+
+
+//注意： 如果是在自己封装的组件或者是使用一些第三方的UI库时，会发现一些事件并不起效果，这时就需要用.native修饰符了，如当我们使用element-ui中的el-input组件时的@keyup.enter事件：
+&lt;el-input
+  v-model=&quot;inputName&quot;
+  placeholder=&quot;搜索你的文件&quot;
+  @keyup.enter.native=&quot;searchFile(params)&quot;
+  &gt;
+&lt;/el-input&gt;
+</code></pre>
+<h2 id="v-bind指令常用修饰符"><a href="#v-bind指令常用修饰符" class="headerlink" title="v-bind指令常用修饰符"></a>v-bind指令常用修饰符</h2><pre><code>- .prop   被用于绑定 DOM 属性 (property)。(差别在哪里？)
+- .camel  (2.1.0+) 将 kebab-case 特性名转换为 camelCase. (从 2.1.0 开始支持)
+- .sync (2.3.0+) 语法糖，会扩展成一个更新父组件绑定值的 v-on 侦听器。
+</code></pre>
+<h2 id="v-model-指令常用修饰符"><a href="#v-model-指令常用修饰符" class="headerlink" title="v-model 指令常用修饰符"></a>v-model 指令常用修饰符</h2><pre><code>- .lazy    取代 input 监听 change 事件
+- .number  输入字符串转为数字
+- .trim    输入首尾空格过滤
+</code></pre>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T04:55:12.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+        <div class="article-tag">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/v-on-v-bind-v-model%E6%8C%87%E4%BB%A4%E5%B8%B8%E7%94%A8%E4%BF%AE%E9%A5%B0%E7%AC%A6/" rel="tag">v-on,v-bind,v-model指令常用修饰符</a></li></ul>
+        </div>
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
 id="post-15_什么是vuex"
 class="article article-type-post"
 >
@@ -901,73 +978,10 @@ class="article article-type-post"
 
     
   
-    
-      <article
-id="post-11_MVVM模式和MVC模式"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/ckzkrdt230000x8v90f79027s.html">11_MVVM模式和MVC模式</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <h2 id="什么是mvvm？"><a href="#什么是mvvm？" class="headerlink" title="什么是mvvm？"></a>什么是mvvm？</h2><ul>
-<li><p>MVVM最早由微软提出来，它借鉴了桌面应用程序的MVC思想，在前端页面中，把Model用纯JavaScript对象表示，View负责显示，两者做到了最大限度的分离，把Model和View关联起来的就是ViewModel。</p>
-</li>
-<li><p>ViewModel负责把Model的数据同步到View显示出来，还负责把View的修改同步回Model</p>
-</li>
-<li><p>View 和 Model 之间的同步工作完全是自动的，无需人为干涉（由viewModel完成）</p>
-</li>
-<li><p>因此开发者只需关注业务逻辑，不需要手动操作DOM, 不需要关注数据状态的同步问题，复杂的数据状态维护完全由 MVVM 来统一管理</p>
-</li>
-</ul>
-<h2 id="MVVM模式的优点"><a href="#MVVM模式的优点" class="headerlink" title="MVVM模式的优点"></a>MVVM模式的优点</h2><p>1、低耦合：MVVM模式中，数据是独立于UI的，ViewModel只负责处理和提供数据，UI想怎么处理数据都由UI自己决定，ViewModel不涉及任何和UI相关的事，即使控件改变（input换成p）,ViewModel几乎不需要更改任何代码，专注自己的数据处理就可以了   //模块和模块之间他们的依赖关系</p>
-<p>2.自动同步数据:ViewModel通过双向数据绑定把View层和Model层连接了起来，View和Model这两者可以自动同步。程序员不需要手动操作DOM, 不需要关注数据状态的同步问题，MVVM 统一管理了复杂的数据状态维护</p>
-<p>3、可重用性：你可以把一些视图逻辑放在一个ViewModel里面，让很多view重用这段视图逻辑。</p>
-<p>4、独立开发：开发人员可以专注于业务逻辑和数据的开发（ViewModel），设计人员可以专注于页面设计。</p>
-<p>5、可测试：ViewModel里面是数据和业务逻辑，View中关注的是UI，这样的做测试是很方便的，完全没有彼此的依赖，不管是UI的单元测试还是业务逻辑的单元测试，都是低耦合的</p>
-<h2 id="MVVM-和-MVC-的区别"><a href="#MVVM-和-MVC-的区别" class="headerlink" title="MVVM 和 MVC 的区别"></a>MVVM 和 MVC 的区别</h2><p>mvc 和 mvvm 其实区别并不大。都是一种设计思想，主要区别如下：<br>1.mvc 中 Controller演变成 mvvm 中的 viewModel<br>2.mvvm 通过数据来驱动视图层的显示而不是节点操作。<br>3.mvc中Mmodel和View是可以直接打交道的，造成Model层和View层之间的耦合度高。而mvvm中Model和View不直接交互，而是通过中间桥梁ViewModel来同步<br>4.mvvm主要解决了mvc中大量的DOM 操作，使页面渲染性能降低，加载速度变慢，影响用户体验。</p>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-02-13T04:15:38.000Z" itemprop="datePublished">2022-02-13</time>
-</div>
-    
-    
-        <div class="article-tag">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%80%E4%B9%88%E6%98%AFMVVM%EF%BC%8CMVVM%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BC%98%E7%82%B9%E4%BB%A5%E5%8F%8A%E4%B8%8EMVC%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="tag">什么是MVVM，MVVM模式的优点以及与MVC模式的区别</a></li></ul>
-        </div>
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
 
   
     <nav class="pagination">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next</a>
+        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next</a>
     </nav>
   
 </div>
@@ -991,7 +1005,7 @@ class="article article-type-post"
   <div class="widget-wrap widget-tags">
     <div class="widget-title"><span>Tags</span></div>
     <div class="widget-inner">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%AF%A6%E8%A7%A3/" rel="tag">js的基本数据类型和引用数据类型详解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb%E7%9A%84%E5%AE%89%E8%A3%85%E3%80%81%E4%BD%BF%E7%94%A8%EF%BC%8C%E4%B8%8Enode%E5%90%8E%E7%AB%AF%E8%BF%9E%E6%8E%A5%EF%BC%8C%E5%89%8D%E7%AB%AF%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="tag">mongodb的安装、使用，与node后端连接，前端的使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%80%E4%B9%88%E6%98%AFMVVM%EF%BC%8CMVVM%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BC%98%E7%82%B9%E4%BB%A5%E5%8F%8A%E4%B8%8EMVC%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="tag">什么是MVVM，MVVM模式的优点以及与MVC模式的区别</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%B9%E4%B8%89%E8%80%85%E7%9A%84%E5%A3%B0%E6%98%8E%E6%96%B9%E5%BC%8F%E8%BF%9B%E8%A1%8C%E5%8C%BA%E5%88%86/" rel="tag">对三者的声明方式进行区分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BC%95%E7%94%A8%E3%80%81%E6%B5%85%E6%8B%B7%E8%B4%9D%E3%80%81%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B%E3%80%81%E4%B8%89%E8%80%85%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="tag">对象的引用、浅拷贝、深拷贝在内存中的实现过程、三者的区别</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%AF%A6%E8%A7%A3/" rel="tag">js的基本数据类型和引用数据类型详解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb%E7%9A%84%E5%AE%89%E8%A3%85%E3%80%81%E4%BD%BF%E7%94%A8%EF%BC%8C%E4%B8%8Enode%E5%90%8E%E7%AB%AF%E8%BF%9E%E6%8E%A5%EF%BC%8C%E5%89%8D%E7%AB%AF%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="tag">mongodb的安装、使用，与node后端连接，前端的使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/v-on-v-bind-v-model%E6%8C%87%E4%BB%A4%E5%B8%B8%E7%94%A8%E4%BF%AE%E9%A5%B0%E7%AC%A6/" rel="tag">v-on,v-bind,v-model指令常用修饰符</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%80%E4%B9%88%E6%98%AFMVVM%EF%BC%8CMVVM%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BC%98%E7%82%B9%E4%BB%A5%E5%8F%8A%E4%B8%8EMVC%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="tag">什么是MVVM，MVVM模式的优点以及与MVC模式的区别</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%B9%E4%B8%89%E8%80%85%E7%9A%84%E5%A3%B0%E6%98%8E%E6%96%B9%E5%BC%8F%E8%BF%9B%E8%A1%8C%E5%8C%BA%E5%88%86/" rel="tag">对三者的声明方式进行区分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BC%95%E7%94%A8%E3%80%81%E6%B5%85%E6%8B%B7%E8%B4%9D%E3%80%81%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B%E3%80%81%E4%B8%89%E8%80%85%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="tag">对象的引用、浅拷贝、深拷贝在内存中的实现过程、三者的区别</a></li></ul>
     </div>
   </div>
 
