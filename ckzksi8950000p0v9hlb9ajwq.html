@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>06_js基本类型和引用类型 | 小豆子的博客</title>
+    <title>15_什么是vuex | 小豆子的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     
@@ -105,7 +105,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-ckwstwhy100008ov97drxan3v" class="article article-type-post" itemscope
+    <article id="post-ckzksi8950000p0v9hlb9ajwq" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -121,7 +121,7 @@
             
   
     <h1 class="article-title" itemprop="name">
-      06_js基本类型和引用类型
+      15_什么是vuex
     </h1>
   
 
@@ -131,15 +131,11 @@
         <div class="article-more-info article-more-info-post hairline">
 
             <div class="article-date">
-  <time datetime="2021-11-25T08:10:01.000Z" itemprop="datePublished">2021-11-25</time>
+  <time datetime="2022-02-13T04:45:24.000Z" itemprop="datePublished">2022-02-13</time>
 </div>
 
             
 
-            
-            <div class="article-tag">
-                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%AF%A6%E8%A7%A3/" rel="tag">js的基本数据类型和引用数据类型详解</a></li></ul>
-            </div>
             
 
             
@@ -147,33 +143,126 @@
         </div>
 
         <div class="article-entry post-inner-html hairline" itemprop="articleBody">
-            <h2 id="js数据类型的种类"><a href="#js数据类型的种类" class="headerlink" title="js数据类型的种类"></a>js数据类型的种类</h2><p>js的数据类型分为两种：基本数据类型和引用数据类型（也叫对象类型）</p>
-<p>js的数据类型分为两种：基本数据类型和引用数据类型（也叫对象类型）</p>
-<ul>
-<li><p>常用的js基础数据类型有number, string, boolean, null, underfined</p>
-</li>
-<li><p>js引用数据类型有object,array,function,data等（除基本数据类型外都是引用数据类型）</p>
-</li>
-</ul>
-<h2 id="基本数据类型详解"><a href="#基本数据类型详解" class="headerlink" title="基本数据类型详解"></a>基本数据类型详解</h2><p>1.number类型。数字类型（整数和小数）</p>
-<p>2.string类型。字符串类型（通过单引号或者是双引号括起来的值）</p>
-<p>3.boolean类型。布尔类型（值只有两个：true和false）</p>
-<p>4.null类型。空类型（有值，但是不知道值属于什么数据类型，无法辨认。比如：number类型+boolean类型形成的值，这个值就是null）</p>
-<p>5.undefined类型。未定义数据类型（无值，因为没有值，所以不知道值的数据类型，js是通过值来判断数据类型的。比如：变量声明好了，但是没有赋值，这个值就是undefined）</p>
-<h2 id="引用数据类型详解"><a href="#引用数据类型详解" class="headerlink" title="引用数据类型详解"></a>引用数据类型详解</h2><p>1.object类型。对象类型（javaScript中所有对象的顶级父元素）</p>
-<p>2.array类型。数组类型</p>
-<p>3.function类型。函数类型（每个函数都是function类型的实例）</p>
-<p>4.data类型。数据类型（通过new Date()来定义Date对象）</p>
-<h2 id="两者区别"><a href="#两者区别" class="headerlink" title="两者区别"></a>两者区别</h2><ul>
-<li><p>基本数据类型是按值访问的，因为可以直接操作保存在变量中的实际值。</p>
-</li>
-<li><p>js的引用数据类型是保存在堆内存中的对象，与其他语言的不同是，你不可以直接访问堆内存空间中的位置和操作堆内存空间。只能操作对象在栈内存中的引用地址。</p>
-</li>
-<li><p>引用数据类型具有属性和方法，基本数据类型没有。</p>
-</li>
-</ul>
-<img src="imgs/2021.11.25/图片1.png">
+            <h2 id="什么是vuex？"><a href="#什么是vuex？" class="headerlink" title="什么是vuex？"></a>什么是vuex？</h2><p>Vuex 是一个专为 Vue.js 应用程序开发的状态管理器，采用 集中式存储 管理所有组件的状态。<br>主要用于维护vue组件间共用的一些 变量 和 方法</p>
+<p><strong>vuex的原理其实非常简单，它为什么能实现所有的组件共享同一份数据？</strong></p>
+<p>因为vuex生成了一个store实例，并且把这个实例挂在了所有的组件上，所有的组件引用的都是同一个store实例。<br>store实例上有数据，有方法，方法改变的都是store实例上的数据。由于其他组件引用的是同样的实例，所以一个组件改变了store上的数据，导致另一个组件上的数据也会改变，就像是一个对象的引用。</p>
+<h2 id="vuex的核心概念？"><a href="#vuex的核心概念？" class="headerlink" title="vuex的核心概念？"></a>vuex的核心概念？</h2><p>每一个 Vuex 应用的核心就是 store（仓库）。“store”基本上就是一个容器，它包含着你的应用中大部分的状态 (state)。</p>
+<p><strong>vuex的核心概念和核心概念图：</strong><br>1、state - Vuex store实例的根状态对象，用于定义共享的状态变量。<br>2、Action -动作，向store发出调用通知，执行本地或者远端的某一个操作（可以理解为store的methods）<br>3、Mutations -修改器，它只用于修改state中定义的状态变量。<br>4、getter -读取器，外部程序通过它获取变量的具体值，或者在取值前做一些计算（可以认为是store的计算属性）</p>
+<p><strong>Vuex的应用场景：</strong><br>Vuex主要用于：<br> 1、多层嵌套的组件之间进行状态传递<br> 2、兄弟组件间进行状态传递时（当然也可以使用中央事件总线BUS）<br> 3、多组件共享状态时</p>
+<p>更为具体的场景：组件之间的状态、音乐播放、登录状态、加入购物车…</p>
+<img src="imgs/2022.02.13.2/图片1.png">
 
+<h2 id="vuex的使用？"><a href="#vuex的使用？" class="headerlink" title="vuex的使用？"></a>vuex的使用？</h2><pre><code>#1.安装vuex
+npm install vuex@next --save
+
+#2.main.js
+import &#123; createStore &#125; from &quot;vuex&quot;;
+
+// new Vuex.Store()实例，得到一个数据仓储对象
+// 可以在组件中通过this.$store.state.xx 来访问store中的数据
+var store = createStore(&#123;
+    //state相当于组件中的data
+    state: &#123;
+        count: 0
+    &#125;,
+    //如果要修改store中state的值，需要调用 mutations提供的方法，可以通过this.$store.commit(&#39;方法名&#39;)来调用
+    mutations: &#123;
+        increment(state) &#123;
+            state.count++
+        &#125;,
+        //mutations函数参数列表中最多支持两个参数，其中参数1是state； 参数2是通过commit提交过来的参数；
+        subtract(state, obj) &#123;
+            console.log(obj)
+            state.count -= obj.step;
+        &#125;
+    &#125;,
+    getters: &#123;
+        //这里的getters只负责对外提供数据，不负责修改数据，如果想要修改 state 中的数据需要在mutations中修改
+        optCount: function (state) &#123;
+            return &#39;当前最新的count值是：&#39; + state.count
+        &#125;
+    &#125;
+&#125;)
+
+// 总结：
+// 1. state中的数据，不能直接修改，如果想要修改，必须通过 mutations
+// 2. 如果组件想要直接 从 state 上获取数据： 需要 this.$store.state.***
+// 3. 如果组件想要修改数据，必须使用 mutations 提供的方法，需要通过 this.$store.commit(&#39;方法的名称&#39;， 唯一的一个参数)
+// 4. store中state上的数据在对外提供的时候建议做一层包装，推荐使用 getters。调用的时候则用this.$store.getters.***
+
+import &#123; createApp &#125; from &quot;vue&quot;;
+import App from &quot;./App.vue&quot;;
+import store from &#39;./store&#39;
+
+const app = createApp(App);
+//挂载路由实例(use方法挂载插件)
+app.use(store).mount(&quot;#app&quot;);
+
+#3.index.html
+&lt;body&gt;
+    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+
+#4.App.vue
+&lt;template&gt;
+    &lt;div&gt;
+        &lt;h1&gt;这是 App 组件&lt;/h1&gt;
+        &lt;hr&gt;
+        &lt;counter&gt;&lt;/counter&gt;
+        &lt;hr&gt;
+        &lt;amount&gt;&lt;/amount&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+    import counter from &quot;./components/counter.vue&quot;;
+    import amount from &quot;./components/amount.vue&quot;;
+
+    export default &#123;
+        data() &#123;
+            return &#123;&#125;;
+        &#125;,
+        components: &#123;
+            counter,
+            amount
+        &#125;
+    &#125;;
+&lt;/script&gt;
+
+#5.components/amount.vue
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;h3&gt;&#123;&#123; $store.getters.optCount &#125;&#125;&lt;/h3&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+#6.components/counter.vue
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;input type=&quot;button&quot; value=&quot;绑定事件-减少&quot; @click=&quot;sub&quot;&gt;
+    &lt;input type=&quot;button&quot; value=&quot;绑定事件-增加&quot; @click=&quot;add&quot;&gt;
+    &lt;br&gt;
+    &lt;input type=&quot;text&quot; v-model=&quot;$store.state.count&quot;&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default &#123;
+  data() &#123;
+    return &#123;
+    &#125;;
+  &#125;,
+  methods: &#123;
+    add() &#123;
+       this.$store.commit(&quot;increment&quot;);
+    &#125;,
+    sub() &#123;
+      this.$store.commit(&quot;subtract&quot;,&#123; step:3&#125;);
+    &#125;
+  &#125;
+&#125;;
+&lt;/script&gt;
+</code></pre>
 
         </div>
 
@@ -198,19 +287,10 @@
     
 <nav class="article-nav">
   
-    <a href="/ckwstx9ps0000mwv9ew0l4cy0.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <div class="article-nav-caption">下一篇</div>
-      <div class="article-nav-title">
-        
-          07_对象的引用、浅拷贝、深拷贝
-        
-      </div>
-    </a>
   
-  
-    <a href="/ckweotwk10000r0v99zsa8chl.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/ckzks8ap00000vov939wggxj7.html" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-caption">上一篇</div>
-      <div class="article-nav-title">05_封装一个随机颜色</div>
+      <div class="article-nav-title">14_vue开发命令npm run dev输入后的执行过程</div>
     </a>
   
 </nav>
@@ -219,15 +299,15 @@
     <section class="share">
         <div class="share-title">分享</div>
         <a class="share-item" target="_blank"
-            href="https://twitter.com/share?text=06_js基本类型和引用类型 - 小豆子的博客&url=https://dtting.top/ckwstwhy100008ov97drxan3v.html">
+            href="https://twitter.com/share?text=15_什么是vuex - 小豆子的博客&url=https://dtting.top/ckzksi8950000p0v9hlb9ajwq.html">
             <box-icon type='logo' name='twitter'></box-icon>
         </a>
         <a class="share-item" target="_blank"
-            href="https://www.facebook.com/sharer.php?title=06_js基本类型和引用类型 - 小豆子的博客&u=https://dtting.top/ckwstwhy100008ov97drxan3v.html">
+            href="https://www.facebook.com/sharer.php?title=15_什么是vuex - 小豆子的博客&u=https://dtting.top/ckzksi8950000p0v9hlb9ajwq.html">
             <box-icon name='facebook-square' type='logo' ></box-icon>
         </a>
         <!-- <a class="share-item" target="_blank"
-            href="https://service.weibo.com/share/share.php?title=06_js基本类型和引用类型 - 小豆子的博客&url=https://dtting.top/ckwstwhy100008ov97drxan3v.html&pic=">
+            href="https://service.weibo.com/share/share.php?title=15_什么是vuex - 小豆子的博客&url=https://dtting.top/ckzksi8950000p0v9hlb9ajwq.html&pic=">
             <div class="n-icon n-icon-weibo"></div>
         </a> -->
     </section>
