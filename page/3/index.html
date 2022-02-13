@@ -108,7 +108,7 @@
   
     
       <article
-id="post-17_vue监听键盘事件的按键修饰符"
+id="post-30_如何适配移动端"
 class="article article-type-post"
 >
 
@@ -119,302 +119,83 @@ class="article article-type-post"
 
     <div class="article-body">
     <header class="article-title">
-        <a href="/ckzktd6q400000wv90edjdd1i.html">17_vue监听键盘事件的按键修饰符</a>
+        <a href="/ckzkundli0008psv99pe7h39y.html">30_如何适配移动端</a>
     </header>
     <div class="article-entry post-inner-html">
         
-        <p>我们可以通过按键修饰符来监听键盘事件中的按键 。<code>Vue</code>允许为 <code>v-on</code>在监听键盘事件时添加<code>按键修饰符</code>：</p>
-<pre><code>&lt;input v-on:keyup.enter=&quot;submit&quot;&gt;
+        <p><strong>在css样式兼容性方面，我们可以使用autoprefixer插件</strong></p>
+<pre><code>postcss可以被理解为一个平台，可以让一些插件在上面跑。它提供了一个解析器，可以将CSS解析成抽象语法树。通过PostCSS这个平台，我们能够开发一些插件，来处理CSS。热门插件如autoprefixer。
 
-&lt;!-- 缩写语法 --&gt;
-&lt;input @keyup.enter=&quot;submit&quot;&gt;
+vue-cli已经自动集成了postcss，所以我们可以在postcss.config.js这个配置文件中直接添加autoprefixer这个插件
 </code></pre>
-<p><strong>全部的按键别名：</strong></p>
-<pre><code>- .enter
-- .tab
-- .delete (捕获“删除”和“退格”键)
-- .esc
-- .space
-- .up
-- .down
-- .left
-- .right
+<p><strong>在屏幕大小适配方面，我们可以使用下面两种方案</strong></p>
+<p>a) 使用flexible和 postcss-px2rem，    //autoprefixer 自动补全css前缀的东西</p>
+<pre><code>之前使用rem适配的思路：使用媒体查询，确定不同屏幕下html标签的font-size  (即1rem单位)，然后在写css样式的时候，就可以使用1rem , 2rem这样的单位来做适配了。
+
+但是这种适配的问题是需要手动把px单位换算成rem单位，比较麻烦。对应的，我们可以使用flexible和 postcss-px2rem来解决这个问题
 </code></pre>
-<p><strong>系统修饰键：</strong></p>
-<blockquote>
-<p>2.1.0 新增</p>
-</blockquote>
-<pre><code>可以用如下修饰符来实现仅在按下相应按键时才触发鼠标或键盘事件的监听器。
-- .ctrl
-- .alt
-- .shift
-- .meta
+<pre><code class="javascript">//1.安装flexible。 flexible主要是实现在各种不同的移动端界面实现一稿搞定所有的设备兼容自适应问题
+npm install lib-flexible --save
 
-&lt;!-- Alt + C --&gt;
-&lt;input @keyup.alt.67=&quot;clear&quot;&gt;
+//2.main.js引入flexible
+import &#39;lib-flexible&#39;
 
-&lt;!-- Ctrl + Click --&gt;
-&lt;div @click.ctrl=&quot;doSomething&quot;&gt;Do something&lt;/div&gt;
-</code></pre>
-<blockquote>
-<p>2.5.0 新增</p>
-</blockquote>
-<pre><code>.exact修饰符允许你控制由精确的系统修饰符组合触发的事件。
+//此时运行程序会看到html中自动加上了font-size    font-size的默认值为viewport的十分之一
+//在页面中引入flexible.js后，flexible会在&lt;html&gt;标签上增加一个data-dpr属性和font-size样式（如下图）。
 
-&lt;!-- 即使 Alt 或 Shift 被一同按下时也会触发 --&gt;
-&lt;button @click.ctrl=&quot;onClick&quot;&gt;A&lt;/button&gt;
+//3.安装postcss-pxtorem
+npm install postcss-pxtorem --save-dev
 
-&lt;!-- 有且只有 Ctrl 被按下的时候才触发 --&gt;
-&lt;button @click.ctrl.exact=&quot;onCtrlClick&quot;&gt;A&lt;/button&gt;
-
-&lt;!-- 没有任何系统修饰符被按下的时候才触发 --&gt;
-&lt;button @click.exact=&quot;onClick&quot;&gt;A&lt;/button&gt;
-</code></pre>
-<p><strong>鼠标按钮修饰符：</strong></p>
-<blockquote>
-<p>2.2.0 新增</p>
-</blockquote>
-<pre><code>- .left
-- .right
-- .middle
-
-这些修饰符会限制处理函数仅响应特定的鼠标按钮。
-</code></pre>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-02-13T05:01:26.000Z" itemprop="datePublished">2022-02-13</time>
-</div>
-    
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
-    
-      <article
-id="post-16_vue常用的修饰符"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/ckzktjh8p00007kv91brh8040.html">16_vue常用的修饰符</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <h2 id="v-on指令常用修饰符"><a href="#v-on指令常用修饰符" class="headerlink" title="v-on指令常用修饰符"></a>v-on指令常用修饰符</h2><pre><code>- .stop - 调用 event.stopPropagation()，禁止事件冒泡。
-- .prevent - 调用 event.preventDefault()，阻止事件默认行为。
-- .capture - 添加事件侦听器时使用 capture 模式。
-- .self - 只当事件是从侦听器绑定的元素本身触发时才触发回调。
-- .&#123;keyCode | keyAlias&#125; - 只当事件是从特定键触发时才触发回调。
-- .native - 监听组件根元素的原生事件。
-- .once - 只触发一次回调。
-- .left - (2.2.0) 只当点击鼠标左键时触发。
-- .right - (2.2.0) 只当点击鼠标右键时触发。
-- .middle - (2.2.0) 只当点击鼠标中键时触发。
-
-
-
-
-//注意： 如果是在自己封装的组件或者是使用一些第三方的UI库时，会发现一些事件并不起效果，这时就需要用.native修饰符了，如当我们使用element-ui中的el-input组件时的@keyup.enter事件：
-&lt;el-input
-  v-model=&quot;inputName&quot;
-  placeholder=&quot;搜索你的文件&quot;
-  @keyup.enter.native=&quot;searchFile(params)&quot;
-  &gt;
-&lt;/el-input&gt;
-</code></pre>
-<h2 id="v-bind指令常用修饰符"><a href="#v-bind指令常用修饰符" class="headerlink" title="v-bind指令常用修饰符"></a>v-bind指令常用修饰符</h2><pre><code>- .prop   被用于绑定 DOM 属性 (property)。(差别在哪里？)
-- .camel  (2.1.0+) 将 kebab-case 特性名转换为 camelCase. (从 2.1.0 开始支持)
-- .sync (2.3.0+) 语法糖，会扩展成一个更新父组件绑定值的 v-on 侦听器。
-</code></pre>
-<h2 id="v-model-指令常用修饰符"><a href="#v-model-指令常用修饰符" class="headerlink" title="v-model 指令常用修饰符"></a>v-model 指令常用修饰符</h2><pre><code>- .lazy    取代 input 监听 change 事件
-- .number  输入字符串转为数字
-- .trim    输入首尾空格过滤
-</code></pre>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-02-13T04:55:12.000Z" itemprop="datePublished">2022-02-13</time>
-</div>
-    
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
-    
-      <article
-id="post-15_什么是vuex"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/ckzksi8950000p0v9hlb9ajwq.html">15_什么是vuex</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <h2 id="什么是vuex？"><a href="#什么是vuex？" class="headerlink" title="什么是vuex？"></a>什么是vuex？</h2><p>Vuex 是一个专为 Vue.js 应用程序开发的状态管理器，采用 集中式存储 管理所有组件的状态。<br>主要用于维护vue组件间共用的一些 变量 和 方法</p>
-<p><strong>vuex的原理其实非常简单，它为什么能实现所有的组件共享同一份数据？</strong></p>
-<p>因为vuex生成了一个store实例，并且把这个实例挂在了所有的组件上，所有的组件引用的都是同一个store实例。<br>store实例上有数据，有方法，方法改变的都是store实例上的数据。由于其他组件引用的是同样的实例，所以一个组件改变了store上的数据，导致另一个组件上的数据也会改变，就像是一个对象的引用。</p>
-<h2 id="vuex的核心概念？"><a href="#vuex的核心概念？" class="headerlink" title="vuex的核心概念？"></a>vuex的核心概念？</h2><p>每一个 Vuex 应用的核心就是 store（仓库）。“store”基本上就是一个容器，它包含着你的应用中大部分的状态 (state)。</p>
-<p><strong>vuex的核心概念和核心概念图：</strong><br>1、state - Vuex store实例的根状态对象，用于定义共享的状态变量。<br>2、Action -动作，向store发出调用通知，执行本地或者远端的某一个操作（可以理解为store的methods）<br>3、Mutations -修改器，它只用于修改state中定义的状态变量。<br>4、getter -读取器，外部程序通过它获取变量的具体值，或者在取值前做一些计算（可以认为是store的计算属性）</p>
-<p><strong>Vuex的应用场景：</strong><br>Vuex主要用于：<br> 1、多层嵌套的组件之间进行状态传递<br> 2、兄弟组件间进行状态传递时（当然也可以使用中央事件总线BUS）<br> 3、多组件共享状态时</p>
-<p>更为具体的场景：组件之间的状态、音乐播放、登录状态、加入购物车…</p>
-<img src="imgs/2022.02.13.2/图片1.png">
-
-<h2 id="vuex的使用？"><a href="#vuex的使用？" class="headerlink" title="vuex的使用？"></a>vuex的使用？</h2><pre><code>#1.安装vuex
-npm install vuex@next --save
-
-#2.main.js
-import &#123; createStore &#125; from &quot;vuex&quot;;
-
-// new Vuex.Store()实例，得到一个数据仓储对象
-// 可以在组件中通过this.$store.state.xx 来访问store中的数据
-var store = createStore(&#123;
-    //state相当于组件中的data
-    state: &#123;
-        count: 0
+//4.修改postcss.config.js
+module.exports = &#123;
+  plugins: &#123;   //自己补充：插件
+    //autoprefixer 自动补全css前缀的东西
+    &#39;autoprefixer&#39;: &#123;
+      //兼容的机型
+      browsers: [&#39;Android &gt;= 4.0&#39;, &#39;iOS &gt;= 7&#39;]
     &#125;,
-    //如果要修改store中state的值，需要调用 mutations提供的方法，可以通过this.$store.commit(&#39;方法名&#39;)来调用
-    mutations: &#123;
-        increment(state) &#123;
-            state.count++
-        &#125;,
-        //mutations函数参数列表中最多支持两个参数，其中参数1是state； 参数2是通过commit提交过来的参数；
-        subtract(state, obj) &#123;
-            console.log(obj)
-            state.count -= obj.step;
-        &#125;
-    &#125;,
-    getters: &#123;
-        //这里的getters只负责对外提供数据，不负责修改数据，如果想要修改 state 中的数据需要在mutations中修改
-        optCount: function (state) &#123;
-            return &#39;当前最新的count值是：&#39; + state.count
-        &#125;
-    &#125;
-&#125;)
-
-// 总结：
-// 1. state中的数据，不能直接修改，如果想要修改，必须通过 mutations
-// 2. 如果组件想要直接 从 state 上获取数据： 需要 this.$store.state.***
-// 3. 如果组件想要修改数据，必须使用 mutations 提供的方法，需要通过 this.$store.commit(&#39;方法的名称&#39;， 唯一的一个参数)
-// 4. store中state上的数据在对外提供的时候建议做一层包装，推荐使用 getters。调用的时候则用this.$store.getters.***
-
-import &#123; createApp &#125; from &quot;vue&quot;;
-import App from &quot;./App.vue&quot;;
-import store from &#39;./store&#39;
-
-const app = createApp(App);
-//挂载路由实例(use方法挂载插件)
-app.use(store).mount(&quot;#app&quot;);
-
-#3.index.html
-&lt;body&gt;
-    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
-&lt;/body&gt;
-
-#4.App.vue
-&lt;template&gt;
-    &lt;div&gt;
-        &lt;h1&gt;这是 App 组件&lt;/h1&gt;
-        &lt;hr&gt;
-        &lt;counter&gt;&lt;/counter&gt;
-        &lt;hr&gt;
-        &lt;amount&gt;&lt;/amount&gt;
-    &lt;/div&gt;
-&lt;/template&gt;
-
-&lt;script&gt;
-    import counter from &quot;./components/counter.vue&quot;;
-    import amount from &quot;./components/amount.vue&quot;;
-
-    export default &#123;
-        data() &#123;
-            return &#123;&#125;;
-        &#125;,
-        components: &#123;
-            counter,
-            amount
-        &#125;
-    &#125;;
-&lt;/script&gt;
-
-#5.components/amount.vue
-&lt;template&gt;
-  &lt;div&gt;
-    &lt;h3&gt;&#123;&#123; $store.getters.optCount &#125;&#125;&lt;/h3&gt;
-  &lt;/div&gt;
-&lt;/template&gt;
-
-#6.components/counter.vue
-&lt;template&gt;
-  &lt;div&gt;
-    &lt;input type=&quot;button&quot; value=&quot;绑定事件-减少&quot; @click=&quot;sub&quot;&gt;
-    &lt;input type=&quot;button&quot; value=&quot;绑定事件-增加&quot; @click=&quot;add&quot;&gt;
-    &lt;br&gt;
-    &lt;input type=&quot;text&quot; v-model=&quot;$store.state.count&quot;&gt;
-  &lt;/div&gt;
-&lt;/template&gt;
-
-&lt;script&gt;
-export default &#123;
-  data() &#123;
-    return &#123;
-    &#125;;
-  &#125;,
-  methods: &#123;
-    add() &#123;
-       this.$store.commit(&quot;increment&quot;);
-    &#125;,
-    sub() &#123;
-      this.$store.commit(&quot;subtract&quot;,&#123; step:3&#125;);
+    &#39;postcss-pxtorem&#39;: &#123;
+      rootValue: 37.5, //换算基数，一般和html的font-size一致
+      propList: [&#39;*&#39;]  //哪些css属性需要换算
     &#125;
   &#125;
 &#125;;
-&lt;/script&gt;
+</code></pre>
+<p>b) 使用postcss-px-to-viewport</p>
+<pre><code>`vw` 与 `vh`单位，以`viewport`为基准，`1vw` 与 `1vh`分别为`window.innerWidth` 与 `window.innerHeight`的百分之一。
+
+vw/vh 单位其实出现比较早了，只是以前支持性不太好，现在随着浏览器的发展，大部分（92%以上）的浏览器已经支持了vw/vh
+</code></pre>
+<pre><code class="javascript">npm i postcss-px-to-viewport -save -dev
+
+//修改postcss.config.js
+module.exports = &#123;
+  plugins: &#123;
+      autoprefixer: &#123;
+          //兼容的机型
+            browsers: [&#39;Android &gt;= 4.0&#39;, &#39;iOS &gt;= 7&#39;]
+      &#125;,
+    //px转换为vw单位的插件
+    &quot;postcss-px-to-viewport&quot;: &#123;
+      //1vw = 3.2
+      viewportWidth: 320,
+      //1vh = 5.68
+      viewportHeight: 568,
+      // px to vw无法整除时，保留几位小数
+      unitPrecision: 5,
+      // 转换成vw单位   
+      viewportUnit: &#39;vw&#39;,
+     //不转换的类名
+      selectorBlackList: [],
+      // 小于1px不转换
+      minPixelValue: 1,
+     //允许媒体查询中转换
+      mediaQuery: false,
+      //排除node_modules文件中第三方css文件
+      exclude: /(\/|\\)(node_modules)(\/|\\)/  
+    &#125;,
+  &#125;
+&#125;;
 </code></pre>
 
         
@@ -431,7 +212,7 @@ export default &#123;
 <footer class="article-footer">
     <div class="article-more-info">
     <div class="article-date">
-  <time datetime="2022-02-13T04:45:24.000Z" itemprop="datePublished">2022-02-13</time>
+  <time datetime="2022-02-13T05:39:09.000Z" itemprop="datePublished">2022-02-13</time>
 </div>
     
     
@@ -444,7 +225,7 @@ export default &#123;
   
     
       <article
-id="post-14_vue开发命令npm-run-dev输入后的执行过程"
+id="post-28_axios、fetch与ajax有什么区别"
 class="article article-type-post"
 >
 
@@ -455,58 +236,154 @@ class="article article-type-post"
 
     <div class="article-body">
     <header class="article-title">
-        <a href="/ckzks8ap00000vov939wggxj7.html">14_vue开发命令npm run dev输入后的执行过程</a>
+        <a href="/ckzkundli0007psv9h98hht0w.html">28_axios、fetch与ajax有什么区别</a>
     </header>
     <div class="article-entry post-inner-html">
         
-        <ol>
-<li>npm run dev 是执行配置在package.json中的脚本，比如：</li>
-</ol>
-<pre><code class="javascript">&quot;scripts&quot;: &#123;
-    &quot;dev&quot;: &quot;webpack-dev-server --inline --progress --config webpack.conf.js&quot;,
-    &quot;start&quot;: &quot;npm run dev&quot;,
-    &quot;lint&quot;: &quot;eslint --ext .js,.vue src&quot;,
-    &quot;build&quot;: &quot;node build/build.js&quot;
-  &#125;,
+        <h2 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h2><p>Ajax指的是XMLHttpRequest（XHR）， 最早出现的发送后端请求技术，核心使用XMLHttpRequest对象，如果多个请求之间如果有先后关系的话，就会出现回调地狱。</p>
+<p>JQuery ajax 是对原生XHR的封装，除此以外还增添了对JSONP的支持。经过多年的更新维护，真的已经是非常的方便了，优点无需多言</p>
+<p>Ajax的缺点：<br>1.本身是针对MVC的编程,不符合现在前端MVVM的浪潮<br>2.基于原生的XHR开发，XHR本身的架构不清晰。<br>3.JQuery整个项目太大，单纯使用ajax却要引入整个JQuery非常的不合理（采取个性化打包的方案又不能享受CDN服务）<br>4.容易出现回调地狱的问题<br>5.不符合关注分离的原则</p>
+<h2 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h2><p>Vue2.0之后，尤雨溪推荐我们使用axios替换JQuery ajax。<br>axios 是一个基于Promise的请求库，用于浏览器和nodejs中，本质上浏览器的axios也是对原生XHR的封装，只不过它是Promise的实现版本，符合最新的ES规范，它本身具有以下特征：<br>1.从浏览器中创建 XMLHttpRequest<br>2.支持 Promise API<br>3.客户端支持防止CSRF<br>4.提供了一些并发请求的接口（重要，方便了很多的操作）<br>5.从node.js创建 http 请求<br>6.拦截请求和响应<br>7.转换请求和响应数据<br>8.取消请求<br>9.自动转换JSON数据</p>
+<h2 id="fetch"><a href="#fetch" class="headerlink" title="fetch"></a>fetch</h2><p>fetch号称是AJAX的替代品，是在ES6出现的，使用了ES6中的promise对象。Fetch是基于promise设计的，Fetch的代码结构比起ajax简单多了，参数有点像jQuery ajax。但是一定记住fetch不是ajax的进一步封装，而是原生js，没有使用XMLHttpRequest对象。</p>
+<p>fetch的优点：<br>1.符合关注分离，没有将输入、输出和用事件来跟踪的状态混杂在一个对象里<br>2.更好更方便的写法<br>3.基于标准 Promise 实现，支持 async/await<br>4.更加底层，提供的API丰富（request, response）<br>5.脱离了XHR，是ES6规范里新的实现方式</p>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T05:36:48.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
   
-npm run dev 执行的就是webpack-dev-server --inline ....命令,通过webpack-dev-server开启一个本地调试服务器。
+    
+      <article
+id="post-27_Promise对象"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkundlf0004psv9c13odfom.html">27_Promise对象</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <p>Promise对象是ES6（ ECMAScript 2015 ）对于异步编程提供的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。<br>Promise本身不是异步的，只不过Promise中可以有异步任务，new Promise()的第一个函数参数是立马执行的。</p>
+<pre><code>function func1(a)&#123;
+    return new Promise((resolve,reject) =&gt; &#123;
+        if(a &gt; 10)&#123;
+            resolve(a)
+        &#125;else&#123;
+            reject(b)
+        &#125;
+    &#125;)
+&#125;;
+
+func1(&#39;11&#39;).then(res =&gt; &#123;
+    console.log(&#39;success&#39;);
+&#125;).catch(err =&gt; &#123;
+    console.log(&#39;error&#39;);
+&#125;)
+
+
+//Promise构造函数接受一个函数作为参数，该函数的两个参数分别resolve 和 reject。它们是两个函数，由 JavaScript 引擎提供。
+1.resolve函数的作用是： 将Promise对象的状态从“未完成”变为“成功”（即从 pending 变为 fulfilled），在异步操作成功时调用，并将异步操作的结果，作为参数传递出去；
+
+2.reject函数的作用是： 将Promise对象的状态从“未完成”变为“失败”（即从 pending 变为 rejected），在异步操作失败时调用，并将异步操作报出的错误，作为参数传递出去。
+
+//Promise对象实例的方法，then 和 catch：
+1  .then方法： 用于指定调用成功时的回调函数。
+    then方法返回的是一个新的Promise实例（注意，不是原来那个Promise实例），因此可以采用链式写法，即then方法后面再调用另一个then方法。
+
+2  .catch方法： 用于指定发生错误时的回调函数。
 </code></pre>
-<ol start="2">
-<li><p>在webpack.conf.js文件中找到App的入口文件  ./src/main.js</p>
-<pre><code>entry: &#123;
-   app: &#39;./src/main.js&#39;
-&#125;,
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T05:35:28.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-26_vue-router实现动态加载路由组件"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkundle0002psv96iew9v2y.html">26_vue-router实现动态加载路由组件</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <p>当打包构建应用时，Javascript 包会变得非常大，影响页面加载。如果我们能把不同路由对应的组件分割成不同的代码块，然后当路由被访问的时候才加载对应组件，这样就更加高效了。</p>
+<p>结合 Vue 的异步组件和 Webpack 的代码分割功能，轻松实现路由组件的懒加载。</p>
+<p>第一步：定义一个能够被 Webpack 自动代码分割的异步组件。</p>
+<pre><code>//在src/router/index.js里面引入异步引入组件
+const index = () =&gt; import(&#39;../page/list/index.vue&#39;);
 </code></pre>
-</li>
-<li><p>main.js用到了页面元素#app、用到了路由和根组件App，并根据这些信息创建一个vue实例</p>
-</li>
-</ol>
-<pre><code>new Vue(&#123;
-     el: &#39;#app&#39;,
-     router,
-     components: &#123; App &#125;,
-     template: &#39;&lt;App/&gt;&#39;
+<p>第二步：在路由配置中什么都不需要改变，只需要像往常一样使用 index。</p>
+<pre><code>const router = new VueRouter(&#123;
+  routes: [
+    &#123; path: &#39;/index&#39;, component: index,name:&quot;index&quot; &#125;
+  ]
 &#125;)
 </code></pre>
-<ol start="4">
-<li>webpack-dev-server会将main.js中的代码以及所有引用打包成一个bundle.js，然后配置到内存中</li>
-<li>webpack.config.js中配置的HtmlWebpackPlugin会将index.html文件配置到内存，并且将内存中的bundle.js注入到内存中的index.html中</li>
-</ol>
-<pre><code>new HtmlWebpackPlugin(&#123;
-      filename: &#39;index.html&#39;,
-      template: &#39;index.html&#39;,
-      inject: true
-&#125;),
-</code></pre>
-<ol start="6">
-<li>根据webpack.config.js中所配置的devServer的信息，会决定是否自动打开浏览器呈现网页</li>
-</ol>
-<pre><code>devServer: &#123; 
-    open: true, // 自动打开浏览器
-    port: 3000, // 设置启动时候的运行端口
-    contentBase: &#39;src&#39;, // 指定托管的根目录
-    hot: true // 启用热更新 的 第1步
-&#125;,
+<p>第三步：在build/webpack.base.conf.js下的output属性，新增chunkFilename。</p>
+<pre><code>output: &#123;
+    path: config.build.assetsRoot,
+    filename: &#39;[name].js&#39;,
+    //新增chunkFilename属性
+    chunkFilename: &#39;[name].js&#39;,
+    publicPath: process.env.NODE_ENV === &#39;production&#39;
+      ? config.build.assetsPublicPath
+      : config.dev.assetsPublicPath
+  &#125;,
 </code></pre>
 
         
@@ -523,7 +400,7 @@ npm run dev 执行的就是webpack-dev-server --inline ....命令,通过webpack-
 <footer class="article-footer">
     <div class="article-more-info">
     <div class="article-date">
-  <time datetime="2022-02-13T04:42:05.000Z" itemprop="datePublished">2022-02-13</time>
+  <time datetime="2022-02-13T05:33:38.000Z" itemprop="datePublished">2022-02-13</time>
 </div>
     
     
@@ -536,7 +413,7 @@ npm run dev 执行的就是webpack-dev-server --inline ....命令,通过webpack-
   
     
       <article
-id="post-13_函数的去抖和节流"
+id="post-25_vue-router如何定义嵌套路由"
 class="article article-type-post"
 >
 
@@ -547,60 +424,45 @@ class="article article-type-post"
 
     <div class="article-body">
     <header class="article-title">
-        <a href="/ckzks19kt00001wv9405u4kt5.html">13_函数的去抖和节流</a>
+        <a href="/ckzkundlh0006psv976562exa.html">25_vue-router如何定义嵌套路由</a>
     </header>
     <div class="article-entry post-inner-html">
         
-        <h2 id="函数的去抖"><a href="#函数的去抖" class="headerlink" title="函数的去抖"></a>函数的去抖</h2><p>函数调用n秒后才会执行，如果函数在n秒内被调用的话则函数不执行，重新计算执行时间。函数去抖主要避免快速多次执行函数（操作DOM，加载资源等等）给内存带来大量的消耗从而一定程度上降低性能问题。</p>
-<p>  函数去抖的应用场景：<br>    1.监控键盘keypress事件，每当内容变化的时候就向服务器发送请求<br>    2.在页面滚动的时候监控页面的滚动事件，会频繁执行scroll事件<br>    3.监控页面的resize事件，拉动窗口改变大小的时候，resize事件被频繁的执行</p>
-<p>上面三种场景中都会频繁触发指定事件，比如第一种情况，每当输入框内容变化之后就向服务器发送请求，可能会导致一秒钟向服务器请求很多次，这显然是不合理的，我们可以使用函数去抖来优化。</p>
-<pre><code>//loadsh里有去抖函数的封装
-
- &lt;input type=&quot;text&quot; oninput=&quot;textInput()&quot;&gt;
-       
-       //模拟发送请求的方法
-        function ajax() &#123;
-            console.log(&quot;发送请求&quot;)
-        &#125;
-        //文本框输入内容的时候频繁的触发func方法
-        var func = debounce(ajax,1000)
-        function textInput() &#123;
-            func();
-        &#125;
-    
-        //函数去抖方法的封装
-        //debounce: 当调用动作n毫秒后，才会执行该动作，若在这n毫秒内又调用此动作则将重新计算执行时间。
-        function debounce(method, delay) &#123;
-            var timer = null;
-            return function () &#123;
-                var context = this
-                var args = arguments;
-                clearTimeout(timer);
-                timer = setTimeout(function () &#123;
-                    method.apply(context, args);
-                &#125;, delay);
-            &#125;
-        &#125;
-</code></pre>
-<h2 id="函数的节流"><a href="#函数的节流" class="headerlink" title="函数的节流"></a>函数的节流</h2><p>函数节流（throttle）：函数预先设定一个执行周期(或者节流阀)，当调用动作的时刻大于等于执行周期则执行该动作，然后进入下一个新周期。</p>
-<pre><code>function throttle(method,duration)&#123;
-        var  begin = new Date();
-        return function()&#123;
-            var context = this
-            var args=arguments
-            var current=new Date();
-            if(current-begin&gt;=duration)&#123;
-                 method.apply(context,args);
-                 begin = current;
-            &#125;
-        &#125;
+        <p>嵌套路由  :  是路由的多层嵌套。</p>
+<p><code>第一步：</code>需要在一个被渲染的组件中嵌套 <code>&lt;router-view&gt;</code>组件用于呈现子路由。</p>
+<pre><code>const User = &#123;
+  template: `
+    &lt;div class=&quot;user&quot;&gt;
+      &lt;h2&gt;User&lt;/h2&gt;
+      &lt;router-view&gt;&lt;/router-view&gt;
+    &lt;/div&gt;
+  `
 &#125;
-function resizehandler()&#123;
-    console.log(++n);
-&#125;
-window.onresize=throttle(resizehandler,500);
 </code></pre>
-<p>函数节流的应用场景：<br>1.上拉下拉刷新，每拉动一次彻底完毕之后才可以下一次拉动<br>2.图片轮播动画，每一张图片动画完成之后才开始下一个图片的动画</p>
+<p><code>第二步：</code>在嵌套的出口中渲染组件，在<code>VueRouter</code> 的参数中使用<code>children</code>配置：</p>
+<pre><code>const router = createRouter(&#123;
+  routes: [
+    &#123; 
+      path: &#39;/user/:id&#39;, 
+      component: User,
+      children: [
+        &#123;
+          // 当 /user/:id/profile 匹配成功，
+          // UserProfile 会被渲染在 User 的 &lt;router-view&gt; 中
+          path: &#39;profile&#39;,
+          component: UserProfile
+        &#125;,
+        &#123;
+          // 当 /user/:id/posts 匹配成功
+          // UserPosts 会被渲染在 User 的 &lt;router-view&gt; 中
+          path: &#39;posts&#39;,
+          component: UserPosts
+        &#125;
+      ]
+    &#125;
+  ]
+&#125;)
+</code></pre>
 
         
     </div>
@@ -616,7 +478,7 @@ window.onresize=throttle(resizehandler,500);
 <footer class="article-footer">
     <div class="article-more-info">
     <div class="article-date">
-  <time datetime="2022-02-13T04:33:24.000Z" itemprop="datePublished">2022-02-13</time>
+  <time datetime="2022-02-13T05:31:49.000Z" itemprop="datePublished">2022-02-13</time>
 </div>
     
     
@@ -629,7 +491,7 @@ window.onresize=throttle(resizehandler,500);
   
     
       <article
-id="post-12_跨域问题的解决方案"
+id="post-24_vue-router导航解析流程"
 class="article article-type-post"
 >
 
@@ -640,327 +502,65 @@ class="article article-type-post"
 
     <div class="article-body">
     <header class="article-title">
-        <a href="/ckzkrt8zl0000ycv9adxhabkz.html">12_跨域问题的解决方案</a>
+        <a href="/ckzkundlf0003psv99lul6mkn.html">24_vue-router导航解析流程</a>
     </header>
     <div class="article-entry post-inner-html">
         
-        <h2 id="什么是同源策略？"><a href="#什么是同源策略？" class="headerlink" title="什么是同源策略？"></a>什么是同源策略？</h2><p>同源策略可防止 JavaScript 发起跨域请求。源被定义为 URI、主机名和端口号的组合。此策略可防止页面上的恶意脚本通过该页面的文档对象模型，访问另一个网页上的敏感数据。</p>
-<p>同源策略： 协议、主机、端口必须完全一致。</p>
-<h2 id="跨域问题产生的原因？"><a href="#跨域问题产生的原因？" class="headerlink" title="跨域问题产生的原因？"></a>跨域问题产生的原因？</h2><p>浏览器的同源策略导致了跨域。在前端开发中，当我们使用ajax/fetch这些技术向服务器发送网络请求的时候，当协议、主机（域名）、端口号有任何一个不一致的时候，则构成跨域。</p>
-<p>浏览器只有使用ajax发送请求才会出现跨域。href属性与src属性不会出现跨域。</p>
-<h2 id="跨域问题的解决方案？"><a href="#跨域问题的解决方案？" class="headerlink" title="跨域问题的解决方案？"></a>跨域问题的解决方案？</h2><p>跨域问题有很多中解决方案：我所用过的有：</p>
-<p>1.jsonp 他的本质是使用script标签去发送请求，然后服务器返回一段js脚本以供客户端执行</p>
-<p>2.cors 他需要在服务器端配置跨域访问的响应头</p>
-<pre><code> res.writeHead(200, &#123;
-        &quot;Content-Type&quot;: &quot;text/html; charset=UTF-8&quot;,
-        &quot;Access-Control-Allow-Origin&quot;:&#39;http://localhost&#39;,
-        &#39;Access-Control-Allow-Methods&#39;: &#39;GET, POST, OPTIONS&#39;,
-        &#39;Access-Control-Allow-Headers&#39;: &#39;X-Requested-With, Content-Type&#39;
+        <h2 id="vue-router导航钩子"><a href="#vue-router导航钩子" class="headerlink" title="vue-router导航钩子"></a>vue-router导航钩子</h2><pre><code>1、全局守卫： router.beforeEach  router.beforeResolve  router.afterEach
+    const router = new VueRouter(&#123; ... &#125;);
+    router.beforeEach((to, from, next) =&gt; &#123;
+        // do someting
     &#125;);
+    //to:代表要进入的目标，它是一个路由对象
+    //from:代表当前正要离开的路由，同样也是一个路由对象
+    //next:这是一个必须需要调用的方法，而具体的执行效果则依赖 next 方法调用的参数
+
+    //全局后置钩子，后置钩子并没有 next 函数，也不会改变导航本身
+    router.afterEach((to, from) =&gt; &#123;
+        // do someting
+    &#125;);
+
+2、路由独享的守卫： beforeEnter
+    cont router = new VueRouter(&#123;
+        routes: [
+            &#123;
+                path: &#39;/file&#39;,
+                component: File,
+                beforeEnter: (to, from ,next) =&gt; &#123;
+                    // do someting
+                &#125;
+            &#125;
+        ]
+    &#125;);
+    
+3、组件内的守卫： beforeRouteEnter、beforeRouteUpdate (2.2 新增)、beforeRouteLeave
+    const File = &#123;
+        template: `&lt;div&gt;This is file&lt;/div&gt;`,
+        beforeRouteEnter(to, from, next) &#123;
+            // do someting
+            // 在渲染该组件的对应路由被 confirm 前调用   confirm确定
+        &#125;,
+        beforeRouteUpdate(to, from, next) &#123;
+            // do someting
+            // 在当前路由改变，但是依然渲染该组件时调用
+        &#125;,
+        beforeRouteLeave(to, from ,next) &#123;
+            // do someting
+            // 导航离开该组件的对应路由时被调用
+        &#125;
+    &#125;
 </code></pre>
-<p>3.在前端的工程化项目(webpack)中,我们可以通过配置devserver的proxy来解决跨域访问的问题。他的原理是在本地开启一个服务器向数据服务器发送请求，因为服务器和服务器之间是没有跨域，配置在客户端。</p>
-<p>4.但是因为webpack的devserver只在开发环境下有效，当项目发布上线之后仍然会有跨域问题，为了解决项目上线的跨域问题，我们配置服务器的反向代理（nginx），配置在服务器的。</p>
-<p>5.除此之外，我还知道当项目打包成apk之后就不存在跨域问题了，所以如果项目要打包成apk，我们需要在项目中的所有请求中写全路径(此时我们可以配置axios.default.baseURL来解决)</p>
-<p>6.iframe 嵌套通讯，postmessage</p>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-02-13T04:22:43.000Z" itemprop="datePublished">2022-02-13</time>
-</div>
-    
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
-    
-      <article
-id="post-11_MVVM模式和MVC模式"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/ckzkrdt230000x8v90f79027s.html">11_MVVM模式和MVC模式</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <h2 id="什么是mvvm？"><a href="#什么是mvvm？" class="headerlink" title="什么是mvvm？"></a>什么是mvvm？</h2><ul>
-<li><p>MVVM最早由微软提出来，它借鉴了桌面应用程序的MVC思想，在前端页面中，把Model用纯JavaScript对象表示，View负责显示，两者做到了最大限度的分离，把Model和View关联起来的就是ViewModel。</p>
-</li>
-<li><p>ViewModel负责把Model的数据同步到View显示出来，还负责把View的修改同步回Model</p>
-</li>
-<li><p>View 和 Model 之间的同步工作完全是自动的，无需人为干涉（由viewModel完成）</p>
-</li>
-<li><p>因此开发者只需关注业务逻辑，不需要手动操作DOM, 不需要关注数据状态的同步问题，复杂的数据状态维护完全由 MVVM 来统一管理</p>
-</li>
-</ul>
-<h2 id="MVVM模式的优点"><a href="#MVVM模式的优点" class="headerlink" title="MVVM模式的优点"></a>MVVM模式的优点</h2><p>1、低耦合：MVVM模式中，数据是独立于UI的，ViewModel只负责处理和提供数据，UI想怎么处理数据都由UI自己决定，ViewModel不涉及任何和UI相关的事，即使控件改变（input换成p）,ViewModel几乎不需要更改任何代码，专注自己的数据处理就可以了   //模块和模块之间他们的依赖关系</p>
-<p>2.自动同步数据:ViewModel通过双向数据绑定把View层和Model层连接了起来，View和Model这两者可以自动同步。程序员不需要手动操作DOM, 不需要关注数据状态的同步问题，MVVM 统一管理了复杂的数据状态维护</p>
-<p>3、可重用性：你可以把一些视图逻辑放在一个ViewModel里面，让很多view重用这段视图逻辑。</p>
-<p>4、独立开发：开发人员可以专注于业务逻辑和数据的开发（ViewModel），设计人员可以专注于页面设计。</p>
-<p>5、可测试：ViewModel里面是数据和业务逻辑，View中关注的是UI，这样的做测试是很方便的，完全没有彼此的依赖，不管是UI的单元测试还是业务逻辑的单元测试，都是低耦合的</p>
-<h2 id="MVVM-和-MVC-的区别"><a href="#MVVM-和-MVC-的区别" class="headerlink" title="MVVM 和 MVC 的区别"></a>MVVM 和 MVC 的区别</h2><p>mvc 和 mvvm 其实区别并不大。都是一种设计思想，主要区别如下：<br>1.mvc 中 Controller演变成 mvvm 中的 viewModel<br>2.mvvm 通过数据来驱动视图层的显示而不是节点操作。<br>3.mvc中Mmodel和View是可以直接打交道的，造成Model层和View层之间的耦合度高。而mvvm中Model和View不直接交互，而是通过中间桥梁ViewModel来同步<br>4.mvvm主要解决了mvc中大量的DOM 操作，使页面渲染性能降低，加载速度变慢，影响用户体验。</p>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-02-13T04:15:38.000Z" itemprop="datePublished">2022-02-13</time>
-</div>
-    
-    
-        <div class="article-tag">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%80%E4%B9%88%E6%98%AFMVVM%EF%BC%8CMVVM%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BC%98%E7%82%B9%E4%BB%A5%E5%8F%8A%E4%B8%8EMVC%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="tag">什么是MVVM，MVVM模式的优点以及与MVC模式的区别</a></li></ul>
-        </div>
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
-    
-      <article
-id="post-10_Vue-diff算法原理"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/ckzkqxjap0000wov90uh3hgic.html">10_Vue-diff算法原理</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <img src="imgs/2022.02.13/图片1.png">
-
-<ul>
-<li>Vue.js通过编译将template 模板转换成渲染函数(render ) ，执行渲染函数就可以得到一个虚拟节点树</li>
-<li>VNode 虚拟节点：（它可以代表一个真实的 dom 节点。）通过 createElement 方法能将 VNode 渲染成 dom 节点。（简单地说，vnode可以理解成节点描述对象，它描述了应该怎样去创建真实的DOM节点。）</li>
-<li>patch(也叫做patching算法)：虚拟DOM最核心的部分，它可以将vnode 渲染成真实的DOM，这个过程是对比新旧虚拟节点之间有哪些不同，然后根据对比结果找出需要更新的的节点进行更新。（这点我们从单词含义就可以看出， patch本身就有补丁、修补的意思，其实际作用是在现有DOM上进行修改来实现更新视图的目的。Vue的Virtual DOM Patching算法是基于Snabbdom的实现，并在些基础上作了很多的调整和改进。）</li>
-</ul>
-<img src="imgs/2022.02.13/图片2.png">
-
-<h2 id="a-Vue2-x-diff算法原理"><a href="#a-Vue2-x-diff算法原理" class="headerlink" title="a) Vue2.x diff算法原理"></a>a) Vue2.x diff算法原理</h2><p>传统diff算法通过循环递归对节点进行依次对比效率低下，算法复杂度达到O(N^3)，主要原因在于其追求完全比对和最小修改，而React、Vue则是放弃了完全比对及最小修改，才实现从O(N^3) =&gt; O(N)。</p>
-<p>Vue2 diff过程整体遵循深度优先、同层比较的策略。 当数据发生改变时，会调用Dep.notify通知所有Watcher，调用patch给真实的DOM打补丁，更新相应的视图。 </p>
-<img src="imgs/2022.02.13/图片3.png">
-
-<h2 id="b-Vue3-0-diff"><a href="#b-Vue3-0-diff" class="headerlink" title="b) Vue3.0 diff"></a>b) Vue3.0 diff</h2><p>vue2.x中的虚拟dom是进行<strong>「全量的对比」</strong>，在运行时会对所有节点生成一个虚拟节点树，当页面数据发生变更好，会遍历判断virtual dom所有节点（包括一些不会变化的节点）有没有发生变化；虽然说diff算法确实减少了多DOM节点的直接操作，但是这个<strong>「减少是有成本的」</strong>，如果是复杂的大型项目，必然存在很复杂的父子关系的VNode,<strong>「而Vue2.x的diff算法，会不断地递归调用 patchVNode，不断堆叠而成的几毫秒，最终就会造成 VNode 更新缓慢」</strong>。 </p>
-<p>在Vue3.0中，在这个模版编译时，编译器会在动态标签末尾加上 /* Text*/ PatchFlag。<strong>「也就是在生成VNode的时候，同时打上标记，在这个基础上再进行核心的diff算法」</strong>并且 PatchFlag 会标识动态的属性类型有哪些，比如这里 的TEXT 表示只有节点中的文字是动态的。而patchFlag的类型也很多。这里直接引用一张图片。</p>
-<img src="imgs/2022.02.13/图片4.png">
-
-<p>其中大致可以分为两类：</p>
-<ul>
-<li>当 patchFlag 的值「大于」 0 时，代表所对应的元素在 patchVNode 时或 render 时是可以被优化生成或更新的。</li>
-<li>当 patchFlag 的值「小于」 0 时，代表所对应的元素在 patchVNode 时，是需要被 full diff，即进行递归遍历 VNode tree 的比较更新过程。</li>
-</ul>
-<p>总结：<strong>「Vue3.0对于不参与更新的元素，做静态标记并提示，只会被创建一次，在渲染时直接复用。」</strong></p>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-02-12T08:05:50.000Z" itemprop="datePublished">2022-02-12</time>
-</div>
-    
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
-    
-      <article
-id="post-09_mongodb数据库使用流程"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/ckz0tqj9l0000mcv968j96rzy.html">09_mongodb数据库使用流程</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <p>使用mongodb数据库的方式</p>
-<h2 id="安装："><a href="#安装：" class="headerlink" title="安装："></a><strong>安装</strong>：</h2><p>在<a target="_blank" rel="noopener" href="https://www.mongodb.org/dl/win32%E7%BD%91%E5%9D%80%E4%B8%AD%E4%B8%8B%E8%BD%BD64%E4%BD%8Dmongodb%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E6%9C%AC%E6%9C%BA%E6%98%AF64%E4%BD%8D%E7%94%B5%E8%84%91%EF%BC%8C%E5%9C%A8%E6%AD%A4%E7%BD%91%E5%9D%80%E4%B8%AD%E4%B8%8B%E8%BD%BD%E5%8D%B3%E5%8F%AF%EF%BC%89">https://www.mongodb.org/dl/win32网址中下载64位mongodb数据库（本机是64位电脑，在此网址中下载即可）</a></p>
-<p>在<a target="_blank" rel="noopener" href="https://www.mongodb.org/dl/win32/i386%E7%BD%91%E5%9D%80%E4%B8%AD%E4%B8%8B%E8%BD%BD32%E4%BD%8Dmongodb%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%82">https://www.mongodb.org/dl/win32/i386网址中下载32位mongodb数据库。</a></p>
-<p>下载完成后，双击进行安装，按提示点击即可。（注意下图中的默认选项取消，否则会下载的非常慢！原因是他会在中途帮你下载推荐的东西）</p>
-<img src="imgs/2022.01.30/图片1.png">
-
-<p>注意：安装完成后在电脑上找不到这个软件图标。启动方式是通过cmd命令行进行启动。</p>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用:"></a><strong>使用:</strong></h2><h3 id="一、启动mongodb数据库。"><a href="#一、启动mongodb数据库。" class="headerlink" title="一、启动mongodb数据库。"></a><strong>一、启动mongodb数据库。</strong></h3><p>在cmd中输入命令<code>mongod</code>回车，看到 waiting for connections on port 27017表示mongodb数据库启动成功，等待连接。注意这个cmd命令行窗口不能关闭，否则会关闭mongobd数据库。</p>
-<h3 id="二、客户端连接mongodb数据库。"><a href="#二、客户端连接mongodb数据库。" class="headerlink" title="二、客户端连接mongodb数据库。"></a><strong>二、客户端连接mongodb数据库。</strong></h3><p>连接mongodb数据库有两种方式：</p>
-<p>方法一：再打开一个cmd窗口，输入<code>mongo</code>命令（连接上数据库），输入<code>show dbs;</code>命令（查看有几个数据库）</p>
-<p>方法二：使用mongodb客户端软件（注意：因为方法一通过输入命令操作数据库比较麻烦，本文使用方法二）。打开mongdb客户端软件，点击connect按钮进行配置，使mongodb客户端连接上mongodb数据库。（不用改动任何配置，使用默认即可，mongodb数据库的端口号是27017）</p>
-<h3 id="三、客户端操作mongodb数据库。"><a href="#三、客户端操作mongodb数据库。" class="headerlink" title="三、客户端操作mongodb数据库。"></a><strong>三、客户端操作mongodb数据库。</strong></h3><h4 id="1-客户端常用命令"><a href="#1-客户端常用命令" class="headerlink" title="1.客户端常用命令"></a><strong>1.客户端常用命令</strong></h4><p>然后在该mongodb客户端软件中输入相关命令进行填写数据库。常用的命令如下：</p>
-<pre><code>// 删除当前使用数据库
-db.dropDatabase();   
-
-//创建youshi数据库（创建后不会显示，必须有数据填入才能显示该数据库）
-use youshi
-
-// 向youshi数据库里的student集合下插入一条数据
-db.student.insert(&#123;id:1,name:&quot;花仙子&quot;&#125;)
-
-// 查看student集合下的所有数据
-db.student.find()
-
-// 删除student集合
-db.student.drop();
-
-db.dou_ting_ting.drop();
-
-db.dou_ting_tings.find()
-
-//删除集合下的数据 
-db.dou_ting_tings.remove(&#123;&#125;)
+<h2 id="vue-router导航解析流程"><a href="#vue-router导航解析流程" class="headerlink" title="vue-router导航解析流程"></a>vue-router导航解析流程</h2><p>localhost:8000/#a  —&gt; localhost:8000/#b<br>当由A路由 –&gt; B路由的时候：<br>1、在A组件里调用离开守卫。          A组件中的  beforeRouteLeave<br>2、调用全局的 beforeEach 守卫。    router.beforeEach<br>3、再执行B路由配置里调用 beforeEnter。</p>
+<pre><code> routes: [
+        &#123;
+          path: &#39;/b&#39;,
+          component: B,
+          beforeEnter: (to, from, next) =&gt; &#123;
+          &#125;
+        &#125;
+      ]
 </code></pre>
-<h4 id="2-批量插入数据库的方法"><a href="#2-批量插入数据库的方法" class="headerlink" title="2.批量插入数据库的方法"></a><strong>2.批量插入数据库的方法</strong></h4><p>1.例如通过记事本方式导入，把该写入数据的记事本放在桌面或者你需要放入的位置（记住路径）</p>
-<img src="imgs/2022.01.30/图片2.png">
-
-<p>打开新的cmd命令行，输入命令<code>mongoimport -d igeek -c student ./student.txt</code>（也就是mongoimport -d 数据库名字 -c 集合的名字 文件名 -d参数表示需要往哪个数据库导入数据，-c参数表示需要往哪个集合（表）中导入数据）</p>
-<p>2.数据库导入成功，在mongodb客户端查看。（如何查看mongodb数据库都有哪些命令？在c盘/Program Files/MongoDB/Server/4.0/bin中文件名，去掉后缀，即是mongodb数据库的命令）</p>
-<h3 id="四、Vscode连接数据库。"><a href="#四、Vscode连接数据库。" class="headerlink" title="四、Vscode连接数据库。"></a><strong>四、Vscode连接数据库。</strong></h3><p>然后在vscode中进行连接mongodb数据库，使后台能够操作数据库。</p>
-<p>1.首先对vscode的文件夹进行一系列初始化操作（详情请看我的另外一篇文章）。</p>
-<p>这里以node的express后台连接数据库为例：在vscode从终端打开中输入命令<code>npm init -y</code>出现package.json文件 ， <code>npm install express</code>出现node_modules文件夹，建立app.js文件，在app.js文件中输入 </p>
-<img src="imgs/2022.01.30/图片3.png">
-
-<p>初始化操作完毕。</p>
-<p>2.安装mongoose。在vscode中输入命令<code>npm install mongoose</code>（用node安装mongoose），这样能在后台能够通过node的mongoose去连接数据库。</p>
-<p>3.在app.js中引入mongoose。</p>
-<img src="imgs/2022.01.30/图片4.png">
-
-<p>4.使用mongoose连接数据库。</p>
-<img src="imgs/2022.01.30/图片5.png">
-
-<p>5.输入命令<code>nodemon app.js</code>，显示“连接成功”说明数据库已经连接到后台了。</p>
-<h3 id="五、vscode操作数据库。"><a href="#五、vscode操作数据库。" class="headerlink" title="五、vscode操作数据库。"></a><strong>五、vscode操作数据库。</strong></h3><h4 id="1-后端操作数据库"><a href="#1-后端操作数据库" class="headerlink" title="1.后端操作数据库"></a><strong>1.后端操作数据库</strong></h4><p>1.在app.js中声明一个Scheme</p>
-<img src="imgs/2022.01.30/图片6.png">
-
-<p>2.在app.js中创建Model</p>
-<img src="imgs/2022.01.30/图片7.png">
-
-<p>3.在app.js中写接口并且向数据库的animal集合中插入数据</p>
-<img src="imgs/2022.01.30/图片8.png">
-
-<p>测试该接口是否能用，在浏览器中输入localhost:8000/save，显示“保存数据成功”，说明接口创建成功。</p>
-<p>补充：req为从浏览器获取数据，res为向浏览器发送数据。req.body()方法为后台从前台获取数据，res.send()方法为后台向前台发送数据。集合名.find()方法为在数据库中查找对应的条件，集合名.save()方法为保存到数据库，集合名.remove()方法为删除数据库中的数据。new 集合/对象名()为新建一个集合/对象（在数据库中叫集合，在代码中叫对象）。</p>
-<p>4.打开mongodb客户端软件，刷新数据库，发现igeek数据库中原本只有student集合，现在多了个animals集合。（注意接口中写的是animal集合对应的就是animals集合，会多个s，记住必须是带s的，自己导入的数据库也得带s）</p>
-<p>5.后端连接数据库完毕。</p>
-<h4 id="2-优化"><a href="#2-优化" class="headerlink" title="2.优化"></a><strong>2.优化</strong></h4><p>1.在vscode中输入命令<code>npm i art-template express-art-template</code></p>
-<p>2.把下面代码注释掉</p>
-<img src="imgs/2022.01.30/图片9.png">
-
-<p>3.新建一个views文件夹，并在views里新建一个student.html文件。</p>
-<img src="imgs/2022.01.30/图片10.png">
-
-<p>4.在app.js中配置art-template</p>
-<img src="imgs/2022.01.30/图片11.png">
-
-<p>5.写接口</p>
-<img src="imgs/2022.01.30/图片12.png">
-
-<p>输入命令<code>Nodemon app.js</code>启动端口</p>
-<p>在浏览器中输入localhost:8000/student，显示“学生列表页面”表示写接口成功。</p>
-<p>6.建立router文件夹，在router文件夹中建立student.js文件。写入代码</p>
-<img src="imgs/2022.01.30/图片13.png">
-
-<p>并把上一步在app.js中写的/student接口去掉。</p>
-<p>7.在app.js中写入。这样我们就把接口写在router文件夹里去了。</p>
-<img src="imgs/2022.01.30/图片14.png">
-
-<p>8.连数据库查数据。创建一个models文件夹（放所有和数据相关的代码），在models文件夹中建立student.js文件。写入如下代码</p>
-<img src="imgs/2022.01.30/图片15.png">
-
-<p>9.在接口中查数据。也就是在router/student.js中查数据</p>
-<img src="imgs/2022.01.30/图片16.png">
-
-<p>补充：</p>
-<img src="imgs/2022.01.30/图片17.png">
-
-<p>10.后端重构完成</p>
-<h4 id="3-前端使用数据库"><a href="#3-前端使用数据库" class="headerlink" title="3.前端使用数据库"></a><strong>3.前端使用数据库</strong></h4><p>1.在前台页面渲染数据。</p>
-<p>在views/student.html中写入代码：</p>
-<img src="imgs/2022.01.30/图片18.png">
-
-<img src="imgs/2022.01.30/图片19.png">
-
-<img src="imgs/2022.01.30/图片20.png">
-
-<p>显示效果如下：</p>
-<img src="imgs/2022.01.30/图片21.png">
-
-<p>表单已经有了，需要提交给后台，因为form表单提交用的post请求，则后台需要有接口，并且是post请求。</p>
-<p>2.写post接口：在router/student.js中写入</p>
-<img src="imgs/2022.01.30/图片22.png">
-
-<p>3.如何从post请求获取参数？安装body-parser，输入命令<code>npm install body-parser</code></p>
-<p>在app.js中引入body-parser，并配置</p>
-<img src="imgs/2022.01.30/图片23.png">
-
-<p>然后重启接口，输入命令<code>nodemon app.js</code></p>
-<p>4.在router/student.js中写入</p>
-<img src="imgs/2022.01.30/图片24.png">
-
-<img src="imgs/2022.01.30/图片25.png">
-
-<p>5.把数据保存到数据库：</p>
-<img src="imgs/2022.01.30/图片26.png">
-
-<p>6.结束。</p>
+<p>4、再执行B组件的进入守卫。          B组件中 beforeRouteEnter。<br>5、调用全局的 beforeResole 守卫 (2.5+)。    router.beforeResolve<br>6、导航被确认。<br>7、调用全局的 afterEach 钩子。              router.afterEach<br>8、触发 DOM 更新。</p>
 
         
     </div>
@@ -976,13 +576,9 @@ db.dou_ting_tings.remove(&#123;&#125;)
 <footer class="article-footer">
     <div class="article-more-info">
     <div class="article-date">
-  <time datetime="2022-01-30T04:44:01.000Z" itemprop="datePublished">2022-01-30</time>
+  <time datetime="2022-02-13T05:27:45.000Z" itemprop="datePublished">2022-02-13</time>
 </div>
     
-    
-        <div class="article-tag">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongodb%E7%9A%84%E5%AE%89%E8%A3%85%E3%80%81%E4%BD%BF%E7%94%A8%EF%BC%8C%E4%B8%8Enode%E5%90%8E%E7%AB%AF%E8%BF%9E%E6%8E%A5%EF%BC%8C%E5%89%8D%E7%AB%AF%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="tag">mongodb的安装、使用，与node后端连接，前端的使用</a></li></ul>
-        </div>
     
     </div>
 </footer>
@@ -993,7 +589,7 @@ db.dou_ting_tings.remove(&#123;&#125;)
   
     
       <article
-id="post-08_js经典输出顺序问题"
+id="post-23_vue-router如何响应路由参数的变化"
 class="article article-type-post"
 >
 
@@ -1004,56 +600,54 @@ class="article article-type-post"
 
     <div class="article-body">
     <header class="article-title">
-        <a href="/ckwvnv7iz0000l8v934zt8fgu.html">08_js经典输出顺序问题</a>
+        <a href="/ckzkundl70000psv98rbt5ltg.html">23_vue-router如何响应路由参数的变化</a>
     </header>
     <div class="article-entry post-inner-html">
         
-        <p>分析下面代码：</p>
-<pre><code class="javascript">&lt;script&gt;
-    console.log(11);
-    setTimeout(function()&#123;
-        console.log(22);
-    &#125;)
-    // Promise所入参的函数是立马执行的
-    new Promise(function(resolve)&#123;
-        console.log(33);
-        resolve();
-        console.log(44);
-    &#125;)
-    // Promise的then是在resolve和reject后执行的
-    .then(function()&#123;
-        console.log(55);
-    &#125;)
-    new Promise(function(resolve)&#123;
-        resolve()
-    &#125;)
-    .then(function()&#123;
-        console.log(77);
-    &#125;)
-    console.log(66);
-    // 打印顺序是  11  33  44  66  55  77  22
-&lt;/script&gt;
-</code></pre>
-<p>分析：</p>
-<img src="imgs/2021.12.07/图片1.png">
-
-<p>整个script代码会先进入主栈，从上向下运行，则先<strong>打印11</strong></p>
-<img src="imgs/2021.12.07/图片2.png">
-
-<p>然后是setTimeout定时器会放在线程里（这里不考虑线程，只需知道线程处理完后都会交给队列），由于定时器没有设置时间，然后会进入宏任务队列。然后是Promise，Promise所入参的函数立马执行，则会<strong>打印33</strong>，这里有resolve，一resolve这个then会立马执行，Promise的then会进入微任务队列，Promise里还剩下一个44，所以在主栈中<strong>打印44</strong>。然后还是一个Promise，Promise里没有打印，Promise的then会进入微任务队列，接着<strong>打印66</strong>。</p>
-<img src="imgs/2021.12.07/图片3.png">
-
-<p>主栈所有任务执行完毕，主栈清空，主栈清空后，会到任务队列拿任务执行，先把微任务队列的所有任务拿到主栈执行，根据队列的先进先出原则，会先拿微任务队列的55到主栈，<strong>55执行完毕</strong>，主栈清空，接着拿微任务队列的77,<strong>77执行完毕</strong>，主栈清空。</p>
-<img src="imgs/2021.12.07/图片4.png">
-
-<img src="imgs/2021.12.07/图片5.png">
-
-<img src="imgs/2021.12.07/图片6.png">
-
-<p>然后去宏任务队列拿任务22到主栈，<strong>22执行完毕</strong>，主栈清空，所有任务执行完毕。</p>
-<blockquote>
-<p>总结：默认情况下，script整个代码块会入主栈执行，当遇到setTimeout，setInterval等代码块的时候会入宏任务队列，当遇到process.nextTick，Promise.then的时候会入微任务队列，当主栈执行完整个script代码块的时候，会先从微任务队列把所有的微任务放到主栈执行（遵循先进先出原则），当微任务队列的所有任务清空后，再从宏任务队列拿一个任务到主栈执行，然后依次反复。</p>
+        <blockquote>
+<p>问题：当使用路由参数时，例如从 <code>/content?id=1</code> 到 <code>content?id=2</code>，此时原来的组件实例会被复用。这也意味着组件的<code>生命周期钩子不会再被调用</code>，此时vue应该如何响应<code>路由参数</code> 的变化？</p>
 </blockquote>
+<p>解决方案：</p>
+<p>1.用 :key 来阻止“复用”</p>
+<pre><code>//在父组件中使用
+&lt;router-view :key=&quot;key&quot;&gt;&lt;/router-view&gt;
+
+computed: &#123;
+    key() &#123;
+        return this.$route.name !== undefined? this.$route.name +new Date(): this.$route +new Date()
+    &#125;
+&#125;
+
+//这种办法实质上是让每次路由跳转时重新构建该组件，我们在它的生命周期中写一个打印语句就能看出来。
+</code></pre>
+<p>2.复用组件时，想对路由参数的变化作出响应的话， 可以<code>watch (监测变化) $route 对象</code>：</p>
+<pre><code class="javascript">const User = &#123;
+  template: &#39;...&#39;,
+  watch: &#123;
+    &#39;$route&#39; (to, from) &#123;
+      // 对路由变化作出响应...
+    &#125;
+  &#125;
+&#125;
+</code></pre>
+<p>3.通过 <code>vue-router </code>的钩子函数 <code>beforeRouteEnter </code> <code>beforeRouteUpdate</code>  <code>beforeRouteLeave</code></p>
+<pre><code class="javascript">//localhost:3000/login/1   ---&gt;localhost:3000/login/2
+beforeRouteEnter (to, from, next) &#123;
+   // 在渲染该组件的对应路由被 confirm 前调用
+   // 不！能！获取组件实例 `this`
+   // 因为当钩子执行前，组件实例还没被创建
+&#125;,
+beforeRouteUpdate (to, from, next) &#123;
+   // 在当前路由改变，但是该组件被复用时调用
+   // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
+   // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
+   // 可以访问组件实例 `this`
+&#125;,
+beforeRouteLeave (to, from, next) &#123;
+   // 导航离开该组件的对应路由时调用
+   // 可以访问组件实例 `this`
+&#125;
+</code></pre>
 
         
     </div>
@@ -1069,7 +663,225 @@ class="article article-type-post"
 <footer class="article-footer">
     <div class="article-more-info">
     <div class="article-date">
-  <time datetime="2021-12-07T05:03:48.000Z" itemprop="datePublished">2021-12-07</time>
+  <time datetime="2022-02-13T05:26:17.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-23-vue-router如何响应路由参数的变化"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkundlg0005psv90031dbi8.html">23_vue-router如何响应路由参数的变化</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <blockquote>
+<p>问题：当使用路由参数时，例如从 <code>/content?id=1</code> 到 <code>content?id=2</code>，此时原来的组件实例会被复用。这也意味着组件的<code>生命周期钩子不会再被调用</code>，此时vue应该如何响应<code>路由参数</code> 的变化？</p>
+</blockquote>
+<p>解决方案：</p>
+<p>1.用 :key 来阻止“复用”</p>
+<pre><code>//在父组件中使用
+&lt;router-view :key=&quot;key&quot;&gt;&lt;/router-view&gt;
+
+computed: &#123;
+    key() &#123;
+        return this.$route.name !== undefined? this.$route.name +new Date(): this.$route +new Date()
+    &#125;
+&#125;
+
+//这种办法实质上是让每次路由跳转时重新构建该组件，我们在它的生命周期中写一个打印语句就能看出来。
+</code></pre>
+<p>2.复用组件时，想对路由参数的变化作出响应的话， 可以<code>watch (监测变化) $route 对象</code>：</p>
+<pre><code class="javascript">const User = &#123;
+  template: &#39;...&#39;,
+  watch: &#123;
+    &#39;$route&#39; (to, from) &#123;
+      // 对路由变化作出响应...
+    &#125;
+  &#125;
+&#125;
+</code></pre>
+<p>3.通过 <code>vue-router </code>的钩子函数 <code>beforeRouteEnter </code> <code>beforeRouteUpdate</code>  <code>beforeRouteLeave</code></p>
+<pre><code class="javascript">//localhost:3000/login/1   ---&gt;localhost:3000/login/2
+beforeRouteEnter (to, from, next) &#123;
+   // 在渲染该组件的对应路由被 confirm 前调用
+   // 不！能！获取组件实例 `this`
+   // 因为当钩子执行前，组件实例还没被创建
+&#125;,
+beforeRouteUpdate (to, from, next) &#123;
+   // 在当前路由改变，但是该组件被复用时调用
+   // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
+   // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
+   // 可以访问组件实例 `this`
+&#125;,
+beforeRouteLeave (to, from, next) &#123;
+   // 导航离开该组件的对应路由时调用
+   // 可以访问组件实例 `this`
+&#125;
+</code></pre>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T05:26:17.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-22_自定义指令的钩子函数及其参数"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkundlc0001psv9hu3jf7ol.html">22_自定义指令的钩子函数及其参数</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <h2 id="自定义指令的钩子函数"><a href="#自定义指令的钩子函数" class="headerlink" title="自定义指令的钩子函数"></a>自定义指令的钩子函数</h2><p>自定义组件就是实现Vue提供的钩子函数，在Vue3中钩子函数的生命周期和组件的生命周期类似：</p>
+<pre><code>- created - 元素创建后，但是属性和事件还没有生效时调用。
+- beforeMount- 仅调用一次，当指令第一次绑定元素的时候。
+- mounted- 仅调用一次，元素被插入父元素时调用.
+- beforeUpdate: 在更新包含组件的 VNode 之前调用。
+- updated - 在包含组件的 VNode 及其子组件的 VNode 更新后调用。
+- beforeUnmount: 元素卸载前调用，仅调用一次
+- unmounted -当指令卸载后调用，仅调用一次
+</code></pre>
+<h2 id="自定义指令钩子函数参数"><a href="#自定义指令钩子函数参数" class="headerlink" title="自定义指令钩子函数参数"></a>自定义指令钩子函数参数</h2><blockquote>
+<p>在自定义指令钩子函数的参数中，除了 el 之外，其它参数都应该是只读的，切勿进行修改。</p>
+</blockquote>
+<ul>
+<li>每一个钩子函数都有如下参数：<ul>
+<li>el: 指令绑定的元素，可以用来直接操作DOM</li>
+<li>binding: 数据对象，包含以下属性   获取绑定的值<ul>
+<li>instance: 当前组件的实例，一般推荐指令和组件无关，如果有需要使用组件上下文ViewModel，可以从这里获取</li>
+<li>value: 指令的值，即上面示例中的“yellow“</li>
+<li>oldValue: 指令的前一个值，在beforeUpdate和Updated 中，可以和value是相同的内容。</li>
+<li>arg: 传给指令的参数，例如v-on:click中的click。</li>
+<li>modifiers: 包含修饰符的对象。例如v-on.stop:click 可以获取到一个{stop:true}的对象</li>
+</ul>
+</li>
+<li>vnode: Vue 编译生成的虚拟节点,</li>
+<li>prevVNode: Update时的上一个虚拟节点</li>
+</ul>
+</li>
+</ul>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T05:23:16.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-21_vue的自定义指令"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkth9ho0000awv91ouzgrxo.html">21_vue的自定义指令</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <h2 id="什么是vue的自定义指令？"><a href="#什么是vue的自定义指令？" class="headerlink" title="什么是vue的自定义指令？"></a>什么是vue的自定义指令？</h2><p>Vue里面有许多内置的指令，比如<code>v-if</code>和<code>v-show</code>，这些丰富的指令能满足我们的绝大部分业务需求，不过在需要一些特殊功能时，我们仍然希望对<code>DOM</code>进行底层的操作，这时就要用到自定义指令。</p>
+<h2 id="使用方法？"><a href="#使用方法？" class="headerlink" title="使用方法？"></a>使用方法？</h2><pre><code>app.directive(&#39;focus&#39;, &#123;
+    beforeMount: function (el) &#123; 
+        // 每当指令绑定到元素上的时候，会立即执行这个beforeMount函数，只执行一次
+        // 注意： 在每个函数中，第一个参数永远是el，表示被绑定了指令的那个元素，这个el参数，是一个原生的JS对象
+        // 在元素刚绑定了指令的时候还没有插入到DOM中去的时候调用focus方法没有作用。因为，一个元素只有插入DOM之后才能获取焦点
+        // el.focus()
+    &#125;,
+    mounted: function (el) &#123;  
+        // 指定绑定的远古三插入到DOM中的时候执行【触发1次】
+        el.focus()
+    &#125;,
+    updated : function (el) &#123;  
+        // 在包含组件的 VNode 及其子组件的 VNode 更新后调用
+    &#125;
+&#125;)
+</code></pre>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T05:16:47.000Z" itemprop="datePublished">2022-02-13</time>
 </div>
     
     
@@ -1083,7 +895,7 @@ class="article article-type-post"
 
   
     <nav class="pagination">
-        <a class="extend prev" rel="prev" href="/page/2/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next</a>
+        <a class="extend prev" rel="prev" href="/page/2/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next</a>
     </nav>
   
 </div>
@@ -1120,23 +932,23 @@ class="article article-type-post"
       <ul>
         
           <li>
-            <a href="/ckzkuw9720000fov9cqsm66ik.html">37_new一个对象内部过程</a>
+            <a href="/ckzkvyzdq000cr0v92yrj72oj.html">50_js模块化规范</a>
           </li>
         
           <li>
-            <a href="/ckzkuw9770001fov96aba3xt7.html">36_prototype和__proto__的关系</a>
+            <a href="/ckzkvyzdp000ar0v98t6yeis5.html">49_JavaScript的严格模式</a>
           </li>
         
           <li>
-            <a href="/ckzkundlj0009psv92wak8gvv.html">35_vue3的hook与react的hook不同点</a>
+            <a href="/ckzkvyzdo0009r0v9dtsgcq9p.html">48_减低页面加载时间的几种方法</a>
           </li>
         
           <li>
-            <a href="/ckzkundln000dpsv96d0aez56.html">34_vue的双向绑定的原理</a>
+            <a href="/ckzkvyzdq000br0v9a5cjenzy.html">47_前端兼容问题的解决方案</a>
           </li>
         
           <li>
-            <a href="/ckzkundlk000apsv9940c90jb.html">33_vue-cli打包后会生成哪些文件</a>
+            <a href="/ckzkvyzdn0008r0v9770t0w5s.html">46_js延迟加载的方式有哪些</a>
           </li>
         
       </ul>
