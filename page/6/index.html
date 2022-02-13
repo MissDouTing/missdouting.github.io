@@ -108,6 +108,320 @@
   
     
       <article
+id="post-06_js基本类型和引用类型"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckwstwhy100008ov97drxan3v.html">06_js基本类型和引用类型</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <h2 id="js数据类型的种类"><a href="#js数据类型的种类" class="headerlink" title="js数据类型的种类"></a>js数据类型的种类</h2><p>js的数据类型分为两种：基本数据类型和引用数据类型（也叫对象类型）</p>
+<p>js的数据类型分为两种：基本数据类型和引用数据类型（也叫对象类型）</p>
+<ul>
+<li><p>常用的js基础数据类型有number, string, boolean, null, underfined</p>
+</li>
+<li><p>js引用数据类型有object,array,function,data等（除基本数据类型外都是引用数据类型）</p>
+</li>
+</ul>
+<h2 id="基本数据类型详解"><a href="#基本数据类型详解" class="headerlink" title="基本数据类型详解"></a>基本数据类型详解</h2><p>1.number类型。数字类型（整数和小数）</p>
+<p>2.string类型。字符串类型（通过单引号或者是双引号括起来的值）</p>
+<p>3.boolean类型。布尔类型（值只有两个：true和false）</p>
+<p>4.null类型。空类型（有值，但是不知道值属于什么数据类型，无法辨认。比如：number类型+boolean类型形成的值，这个值就是null）</p>
+<p>5.undefined类型。未定义数据类型（无值，因为没有值，所以不知道值的数据类型，js是通过值来判断数据类型的。比如：变量声明好了，但是没有赋值，这个值就是undefined）</p>
+<h2 id="引用数据类型详解"><a href="#引用数据类型详解" class="headerlink" title="引用数据类型详解"></a>引用数据类型详解</h2><p>1.object类型。对象类型（javaScript中所有对象的顶级父元素）</p>
+<p>2.array类型。数组类型</p>
+<p>3.function类型。函数类型（每个函数都是function类型的实例）</p>
+<p>4.data类型。数据类型（通过new Date()来定义Date对象）</p>
+<h2 id="两者区别"><a href="#两者区别" class="headerlink" title="两者区别"></a>两者区别</h2><ul>
+<li><p>基本数据类型是按值访问的，因为可以直接操作保存在变量中的实际值。</p>
+</li>
+<li><p>js的引用数据类型是保存在堆内存中的对象，与其他语言的不同是，你不可以直接访问堆内存空间中的位置和操作堆内存空间。只能操作对象在栈内存中的引用地址。</p>
+</li>
+<li><p>引用数据类型具有属性和方法，基本数据类型没有。</p>
+</li>
+</ul>
+<img src="imgs/2021.11.25/图片1.png">
+
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2021-11-25T08:10:01.000Z" itemprop="datePublished">2021-11-25</time>
+</div>
+    
+    
+        <div class="article-tag">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%AF%A6%E8%A7%A3/" rel="tag">js的基本数据类型和引用数据类型详解</a></li></ul>
+        </div>
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-05_封装一个随机颜色"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckweotwk10000r0v99zsa8chl.html">05_封装一个随机颜色</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <pre><code class="javas"> getRandonColor() &#123;
+      var r = parseInt(Math.random() * 255);
+      var g = parseInt(Math.random() * 255);
+      var b = parseInt(Math.random() * 255);
+      return `rgb($&#123;r&#125;,$&#123;g&#125;,$&#123;b&#125;)`;
+    &#125;
+</code></pre>
+<p><em>parseInt() 函数可解析一个字符串，并返回一个整数。</em></p>
+<p>parseInt(string, radix)中有两个参数：string和radix。string是要被解析的字符串，radix是可选的，表示要解析的数字的基数，该值介于2~36之间。</p>
+<p>当参数 radix 的值为 0，或没有设置该参数时，parseInt() 会根据 string 来判断数字的基数。</p>
+<p>当没有设置该参数 radix , JavaScript 默认数字的基数如下:</p>
+<ol>
+<li>如果 string 以 “0x” 开头，parseInt() 会把 string 的其余部分解析为十六进制的整数。</li>
+<li>如果 string 以 0 开头，那么 ECMAScript v3 允许 parseInt() 的一个实现把其后的字符解析为八进制或十六进制的数字。</li>
+<li>如果 string 以 1 ~ 9 的数字开头，parseInt() 将把它解析为十进制的整数。</li>
+</ol>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p>parseInt前面不要加任何东西，我之前写的时候在parseInt前加了个Math.造成报错，parseInt不是Math的方法。</p>
+<h3 id="小知识："><a href="#小知识：" class="headerlink" title="小知识："></a>小知识：</h3><p>不同的数据类型在console打印的颜色是不一样的。Number类型的数据是蓝色、Boolean类型的数据是紫红色，Null和Undefined的颜色是灰色，Array类型的数据带中括号，Object类型的数据带大括号。</p>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2021-11-13T07:41:53.000Z" itemprop="datePublished">2021-11-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-04_vscode的几种打开方式及区别"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckuo5p5po0000s8v93auf9ytg.html">04_vscode的几种打开方式及区别</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <h2 id="在vscode中如何打开网页"><a href="#在vscode中如何打开网页" class="headerlink" title="在vscode中如何打开网页"></a>在vscode中如何打开网页</h2><p>方式一： 右键网页，点击open with live server</p>
+<p>方式二：右键网页，点击open with default browser</p>
+<p>方式三： 开启node服务器，配置静态资源目录，手动打开浏览器，输入指定网址直接访问对应的页面</p>
+<p>方式四：开启node服务器，安装express-art-template，写api接口，在api接口中通过res.render方法渲染页面，打开浏览器，输入网址访问对应的接口。</p>
+<h2 id="区别："><a href="#区别：" class="headerlink" title="区别："></a>区别：</h2><p>方式一，vscode会给我们开启一个静态服务器（使用的协议是http，仅是个静态服务器，不像node服务器，有node服务器的若干功能），在服务器中显示该网页（使用端口是5500），这种方式一般只出现在写html，css，原生js，jquery中时使用，node之后基本不会再使用这种方式。</p>
+<p>方式二：这种方式没有服务器，是通过file协议直接打开网页。这种方式和右击文件后点击在文件资源管理器中显示，然后点击网页打开的方式一样。就相当于直接打开本地磁盘的文件，这种方式几乎不用，因为这种方式不支持c3的媒体查询（c3的媒体查询是@media ）。</p>
+<img src="imgs/2021.10.12/图片1.png">
+方式三：相当于前后端分离的开发模式，可以在静态资源的网页中去写ajax请求，去发请求拿数据，没有在app.js（后端）里渲染页面。
+
+<img src="imgs/2021.10.12/图片2.png">
+
+<p>方式四： 相当于纯后端渲染的开发模式。</p>
+<p> （PS：方式一和方式二如果没有，说明没有装对应的插件）</p>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2021-10-12T13:58:04.000Z" itemprop="datePublished">2021-10-12</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-03_node的使用方法"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckumountd0000bwv92b8h4784.html">03_node的使用方法</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <h2 id="如何用npm去安装工具包？"><a href="#如何用npm去安装工具包？" class="headerlink" title="如何用npm去安装工具包？"></a>如何用npm去安装工具包？</h2><p>1.可以在cmd中使用npm对要下载的工具包进行全局安装，如命令npm install hexo-cli -g（该命令是对hexo包进行全局安装）</p>
+<p>2.也可以在vscode中对文件右击从终端打开，使用npm对要下载的工具包进行全局安装，或者仅对建立的文件进行局部安装，如命令npm install express（该命令是对express包进行局部安装）。</p>
+<p>这里的从终端打开，有两种终端方式：一是powershell终端。在文件夹中按住shift键右击空白区，出现在此处打开powershell窗口，这是powershell在文件中的打开方式，而在vscode中打开powershell需要配置settings，设置–搜索框中输入settings–点击“在settings.json中编辑”–以json格式输入对应的设置powershell的代码。而是cmd终端。在桌面win+r，输入cmd，出现cmd窗口，这是cmd在电脑中的打开方式，而在vscode中打开cmd也需要配置settings，设置–搜索框中输入settings–点击“在settings.json中编辑”–以json格式输入对应的设置cmd的代码。如下图所示</p>
+<img src="imgs/2021.10.11.2/图片1.png">
+如何看vscode中的终端设置的是哪个终端？在vscode从终端打开后，终端窗口的右边显示powershell或者cmd。如下图所示
+
+<img src="imgs/2021.10.11.2/图片2.png">
+
+<h2 id="vscode安装工具包及使用步骤："><a href="#vscode安装工具包及使用步骤：" class="headerlink" title="vscode安装工具包及使用步骤："></a>vscode安装工具包及使用步骤：</h2><p>1.在vscode中，先建立一个空文件（注意文件名不要和工具包名一样）。</p>
+<p>2.把这个文件从终端打开，输入命令npm init -y（init是启动的意思，注意这个是使用的node，需要先在cmd中全局安装node，才可以在vscode中使用node和npm的命令），空文件夹下会自动出现package.json文件。</p>
+<img src="imgs/2021.10.11.2/图片3.png">
+
+<p>3.继续输入命令npm install 包名 –save ，如npm install express –save（这是安装express包的命令），下图是输入npm install express –save命令例子</p>
+<img src="imgs/2021.10.11.2/图片4.png">
+
+<p>4.安装完成，之后就可以根据你安装的工具包的官网，去查文档使用你的工具包了。</p>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2021-10-11T12:57:11.000Z" itemprop="datePublished">2021-10-11</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-02_node的安装和配置淘宝镜像源"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckumokpl60000y8v9ezdx6p0g.html">02_node的安装和配置淘宝镜像源</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <h2 id="安装node的步骤："><a href="#安装node的步骤：" class="headerlink" title="安装node的步骤："></a>安装node的步骤：</h2><h3 id="1、下载node安装包"><a href="#1、下载node安装包" class="headerlink" title="1、下载node安装包"></a>1、下载node安装包</h3><p>Node.js安装包及源码下载地址：<a target="_blank" rel="noopener" href="http://nodejs.cn/download/%EF%BC%8C%E8%BF%99%E4%B8%AA%E6%98%AFnode%E4%B8%AD%E6%96%87%E7%BD%91%EF%BC%8C%E5%BA%94%E8%AF%A5%E5%9C%A8%E4%B8%AD%E6%96%87%E7%BD%91%E5%AE%89%E8%A3%85%E3%80%82">http://nodejs.cn/download/，这个是node中文网，建议在中文网安装。</a></p>
+<p><a target="_blank" rel="noopener" href="https://nodejs.org/en/download/%E8%BF%99%E4%B8%AA%E6%98%AF%E5%9B%BD%E5%A4%96%E7%9A%84node%E7%BD%91%E7%AB%99%EF%BC%8C%E5%AE%B9%E6%98%93%E4%B8%8B%E8%BD%BD%E4%B8%8D%E4%B8%8B%E6%9D%A5%E3%80%82">https://nodejs.org/en/download/这个是国外的node网站，容易下载不下来。</a></p>
+<p>根据不同平台系统选择需要的Node.js安装包。</p>
+<h3 id="2、安装"><a href="#2、安装" class="headerlink" title="2、安装"></a>2、安装</h3><p>1)、下载完成后，双击下载后的安装包 node-v6.10.3-x64，进入node的安装向导界面，直接点击next。</p>
+<p>2)、然后勾选接受协议选项，点击Next，开始下一步。</p>
+<p>3)、选择nodejs的安装位置，Node.js默认安装目录。为：”C:\Program Files\nodejs\”，你可以修改目录，并点击next（下一步）。</p>
+<p>4)、点击树形图标来选择你需要的安装模式，然后点击下一步。</p>
+<p>5)、点击Install（安装）开始安装Node.js。</p>
+<p>6)、等待一会，点击finish完成。</p>
+<p><strong>以上操作，和普通软件安装步骤一样</strong></p>
+<p>7)、打开cmd，输入命令，检查node是否安装成功，显示如下图所示版本号，即是安装成功。</p>
+<img src="imgs/2021.10.11/图片1.png">
+
+<p>8)、Node.js安装完成后npm也就安装上了，可查看npm的版本，如下图：</p>
+<img src="imgs/2021.10.11/图片2.png">
+
+<h2 id="配置淘宝镜像源："><a href="#配置淘宝镜像源：" class="headerlink" title="配置淘宝镜像源："></a>配置淘宝镜像源：</h2><p>9)、配置node的淘宝镜像源，在cmd中输入以下命令：</p>
+<p>npm config set registry <a target="_blank" rel="noopener" href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>
+<p>10)、 验证是否配置成功：</p>
+<p>在cmd中输入命令npm config get registry</p>
+<p>如果返回的<a target="_blank" rel="noopener" href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a> 说明镜像配置成功。</p>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2021-10-11T12:50:55.000Z" itemprop="datePublished">2021-10-11</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
 id="post-01_js常量、变量、函数的声明"
 class="article article-type-post"
 >
@@ -310,23 +624,23 @@ foo.prop = 123;
       <ul>
         
           <li>
-            <a href="/ckzkw1mmm000098v96qneg6ml.html">51_es6常用语法</a>
+            <a href="/ckzkwo7zn0004pov9hsj5enki.html">56_Math、Array、String的方法和属性</a>
           </li>
         
           <li>
-            <a href="/ckzkvyzdq000cr0v92yrj72oj.html">50_js模块化规范</a>
+            <a href="/ckzkwo7zn0003pov97fd1c6ge.html">55_jquery的选择器</a>
           </li>
         
           <li>
-            <a href="/ckzkvyzdp000ar0v98t6yeis5.html">49_JavaScript的严格模式</a>
+            <a href="/ckzkwo7zm0002pov99rondnf2.html">54_本地存储和离线缓存的区别</a>
           </li>
         
           <li>
-            <a href="/ckzkvyzdo0009r0v9dtsgcq9p.html">48_减低页面加载时间的几种方法</a>
+            <a href="/ckzkwo7zg0000pov97cvofrsp.html">53_浏览器的进程</a>
           </li>
         
           <li>
-            <a href="/ckzkvyzdq000br0v9a5cjenzy.html">47_前端兼容问题的解决方案</a>
+            <a href="/ckzkwo7zk0001pov9ed69ba5a.html">52_this指向问题</a>
           </li>
         
       </ul>

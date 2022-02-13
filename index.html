@@ -108,6 +108,509 @@
   
     
       <article
+id="post-56_Math、Array、String的方法和属性"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkwo7zn0004pov9hsj5enki.html">56_Math、Array、String的方法和属性</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <h2 id="Math对象的常用方法"><a href="#Math对象的常用方法" class="headerlink" title="Math对象的常用方法"></a>Math对象的常用方法</h2><pre><code>console.log(Math.PI); //圆周率3.141592653589793
+Math.random();//介于 0 和 1 之间的伪随机数。
+Math.ceil(6.6);//获取大于或等于提供数值的最小整数--向上取整
+Math.floor(8.8);//获取小于或等于提供数值的最大整数--向下取整
+Math.round(9.9);//四舍五入
+Math.max(10,20,15);//取多个值中的最大值
+Math.min(10,20,15);//取多个值中的最小值
+Math.pow(10,2);//返回x的y次幂
+Math.sqrt(100);//求平方根
+</code></pre>
+<h2 id="Array的属性和方法"><a href="#Array的属性和方法" class="headerlink" title="Array的属性和方法"></a>Array的属性和方法</h2><pre><code>属性： constructor  返回对创建此对象的数组函数的引用。
+            length          设置或返回数组中元素的数目。
+            prototyp        可以向对象添加属性和方法。
+
+方法： concat()        连接两个或更多的数组，并返回结果。
+            join()            把数组的所有元素放入一个字符串。元素通过指定的分隔符进行分隔。
+            pop()            删除并返回数组的最后一个元素
+            push()            向数组的末尾添加一个或更多元素，并返回新的长度。
+            reverse()       颠倒数组中元素的顺序。
+            shift()            删除并返回数组的第一个元素
+            slice()             从某个已有的数组返回选定的元素
+            sort()              对数组的元素进行排序
+            splice()          删除元素，并向数组添加新元素。
+            toString()      把数组转换为字符串，并返回结果。
+            unshift()        向数组的开头添加一个或更多元素，并返回新的长度。
+            valueOf()        返回数组对象的原始值
+             some()           数组中任何一个元素是否满足指定要求就会返回true，所有元素不满足指定条件就返回false   
+             every()          数组中所有元素都满足指定条件才会返回true
+             filter()         过滤数据，返回新的数据
+             map()            遍历数组，返回新的 数据
+             forEach()        遍历数组
+             findIndex()      根据条件查询下标
+             reduce()         累计运算
+</code></pre>
+<h2 id="String的属性和方法"><a href="#String的属性和方法" class="headerlink" title="String的属性和方法"></a>String的属性和方法</h2><pre><code>属性：constructor  返回对创建此对象的数组函数的引用。
+            length          设置或返回数组中元素的数目。
+            prototyp        可以向对象添加属性和方法。
+
+方法：charAt()       返回在指定位置的字符。
+            concat()      连接字符串。
+            indexOf()   检索字符串。
+            match()    找到一个或多个正则表达式的匹配。
+            replace()    替换与正则表达式匹配的子串。
+            slice()            提取字符串的片断，并在新的字符串中返回被提取的部分。
+            split()            把字符串分割为字符串数组
+            sub()            把字符串显示为下标。
+            sup()                把字符串显示为上标。
+            toLowerCase()    把字符串转换为小写。
+            toUpperCase()  把字符串转换为大写。
+</code></pre>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T06:44:26.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-55_jquery的选择器"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkwo7zn0003pov97fd1c6ge.html">55_jquery的选择器</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <pre><code>一、基本选择器(5种)
+
+基本选择器是jQuery中最常用也是最简单的选择器，它通过元素的id、class和标签名等来查找DOM元素。
+
+1、ID选择器 #id
+描述：根据给定的id匹配一个元素， 返回单个元素（注：在网页中，id名称不能重复）
+示例：$(&quot;#test&quot;) 选取 id 为 test 的元素
+
+2、类选择器 .class
+描述：根据给定的类名匹配元素，返回元素集合
+示例：$(&quot;.test&quot;) 选取所有class为test的元素
+
+3、元素(标签)选择器 element
+描述：根据给定的元素名匹配元素，返回元素集合
+示例：$(&quot;p&quot;) 选取所有的&lt;p&gt;元素 $(&quot;div&quot;) :选取所有的div标签
+
+4、*
+描述：匹配所有元素，返回元素集合
+示例：$(&quot;*&quot;) 选取所有的元素
+
+5、selector1，selector2,...,selectorN（并集选择器）
+描述：将每个选择器匹配到的元素合并后一起返回，返回合并后的元素集合
+示例：$(&quot;p,span,p.myClass&quot;) 选取所有&lt;p&gt;,&lt;span&gt;和class为myClass的&lt;p&gt;标签的元素集合
+
+二、层次选择器(4种)
+
+层次选择器根据层次关系获取特定元素。
+
+1、后代选择器 
+示例：$(&quot;p span&quot;) 选取&lt;p&gt;元素里的所有的&lt;span&gt;元素（注：后代选择器选择父元素所有指定选择的元素，不管是儿子级，还是孙子级）
+
+2、子选择器 $(&quot;parent&gt;child&quot;)
+示例：$(&quot;p&gt;span&quot;) 选择&lt;p&gt;元素下的所有&lt;span&gt;元素 （注：子选择器只选择直属于父元素的子元素）
+
+3、兄弟选择器 $(&quot;prev+next&quot;)
+描述：选取紧接在prev元素后的next元素，返回元素集合
+示例：$(&quot;.one+p&quot;) 选取class为one的下一个&lt;p&gt;同辈元素集合
+
+4、兄弟选择器 $(&quot;prev~siblings&quot;)
+描述：选取prev元素后的所有siblings元素，返回元素集合
+示例：$(&quot;#two~p&quot;)选取id为two的元素后所有&lt;p&gt;同辈元素集合
+
+三、过滤选择器(5种)
+1基本过滤选择器
+
+1、 :first
+描述：选取第一个元素，返回单个元素
+示例：$(&quot;p:first&quot;) 选取所有&lt;p&gt;元素中第一个&lt;p&gt;元素
+2、 :last
+描述：选取最后一个元素，返回单个元素
+示例：$(&quot;p:last&quot;) 选取所有&lt;p&gt;元素中最后一个&lt;p&gt;元素
+3、 :not(selector)
+描述：去除所有与给定选择器匹配的元素，返回元素集合
+示例：$(&quot;input:not(.myClass)&quot;) 选取class不是myClass的&lt;input&gt;元素
+4、 :even
+描述：选取索引是偶数的所有元素，索引从0开始，返回元素集合
+5、 :odd
+描述：选取索引是奇数的所有元素，索引从0开始，返回元素集合
+6、 :eq(index)
+描述：选取索引等于index的元素，索引从0开始，返回单个元素
+7、 :gt(index)
+描述：选取索引大于index的元素，索引从0开始，返回元素集合
+8、 :lt(index)
+描述：选取索引小于于index的元素，索引从0开始，返回元素集合
+9、 :focus
+描述：选取当前获取焦点的元素
+
+2、内容过滤选择器
+
+1、:contains(text)
+描述：选取含有文本内容为text的元素，返回元素集合
+示例：$(&quot;p:contains(&#39;我&#39;)&quot;) 选取含有文本“我”的元素
+2、:empty
+描述：选取不包含子元素或者文本元素的空元素，返回元素集合
+示例：$(&quot;p:empty&quot;) 选取不包含子元素或者文本元素的空&lt;p&gt;元素（&lt;p&gt;&lt;/p&gt;）
+3、:has(selector)
+描述：选取含有选择器所匹配的元素的元素，返回元素集合
+示例：$(&quot;p:has(p)&quot;) 选取含有&lt;p&gt;元素的&lt;p&gt;元素（&lt;p&gt;&lt;p/&gt;&lt;/p&gt;）
+4、:parent
+描述：选取含有子元素或者文本的元素，返回元素集合
+示例：$(&quot;p:parent&quot;) 选取含有子元素或者文本元素的&lt;p&gt;元素（&lt;p&gt;&lt;p/&gt;&lt;/p&gt;或者&lt;p&gt;文本&lt;/p&gt;）
+
+3、可见性过滤选择器
+
+1、:hidden
+描述：选取所有不可见的元素，返回元素集合
+2、:visible
+描述：选取所有可见的元素，返回元素集合
+
+4、属性过滤选择器（返回元素集合）
+
+1、[attribute]
+示例：$(&quot;p[id]&quot;) 选取拥有id属性的p元素
+2、[attribute=value]
+示例：$(&quot;input[name=text]&quot;) 选取拥有name属性等于text的input元素
+3、[attribute!=value]
+示例：$(&quot;input[name!=text]&quot;) 选取拥有name属性不等于text的input元素
+4、[attribute^=value]
+示例：$(&quot;input[name^=text]&quot;) 选取拥有name属性以text开始的input元素
+5、[attribute$=value]
+示例：$(&quot;input[name$=text]&quot;) 选取拥有name属性以text结束的input元素
+6、[attribute=value]
+示例：$(&quot;input[name=text]&quot;) 选取拥有name属性含有text的input元素
+7、[attribute~=value]
+示例：$(&quot;input[class~=text]&quot;) 选取拥有class属性以空格分割的值中含有text的input元素
+8、attribute1[attributeN]
+描述：合并多个属性过滤选择器
+
+5、表单对象属性过滤选择器（返回元素集合）
+
+1、:enabled
+描述：选取所有可用元素
+2、:disabled
+描述：选取所有不可用元素
+3、:checked
+描述：选取所有被选中的元素（单选框，复选框）
+示例：$(&quot;input:checked&quot;) 选取所有被选中的&lt;input&gt;元素
+4、:selected
+描述：选取所有被选中的选项元素（下拉列表）
+示例：$(&quot;select option:selected&quot;) 选取所有被选中的选项元素
+
+四、表单选择器（返回元素集合，使用相似）
+
+1、:text
+描述：选择所有的单行文本框
+示例：$(&quot;:text&quot;)选取所有的单行文本框
+2、:password
+描述：选择所有的密码框
+3、:button
+描述：选择所有的按钮
+4、:checkbox
+描述：选择所有的多选框
+</code></pre>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T06:41:44.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-54_本地存储和离线缓存的区别"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkwo7zm0002pov99rondnf2.html">54_本地存储和离线缓存的区别</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <h2 id="1-本地存储和离线缓存区别："><a href="#1-本地存储和离线缓存区别：" class="headerlink" title="1.本地存储和离线缓存区别："></a>1.本地存储和离线缓存区别：</h2><ul>
+<li>本地存储主要是将网站会话过程中的数据保存在客户端，突破了原来cookie存储大小的限制，相当于一个针对于前端页面的数据库。</li>
+<li>离线缓存主要作用是让用户在没有网络的情况下仍然可以访问缓存的网页，可以减少服务器的负载</li>
+<li>本地存储一般存储的都是数据，而离线缓存一般存储的是网页等</li>
+</ul>
+<h2 id="2-本地存储的用法"><a href="#2-本地存储的用法" class="headerlink" title="2.本地存储的用法"></a>2.本地存储的用法</h2><pre><code>localStorage.setItem(&quot;key&quot;,&quot;value&quot;);//存储
+localStorage.getItems(key);//按key进行取值
+localStorage.removeItems(key);//按key单个删除
+localStorage.clear();//删除全部数据
+localStorage.length;//获得数据的数量
+localStorage.valueOf();//获取全部值
+</code></pre>
+<h2 id="3-离线缓存的用法"><a href="#3-离线缓存的用法" class="headerlink" title="3.离线缓存的用法"></a>3.离线缓存的用法</h2><p>​    a. 在html标签添加manifest属性<br>​    在页面的html标签中添加manifest属性，属性值为manifest文件的路径。如：</p>
+<pre><code>&lt;!DOCTYPE HTML&gt; 
+        &lt;html manifest=&quot;../js/demo.manifest&quot;&gt;
+                ...
+        &lt;/html&gt;
+</code></pre>
+<p>b. 编写manifest文件<br>manifest文件是简单的文本文件，它会告知浏览器需要缓存的内容以及不需要缓存的内容。</p>
+<p>manifest文件可分为三部分：<br>(1) CACHE MANIFEST - 在此标题下列出的文件将在首次下载后进行缓存<br>(2) NETWORK - 在此标题下列出的文件需要与服务器的连接，且不会被缓存<br>(3) FALLBACK - 在此标题下列出的文件规定当页面无法访问时的回退页面（比如 404 页面）</p>
+<p>简单示例:</p>
+<pre><code>    CACHE MANIFEST
+        #version 1.1   /*版本号*/
+        CACHE:
+            html/index.html /*需要缓存的文件*/
+        NETWORK:
+            js/jquery.js /*不需要缓存的文件*/
+        FALLBACK: 
+            html/index.html /*当页面无法访问时的回退页面*/
+</code></pre>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T06:38:29.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-53_浏览器的进程"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkwo7zg0000pov97cvofrsp.html">53_浏览器的进程</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <p>浏览器包括四个进程：</p>
+<p>1.主进程(Browser进程)，浏览器只有一个主进程，负责资源下载、界面展示等主要基础功能；<br>2.GPU进程，负责3D图示绘制<br>3.第三方插件进程，负责第三方插件处理<br>4.渲染进程(Render进程)，负责js执行，页面渲染等功能</p>
+<p><strong>渲染进程中主要包括的线程及各个线程的功能</strong></p>
+<pre><code>1.GUI渲染线程
+ - 负责渲染浏览器界面，解析HTML，CSS，构建DOM树和RenderObject树，布局和绘制等。
+ - 当界面需要重绘（Repaint）或由于某种操作引发回流(reflow)时，该线程就会执行
+ - 注意，GUI渲染线程与JS引擎线程是互斥的，当JS引擎执行时GUI线程会被挂起（相当于被冻结了），GUI更新会被保存在一个队列中等到JS引擎空闲时立即被执行。
+
+2.JS引擎线程
+ - 也称为JS内核，负责处理Javascript脚本程序。（例如V8引擎）
+ - JS引擎线程负责解析Javascript脚本，运行代码。
+ - JS引擎一直等待着任务队列中任务的到来，然后加以处理，一个Tab页（renderer进程）中无论什么时候都只有一个JS线程在运行JS程序
+ - 同样注意，GUI渲染线程与JS引擎线程是互斥的，所以如果JS执行的时间过长，这样就会造成页面的渲染不连贯，导致页面渲染加载阻塞。
+
+3.事件触发线程
+ - 用来控制事件循环（可以理解，JS引擎自己都忙不过来，需要浏览器另开线程协助）
+ - 当JS引擎执行代码块如setTimeOut时（也可是鼠标点击、AJAX异步请求等），会将对应任务添加到事件线程中
+ - 当对应的事件符合触发条件被触发时，该线程会把事件添加到待处理队列的队尾，等待JS引擎的处理
+ - 注意，由于JS的单线程关系，所以这些待处理队列中的事件都得排队等待JS引擎处理（当JS引擎空闲时才会去执行）
+
+4.定时触发器线程
+ - 浏览器定时计数器并不是由JavaScript引擎计数的（因为JavaScript引擎是单线程的, 如果处于阻塞线程状态就会影响记计时的准确）
+ - 因此通过单独线程来计时并触发定时（计时完毕后，添加到事件队列中，等待JS引擎空闲后执行）
+ - 注意，W3C在HTML标准中规定，规定要求setTimeout中低于4ms的时间间隔算为4ms。
+
+5.异步http请求线程
+ - 在XMLHttpRequest在连接后是通过浏览器新开一个线程请求
+ - 将检测到状态变更时，如果设置有回调函数，异步线程就产生状态变更事件，将这个回调再放入事件队列中。再由JavaScript引擎执行。
+</code></pre>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T06:34:57.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-52_this指向问题"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkwo7zk0001pov9ed69ba5a.html">52_this指向问题</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <pre><code>在 JavaScript 中，this 通常指向的是我们正在执行的函数本身，或者是，指向该函数所属的对象。
+
+1. 普通函数调用，此时 this 指向 window
+    function fn() &#123;
+       console.log(this);   // window
+    &#125;
+    fn();  //  window.fn(),此处默认省略window
+2. 定时器函数， 此时 this 指向 window
+    setInterval(function () &#123;
+       console.log(this); // window
+    &#125;, 1000);
+3. 构造函数调用， 此时 this 指向 实例对象
+    function Person(age, name) &#123;
+        this.age = age;
+        this.name = name
+        console.log(this)  // 此处 this 分别指向 Person 的实例对象 p1 p2
+     &#125;
+    var p1 = new Person(18, &#39;zs&#39;);
+4. 对象方法调用， 此时 this 指向 该方法所属的对象
+    var obj = &#123;
+        fn: function () &#123;
+            console.log(this); // obj
+        &#125;
+    &#125;
+    obj.fn();
+5.通过事件绑定的方法， 此时 this 指向 绑定事件的对象 
+    btn.onclick = function() &#123;
+        console.log(this); // btn
+    &#125;
+6.箭头函数的this：是声明函数时所在作用域中的this
+    //this   window
+    var obj = &#123;
+        //this
+        fn:  ()=&gt;&#123;
+            console.log(this);   //window
+        &#125;,
+        fn2: function()&#123;
+            //this     obj
+            (()=&gt;&#123;
+                console.log(this)  //obj
+            &#125;)()
+        &#125;
+    &#125;
+    obj.fn();
+    obj.fn2();
+</code></pre>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T06:32:58.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
 id="post-51_es6常用语法"
 class="article article-type-post"
 >
@@ -630,428 +1133,6 @@ if (isIE)&#123;
 
     
   
-    
-      <article
-id="post-46_js延迟加载的方式有哪些"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/ckzkvyzdn0008r0v9770t0w5s.html">46_js延迟加载的方式有哪些</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <ol>
-<li><p>defer 和 async :    js文件的加载不会堵塞DOM的解析</p>
-<pre><code>1. defer 属性
-&lt;script  src=&quot;file.js&quot; defer&gt;&lt;/script&gt; 
-defer属性声明这个脚本中将不会有 document.write 或 dom 修改。
-浏览器将会并行下载 file.js 和其它有 defer 属性的script，而不会阻塞页面后续处理。
- 
-defer属性在IE 4.0中就实现了，超过13年了！Firefox 从 3.5 开始支持defer属性 。
-注：所有的defer 脚本保证是按顺序依次执行的。
-
-2. async 属性
-&lt;script src=&quot;file1.js&quot; async&gt;&lt;/script&gt; 
-async属性是HTML5新增的。作用和defer类似，但是它将在下载后尽快执行，不能保证脚本会按顺序执行。它们将在onload 事件之前完成。
-Firefox 3.6、Opera 10.5、IE 9 和 最新的Chrome 和 Safari 都支持 async 属性。可以同时使用 async 和 defer，这样IE 4之后的所有 IE 都支持异步加载。
-</code></pre>
-</li>
-<li><p>动态创建 DOM 方式（创建 script，插入到 DOM 中，加载完毕后 callBack）</p>
-<pre><code>var ga = document.createElement(&#39;script&#39;);
-ga.type = &#39;text/javascript&#39;;
-ga.async = true;
-ga.src = &#39;xxxx&#39;;
-var s = document.getElementsByTagName(&#39;script&#39;)[0];
-s.parentNode.insertBefore(ga, s);
-</code></pre>
-</li>
-<li><p>由于JavaScript的动态性，还有很多异步加载方法： XHR Injection、 XHR Eval、 Script In Iframe</p>
-</li>
-</ol>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-02-13T06:17:52.000Z" itemprop="datePublished">2022-02-13</time>
-</div>
-    
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
-    
-      <article
-id="post-45_iframe的优缺点"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/ckzkvyzdl0006r0v9bquc82nb.html">45_iframe的优缺点</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <pre><code>iframe的优点：
-1.iframe能够原封不动的把嵌入的网页展现出来，iframe和主页面是并行加载的
-2.如果有多个网页引用iframe，那么你只需要修改iframe的内容，就可以实现调用的每一个页面内容的更改，方便快捷。
-3.网页如果为了统一风格，头部和版本都是一样的，就可以写成一个页面，用iframe来嵌套，可以增加代码的可重用。
-4.如果遇到加载缓慢的第三方内容如图标和广告，这些问题可以由iframe来解决。
-
-iframe的缺点：
-1.会产生很多页面，不容易管理。
-2.iframe框架结构有时会让人感到迷惑，如果框架个数多的话，可能会出现上下、左右滚动条，会分散访问者的注意力，用户体验度差。
-3.代码复杂，无法被一些搜索引擎索引到，这一点很关键，现在的搜索引擎爬虫还不能很好的处理iframe中的内容，所以使用iframe会不利于搜索引擎优化。
-4.很多的移动设备（PDA 手机）无法完全显示框架，设备兼容性差。
-5.iframe框架页面会增加服务器的http请求，对于大型网站是不可取的。 分析了这么多，现在基本上都是用Ajax来代替iframe，所以iframe已经渐渐的退出了前端开发。
-6.iframe会堵塞主页面的onload事件
-</code></pre>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-02-13T06:15:54.000Z" itemprop="datePublished">2022-02-13</time>
-</div>
-    
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
-    
-      <article
-id="post-44_创建函数的几种方式"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/ckzkvyzdl0007r0v92tyedjar.html">44_创建函数的几种方式</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <pre><code>第一种（函数声明）：
-function sum1(num1,num2)&#123;
-    return num1+num2;
-&#125;
-
-第二种（函数表达式）：
-var sum2 = function(num1,num2)&#123;
-    return num1+num2;
-&#125;
-
-第三种(匿名函数)：
-function()&#123;&#125;:只能自己执行自己
-
-第四种(new Function创建函数)
-let str = &#39;return &#39; + &#39;`Hello $&#123;name&#125;!`&#39;;
-let func = new Function(&#39;name&#39;, str);
-func(&#39;Jack&#39;) // &quot;Hello Jack!&quot;
-</code></pre>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-02-13T06:14:23.000Z" itemprop="datePublished">2022-02-13</time>
-</div>
-    
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
-    
-      <article
-id="post-43_javascript继承的方法"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/ckzkvyzdk0005r0v9anio32tj.html">43_javascript继承的方法</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <p>1.借助构造函数实现继承</p>
-<pre><code>   //  定义父类
-    function Parent1 () &#123;
-        this.name = &#39;xxx&#39;,
-        this.age = 18
-    &#125;
-    //  定义子类
-    function Child1 () &#123;
-        //通过call()方法改变Child1的this指向使子类的函数体内执行父级的构造函数从而实现继承效果
-        Parent1.call(this)
-        this.address = &#39;yyy&#39;
-    &#125;
-    //  构建子类的实例s1
-    var s1 = new Child1()
-    console.log(s1.name)  //xxx
-    缺点:该方法的实力(s1)无法使用父类(Parent1)的原型(prototype)中的属性和方法
-    
-</code></pre>
-<p>2.借助原型链实现继承</p>
-<pre><code> function Parent2 () &#123;
-        this.name = &#39;xx&#39;,
-        this.age = 19,
-        this.play = [1,2,3]
-    &#125;
-    //  一样在父类添加say方法
-    Parent2.prototype = &#123;
-        say () &#123;
-            console.log(&#39;say&#39;)
-        &#125;
-    &#125;
-    function Child2 (address) &#123;
-        this.address = &#39;yyy&#39;
-    &#125;
-    // 让子类的原型直接指向父类实例
-    Child2.prototype = new Parent2()
-    //  生成两个子类的实例s2、s3
-    var s2 = new Child2()
-    var s3 = new Child2()
-    // s2实例继承了父类中的name属性
-    console.log(s2.name)  //xx
-    //  s2实例也同样继承了父类原型上的say方法
-    console.log(s2.say())  //say
-    缺点:在子类调用构造函数创建对象的时候，无法入参所有的属性值
-</code></pre>
-<p>3.组合继承</p>
-<pre><code>   function Parent5 () &#123;
-        this.name = &#39;xx&#39;,
-        this.age = 20,
-        this.play = [4,5,6]
-    &#125;
-    function Child5 (name,age,address) &#123;
-        Parent5.call(this,name,age)
-        this.address = address
-    &#125;
-    // 比较关键的一步
-    Child5.prototype = new Parent5()
-    var c = new Child5(&quot;zhangsan&quot;,19,&quot;无锡&quot;)
-</code></pre>
-<p>4.实例继承(为父类实例添加新特性，作为子类实例返回)</p>
-<pre><code>  function Animal (name) &#123;
-      // 属性
-      this.name = name || &#39;Animal&#39;;
-      // 实例方法
-      this.sleep = function()&#123;
-        console.log(this.name + &#39;正在睡觉！&#39;);
-      &#125;
-    &#125;
-    // 原型方法
-    Animal.prototype.eat = function(food) &#123;
-      console.log(this.name + &#39;正在吃：&#39; + food);
-    &#125;;
-
-function Cat()&#123;
-  var instance = new Animal();
-  instance.name = name || &#39;Tom&#39;;
-  return instance;
-&#125;
-// Test Code
-var cat = new Cat();
-console.log(cat.name);
-console.log(cat.sleep());
-console.log(cat instanceof Animal); // true
-console.log(cat instanceof Cat); // false
-</code></pre>
-<p>5.拷贝继承</p>
-<pre><code>   // 定义一个动物类
-    function Animal (name) &#123;
-      // 属性
-      this.name = name || &#39;Animal&#39;;
-      // 实例方法
-      this.sleep = function()&#123;
-        console.log(this.name + &#39;正在睡觉！&#39;);
-      &#125;
-    &#125;
-    // 原型方法
-    Animal.prototype.eat = function(food) &#123;
-      console.log(this.name + &#39;正在吃：&#39; + food);
-    &#125;;
-    function Cat(name)&#123;
-      var animal = new Animal();
-     // 遍历拷贝属性
-      for(var p in animal)&#123;
-        Cat.prototype[p] = animal[p];
-      &#125;
-      Cat.prototype.name = name || &#39;Tom&#39;;
-    &#125;
-
-// Test Code
-var cat = new Cat();
-console.log(cat.name);
-console.log(cat.sleep());
-console.log(cat instanceof Animal); // false
-console.log(cat instanceof Cat); // true
-</code></pre>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-02-13T06:11:07.000Z" itemprop="datePublished">2022-02-13</time>
-</div>
-    
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
-    
-      <article
-id="post-42_移动端兼容"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/ckzkvyzdj0004r0v9g4fgdgm6.html">42_移动端兼容</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <p>bootstrap中起步中有：</p>
-<p>1&gt;ios移动端click事件300ms的延迟响应. 用fastclick来解决</p>
-<p>2&gt;zepto的touch模块的tap事件有点透的问题，也是用fastclick来解决</p>
-<p>3&gt;一些情况下对非可点击元素如(label,span)监听click事件，ios下不会触发，css增加cursor:pointer就搞定了</p>
-<p>4&gt;ios下取消input在输入的时候英文首字母的默认大写</p>
-<pre><code>&lt;input autocapitalize=&quot;off&quot;autocorrect=&quot;off&quot; /&gt;
-</code></pre>
-<p>5&gt;fixed定位缺陷</p>
-<pre><code>ios下fixed元素容易定位出错，软键盘弹出时，影响fixed元素定位
-android下fixed表现要比iOS更好，软键盘弹出时，不会影响fixed元素定位
-ios4下不支持position:fixed
-
-解决方案： 可用iScroll插件解决这个问题
-</code></pre>
-<p>6&gt;Input 的placeholder会出现文本位置偏上的情况</p>
-<pre><code>input 的placeholder会出现文本位置偏上的情况：PC端设置line-height等于height能够对齐，而移动端仍然是偏上，解决是设置line-height：normal
-</code></pre>
-<p>7&gt;calc的兼容性处理</p>
-<pre><code> CSS3中的calc变量在iOS6浏览器中必须加-webkit-前缀，目前的FF浏览器已经无需-moz-前缀。
- Android浏览器目前仍然不支持calc，所以要在之前增加一个保守尺寸：
-
-div &#123;
-    width: 95%;
-    width: -webkit-calc(100% - 50px);
-    width: calc(100% - 50px);
-&#125;
-</code></pre>
-<p>8&gt;在移动端修改难看的点击的高亮效果，iOS和安卓下都有效：</p>
-<pre><code>\ &#123;-webkit-tap-highlight-color:rgba(0,0,0,0);&#125;
-</code></pre>
-<p>9&gt;阻止旋转屏幕时自动调整字体大小</p>
-<pre><code>html, body, form, fieldset, p, div, h1, h2, h3, h4, h5,h6 &#123;-webkit-text-size-adjust:none;&#125;
-</code></pre>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-02-13T06:09:49.000Z" itemprop="datePublished">2022-02-13</time>
-</div>
-    
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
 
   
     <nav class="pagination">
@@ -1092,23 +1173,23 @@ div &#123;
       <ul>
         
           <li>
-            <a href="/ckzkw1mmm000098v96qneg6ml.html">51_es6常用语法</a>
+            <a href="/ckzkwo7zn0004pov9hsj5enki.html">56_Math、Array、String的方法和属性</a>
           </li>
         
           <li>
-            <a href="/ckzkvyzdq000cr0v92yrj72oj.html">50_js模块化规范</a>
+            <a href="/ckzkwo7zn0003pov97fd1c6ge.html">55_jquery的选择器</a>
           </li>
         
           <li>
-            <a href="/ckzkvyzdp000ar0v98t6yeis5.html">49_JavaScript的严格模式</a>
+            <a href="/ckzkwo7zm0002pov99rondnf2.html">54_本地存储和离线缓存的区别</a>
           </li>
         
           <li>
-            <a href="/ckzkvyzdo0009r0v9dtsgcq9p.html">48_减低页面加载时间的几种方法</a>
+            <a href="/ckzkwo7zg0000pov97cvofrsp.html">53_浏览器的进程</a>
           </li>
         
           <li>
-            <a href="/ckzkvyzdq000br0v9a5cjenzy.html">47_前端兼容问题的解决方案</a>
+            <a href="/ckzkwo7zk0001pov9ed69ba5a.html">52_this指向问题</a>
           </li>
         
       </ul>

@@ -108,6 +108,428 @@
   
     
       <article
+id="post-46_js延迟加载的方式有哪些"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkvyzdn0008r0v9770t0w5s.html">46_js延迟加载的方式有哪些</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <ol>
+<li><p>defer 和 async :    js文件的加载不会堵塞DOM的解析</p>
+<pre><code>1. defer 属性
+&lt;script  src=&quot;file.js&quot; defer&gt;&lt;/script&gt; 
+defer属性声明这个脚本中将不会有 document.write 或 dom 修改。
+浏览器将会并行下载 file.js 和其它有 defer 属性的script，而不会阻塞页面后续处理。
+ 
+defer属性在IE 4.0中就实现了，超过13年了！Firefox 从 3.5 开始支持defer属性 。
+注：所有的defer 脚本保证是按顺序依次执行的。
+
+2. async 属性
+&lt;script src=&quot;file1.js&quot; async&gt;&lt;/script&gt; 
+async属性是HTML5新增的。作用和defer类似，但是它将在下载后尽快执行，不能保证脚本会按顺序执行。它们将在onload 事件之前完成。
+Firefox 3.6、Opera 10.5、IE 9 和 最新的Chrome 和 Safari 都支持 async 属性。可以同时使用 async 和 defer，这样IE 4之后的所有 IE 都支持异步加载。
+</code></pre>
+</li>
+<li><p>动态创建 DOM 方式（创建 script，插入到 DOM 中，加载完毕后 callBack）</p>
+<pre><code>var ga = document.createElement(&#39;script&#39;);
+ga.type = &#39;text/javascript&#39;;
+ga.async = true;
+ga.src = &#39;xxxx&#39;;
+var s = document.getElementsByTagName(&#39;script&#39;)[0];
+s.parentNode.insertBefore(ga, s);
+</code></pre>
+</li>
+<li><p>由于JavaScript的动态性，还有很多异步加载方法： XHR Injection、 XHR Eval、 Script In Iframe</p>
+</li>
+</ol>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T06:17:52.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-45_iframe的优缺点"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkvyzdl0006r0v9bquc82nb.html">45_iframe的优缺点</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <pre><code>iframe的优点：
+1.iframe能够原封不动的把嵌入的网页展现出来，iframe和主页面是并行加载的
+2.如果有多个网页引用iframe，那么你只需要修改iframe的内容，就可以实现调用的每一个页面内容的更改，方便快捷。
+3.网页如果为了统一风格，头部和版本都是一样的，就可以写成一个页面，用iframe来嵌套，可以增加代码的可重用。
+4.如果遇到加载缓慢的第三方内容如图标和广告，这些问题可以由iframe来解决。
+
+iframe的缺点：
+1.会产生很多页面，不容易管理。
+2.iframe框架结构有时会让人感到迷惑，如果框架个数多的话，可能会出现上下、左右滚动条，会分散访问者的注意力，用户体验度差。
+3.代码复杂，无法被一些搜索引擎索引到，这一点很关键，现在的搜索引擎爬虫还不能很好的处理iframe中的内容，所以使用iframe会不利于搜索引擎优化。
+4.很多的移动设备（PDA 手机）无法完全显示框架，设备兼容性差。
+5.iframe框架页面会增加服务器的http请求，对于大型网站是不可取的。 分析了这么多，现在基本上都是用Ajax来代替iframe，所以iframe已经渐渐的退出了前端开发。
+6.iframe会堵塞主页面的onload事件
+</code></pre>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T06:15:54.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-44_创建函数的几种方式"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkvyzdl0007r0v92tyedjar.html">44_创建函数的几种方式</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <pre><code>第一种（函数声明）：
+function sum1(num1,num2)&#123;
+    return num1+num2;
+&#125;
+
+第二种（函数表达式）：
+var sum2 = function(num1,num2)&#123;
+    return num1+num2;
+&#125;
+
+第三种(匿名函数)：
+function()&#123;&#125;:只能自己执行自己
+
+第四种(new Function创建函数)
+let str = &#39;return &#39; + &#39;`Hello $&#123;name&#125;!`&#39;;
+let func = new Function(&#39;name&#39;, str);
+func(&#39;Jack&#39;) // &quot;Hello Jack!&quot;
+</code></pre>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T06:14:23.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-43_javascript继承的方法"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkvyzdk0005r0v9anio32tj.html">43_javascript继承的方法</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <p>1.借助构造函数实现继承</p>
+<pre><code>   //  定义父类
+    function Parent1 () &#123;
+        this.name = &#39;xxx&#39;,
+        this.age = 18
+    &#125;
+    //  定义子类
+    function Child1 () &#123;
+        //通过call()方法改变Child1的this指向使子类的函数体内执行父级的构造函数从而实现继承效果
+        Parent1.call(this)
+        this.address = &#39;yyy&#39;
+    &#125;
+    //  构建子类的实例s1
+    var s1 = new Child1()
+    console.log(s1.name)  //xxx
+    缺点:该方法的实力(s1)无法使用父类(Parent1)的原型(prototype)中的属性和方法
+    
+</code></pre>
+<p>2.借助原型链实现继承</p>
+<pre><code> function Parent2 () &#123;
+        this.name = &#39;xx&#39;,
+        this.age = 19,
+        this.play = [1,2,3]
+    &#125;
+    //  一样在父类添加say方法
+    Parent2.prototype = &#123;
+        say () &#123;
+            console.log(&#39;say&#39;)
+        &#125;
+    &#125;
+    function Child2 (address) &#123;
+        this.address = &#39;yyy&#39;
+    &#125;
+    // 让子类的原型直接指向父类实例
+    Child2.prototype = new Parent2()
+    //  生成两个子类的实例s2、s3
+    var s2 = new Child2()
+    var s3 = new Child2()
+    // s2实例继承了父类中的name属性
+    console.log(s2.name)  //xx
+    //  s2实例也同样继承了父类原型上的say方法
+    console.log(s2.say())  //say
+    缺点:在子类调用构造函数创建对象的时候，无法入参所有的属性值
+</code></pre>
+<p>3.组合继承</p>
+<pre><code>   function Parent5 () &#123;
+        this.name = &#39;xx&#39;,
+        this.age = 20,
+        this.play = [4,5,6]
+    &#125;
+    function Child5 (name,age,address) &#123;
+        Parent5.call(this,name,age)
+        this.address = address
+    &#125;
+    // 比较关键的一步
+    Child5.prototype = new Parent5()
+    var c = new Child5(&quot;zhangsan&quot;,19,&quot;无锡&quot;)
+</code></pre>
+<p>4.实例继承(为父类实例添加新特性，作为子类实例返回)</p>
+<pre><code>  function Animal (name) &#123;
+      // 属性
+      this.name = name || &#39;Animal&#39;;
+      // 实例方法
+      this.sleep = function()&#123;
+        console.log(this.name + &#39;正在睡觉！&#39;);
+      &#125;
+    &#125;
+    // 原型方法
+    Animal.prototype.eat = function(food) &#123;
+      console.log(this.name + &#39;正在吃：&#39; + food);
+    &#125;;
+
+function Cat()&#123;
+  var instance = new Animal();
+  instance.name = name || &#39;Tom&#39;;
+  return instance;
+&#125;
+// Test Code
+var cat = new Cat();
+console.log(cat.name);
+console.log(cat.sleep());
+console.log(cat instanceof Animal); // true
+console.log(cat instanceof Cat); // false
+</code></pre>
+<p>5.拷贝继承</p>
+<pre><code>   // 定义一个动物类
+    function Animal (name) &#123;
+      // 属性
+      this.name = name || &#39;Animal&#39;;
+      // 实例方法
+      this.sleep = function()&#123;
+        console.log(this.name + &#39;正在睡觉！&#39;);
+      &#125;
+    &#125;
+    // 原型方法
+    Animal.prototype.eat = function(food) &#123;
+      console.log(this.name + &#39;正在吃：&#39; + food);
+    &#125;;
+    function Cat(name)&#123;
+      var animal = new Animal();
+     // 遍历拷贝属性
+      for(var p in animal)&#123;
+        Cat.prototype[p] = animal[p];
+      &#125;
+      Cat.prototype.name = name || &#39;Tom&#39;;
+    &#125;
+
+// Test Code
+var cat = new Cat();
+console.log(cat.name);
+console.log(cat.sleep());
+console.log(cat instanceof Animal); // false
+console.log(cat instanceof Cat); // true
+</code></pre>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T06:11:07.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-42_移动端兼容"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkvyzdj0004r0v9g4fgdgm6.html">42_移动端兼容</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <p>bootstrap中起步中有：</p>
+<p>1&gt;ios移动端click事件300ms的延迟响应. 用fastclick来解决</p>
+<p>2&gt;zepto的touch模块的tap事件有点透的问题，也是用fastclick来解决</p>
+<p>3&gt;一些情况下对非可点击元素如(label,span)监听click事件，ios下不会触发，css增加cursor:pointer就搞定了</p>
+<p>4&gt;ios下取消input在输入的时候英文首字母的默认大写</p>
+<pre><code>&lt;input autocapitalize=&quot;off&quot;autocorrect=&quot;off&quot; /&gt;
+</code></pre>
+<p>5&gt;fixed定位缺陷</p>
+<pre><code>ios下fixed元素容易定位出错，软键盘弹出时，影响fixed元素定位
+android下fixed表现要比iOS更好，软键盘弹出时，不会影响fixed元素定位
+ios4下不支持position:fixed
+
+解决方案： 可用iScroll插件解决这个问题
+</code></pre>
+<p>6&gt;Input 的placeholder会出现文本位置偏上的情况</p>
+<pre><code>input 的placeholder会出现文本位置偏上的情况：PC端设置line-height等于height能够对齐，而移动端仍然是偏上，解决是设置line-height：normal
+</code></pre>
+<p>7&gt;calc的兼容性处理</p>
+<pre><code> CSS3中的calc变量在iOS6浏览器中必须加-webkit-前缀，目前的FF浏览器已经无需-moz-前缀。
+ Android浏览器目前仍然不支持calc，所以要在之前增加一个保守尺寸：
+
+div &#123;
+    width: 95%;
+    width: -webkit-calc(100% - 50px);
+    width: calc(100% - 50px);
+&#125;
+</code></pre>
+<p>8&gt;在移动端修改难看的点击的高亮效果，iOS和安卓下都有效：</p>
+<pre><code>\ &#123;-webkit-tap-highlight-color:rgba(0,0,0,0);&#125;
+</code></pre>
+<p>9&gt;阻止旋转屏幕时自动调整字体大小</p>
+<pre><code>html, body, form, fieldset, p, div, h1, h2, h3, h4, h5,h6 &#123;-webkit-text-size-adjust:none;&#125;
+</code></pre>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T06:09:49.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
 id="post-41_闭包"
 class="article article-type-post"
 >
@@ -423,362 +845,6 @@ obj.__proto__ = Test.prototype
 
     
   
-    
-      <article
-id="post-36_prototype和__proto__的关系"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/ckzkuw9770001fov96aba3xt7.html">36_prototype和__proto__的关系</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <pre><code>1.函数有一个prototype属性，这个属性表示函数的原型
-  这个属性中有三部分信息：构造函数   所有实例公共的属性和方法   __proto__
-2.对象有一个__proto__属性，他指向函数的原型
-  function Person(name,age)&#123;
-      this.name = name;
-      this.age = age;
-  &#125;
-  var p = new Person(&quot;zhangsan&quot;,18);
-  p.__proto__ == Person.prototype;
-3.函数原型中的信息
-  Person.prototype.constructor == Person;
-  Person.prototype.__proto__ == Object.prototype;
-  Object.prototype.__proto__ == null
-  
-  
-//区别
-//a._proto_是隐式原型，prototype是显示原型
-//b.prototype：每一个函数创建之后都会拥有一个名为prototype的属性，这个属性指向函数的原型对象
-//c._proto_ ：javascript中任意的对象都有一个内置属性，在ES5之前没有标准的方法访问这个内置属性，但是大多数浏览器都支持通过_proto_来访问。
-</code></pre>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-02-13T05:54:22.000Z" itemprop="datePublished">2022-02-13</time>
-</div>
-    
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
-    
-      <article
-id="post-35_vue3的hook与react的hook不同点"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/ckzkundlj0009psv92wak8gvv.html">35_vue3的hook与react的hook不同点</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <p>vue3的hook是借鉴了react的hook思想，vue3中自定义hook的写法与react看起来很类似，但实际使用是有些许不同，而内部实现原理更是完全不一样。</p>
-<p>首先说下react hook的两个限制：</p>
-<blockquote>
-<ol>
-<li><code>只在最顶层使用 Hook</code>，<code>不要在循环，条件或嵌套函数中调用 Hook</code></li>
-<li><code>只在 React 函数中调用 Hook</code>，<code>不要在普通的 JavaScript 函数中调用 Hook</code></li>
-</ol>
-</blockquote>
-<p>这在react官网也有专门介绍。</p>
-<p>只能在最顶层使用Hook，这是因为react的hook是依靠调用的顺序来确认state对应的hook，每次重新渲染都会再调用hook，所以需要确保hook的调用顺序是不会变的。</p>
-<p>再说下vue与react使用的不同之处：</p>
-<blockquote>
-<ol>
-<li>setup只执行一遍，而react每次渲染都会重新执行hook</li>
-<li>Hook需要更新值时Vue可以直接赋值，而react则需要调用hook的赋值函数</li>
-<li>vue调用顺序无要求，也可以放在条件语句里，而react有要求</li>
-</ol>
-</blockquote>
-<p>实现原理的不同：</p>
-<p>vue中的hook是<code>响应式对象</code>，在render的时候读取到就会被<code>依赖收集</code>。</p>
-<p>react中的hook本质是一个函数，每次重新渲染都需要再次调用，在声明的时候按照调用顺序通过{ value1, setValue1} -&gt; { value2, setValue2 }的<code>链表</code>结构存储，所以需要严格限制 Hook 的执行顺序和禁止条件调用。</p>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-02-13T05:49:41.000Z" itemprop="datePublished">2022-02-13</time>
-</div>
-    
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
-    
-      <article
-id="post-34_vue的双向绑定的原理"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/ckzkundln000dpsv96d0aez56.html">34_vue的双向绑定的原理</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <pre><code>//1.由页面-&gt;数据的变化：通过给页面元素添加对应的事件监听来实现的
-&lt;input v-model=&quot;value&quot; oninput=&quot;()=&gt;this.handleInput($event)&quot;&gt;
-function handleInput(e)&#123;
-    this.value = e.target.value
-&#125;
-
-//2.1.在vue2 options api中 由数据-&gt;页面的变化：通过数据劫持（Object.defineProperty） + 发布订阅模式来实现
-具体流程：
-A.Compile解析器会将页面上的插值表达式/指定翻译成对应Watcher以添加到订阅器维护的列表中
-B.通过Object.defineProperty劫持数据的变化，一旦数据源发生变化会触发对应的set方法
-C.在set方法中，通知订阅器(Dep)对象中维护的所有订阅者(Watcher)列表更新
-D.每一个Watch会去更新对应的页面
-
-//2.2在 vue3 composition api中，数据-&gt;页面变化是通过响应式系统来实现的，其内部是通过proxy来实现响应式，在proxy的get函数中收集依赖，并存储响应式数据与更新函数cb的映射关系；在proxy的set中，触发响应式数据对应的更新函数cb
-// 在vue3composition api中数据-&gt;页面的变化  具体参照85题
-
-//3.关于发布订阅模式    //发布订阅模式是什么
-发布订阅模式又叫观察者模式，他定义了一种一对多的关系，让多个观察者对象同时监听某一个主体对象的变化，当这个主题对象的状态发生变化的时候就会通知所有的观察者对象，使得的他们能够自动更新自己。
-</code></pre>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-02-13T05:46:51.000Z" itemprop="datePublished">2022-02-13</time>
-</div>
-    
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
-    
-      <article
-id="post-33_vue-cli打包后会生成哪些文件"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/ckzkundlk000apsv9940c90jb.html">33_vue-cli打包后会生成哪些文件</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <pre><code>dist
-  --index.html       单页面文件
-  --app.[hash].css   将组件中的css编译合并成一个app.[hash].css的文件
-  --app.[hash].js    包含了所有components中的js代码
-  /ˈvendə(r)/ 
-
-  
-
-  --vendor.[hash].js   包含了生产环境所有引用的node_modules中的代码
-  --mainfest.[hash].js 包含了webpack运行环境及模块化所需的js代码
-  --0.[hash].js        是vue-router使用了按需加载生产的js文件
-
-这样拆分的好处是：每块组件修改重新编译后不影响其他未修改的js文件的hash值，这样能够最大限度地使用缓存，减少HTTP的请求数。
-</code></pre>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-02-13T05:44:21.000Z" itemprop="datePublished">2022-02-13</time>
-</div>
-    
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
-    
-      <article
-id="post-32_vue利用keep-alive标签实现组件缓存功能"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/ckzkundlm000cpsv9cyb7hf2r.html">32_vue利用keep-alive标签实现组件缓存功能</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <p>实现某个组件的缓存功能，可用 keep-alive 标签与 vue-router的meta形式数据传递配合完成。</p>
-<pre><code class="html">&lt;router-view v-slot=&quot;&#123; Component &#125;&quot;&gt;
-    &lt;keep-alive :include=&quot;cacheComponents&quot;&gt;
-        &lt;component :is=&quot;Component&quot; /&gt;
-    &lt;/keep-alive&gt;
-&lt;/router-view&gt;
-</code></pre>
-<pre><code class="javascript">//第一步：在 app.vue 里面 template部分 使用 &lt;keep-alive&gt;&lt;/keep-alive&gt; 组件,然后使用cacheComponents来表示要缓存的组件
-
-&lt;router-view v-slot=&quot;&#123; Component &#125;&quot;&gt;
-    &lt;keep-alive :include=&quot;cacheComponents&quot;&gt;
-        &lt;component :is=&quot;Component&quot; /&gt;
-    &lt;/keep-alive&gt;
-&lt;/router-view&gt;
-
-&lt;script&gt;
-export default &#123;
-  data() &#123;
-    return &#123;
-      cacheComponents: []
-    &#125;;
-  &#125;,
-  created() &#123;
-    //this.$router 获取路由对象   返回路由配置中需要缓存的组件数组信息
-    console.log(this.$router)
-    this.$router.options.routes.forEach(item =&gt; &#123;
-      if (item.meta &amp;&amp; item.meta.cache) &#123;
-        this.cacheComponents.push(item.name);
-      &#125;
-    &#125;);
-  &#125;
-&#125;;
-&lt;/script&gt;
-
-//第二步：在src/router.js中使用meta元数据指定要缓存的组件
-import &#123; createRouter, createWebHistory &#125; from &quot;vue-router&quot;;
-import Login from &quot;../views/Login.vue&quot;;
-import Register from &quot;../views/Register.vue&quot;;
-
-const routes = [
-  &#123;
-    path: &quot;/login&quot;,
-    name: &quot;login&quot;,
-    component: Login,
-    meta: &#123;
-      cache: false,
-    &#125;,
-  &#125;,
-  &#123;
-    path: &quot;/register&quot;,
-    name: &quot;register&quot;,
-    component: Register,
-    meta: &#123;
-      cache: true,
-    &#125;,
-  &#125;,
-  &#123; path: &quot;/&quot;, redirect: &quot;/register&quot; &#125;,
-];
-
-const router = createRouter(&#123;
-  history: createWebHistory(),
-  routes,
-  linkActiveClass: &quot;router-active&quot;,
-&#125;);
-
-export default router;
-</code></pre>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-02-13T05:42:26.000Z" itemprop="datePublished">2022-02-13</time>
-</div>
-    
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
 
   
     <nav class="pagination">
@@ -819,23 +885,23 @@ export default router;
       <ul>
         
           <li>
-            <a href="/ckzkw1mmm000098v96qneg6ml.html">51_es6常用语法</a>
+            <a href="/ckzkwo7zn0004pov9hsj5enki.html">56_Math、Array、String的方法和属性</a>
           </li>
         
           <li>
-            <a href="/ckzkvyzdq000cr0v92yrj72oj.html">50_js模块化规范</a>
+            <a href="/ckzkwo7zn0003pov97fd1c6ge.html">55_jquery的选择器</a>
           </li>
         
           <li>
-            <a href="/ckzkvyzdp000ar0v98t6yeis5.html">49_JavaScript的严格模式</a>
+            <a href="/ckzkwo7zm0002pov99rondnf2.html">54_本地存储和离线缓存的区别</a>
           </li>
         
           <li>
-            <a href="/ckzkvyzdo0009r0v9dtsgcq9p.html">48_减低页面加载时间的几种方法</a>
+            <a href="/ckzkwo7zg0000pov97cvofrsp.html">53_浏览器的进程</a>
           </li>
         
           <li>
-            <a href="/ckzkvyzdq000br0v9a5cjenzy.html">47_前端兼容问题的解决方案</a>
+            <a href="/ckzkwo7zk0001pov9ed69ba5a.html">52_this指向问题</a>
           </li>
         
       </ul>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>30_如何适配移动端 | 小豆子的博客</title>
+    <title>54_本地存储和离线缓存的区别 | 小豆子的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     
@@ -105,7 +105,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-ckzkundli0008psv99pe7h39y" class="article article-type-post" itemscope
+    <article id="post-ckzkwo7zm0002pov99rondnf2" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -121,7 +121,7 @@
             
   
     <h1 class="article-title" itemprop="name">
-      30_如何适配移动端
+      54_本地存储和离线缓存的区别
     </h1>
   
 
@@ -131,7 +131,7 @@
         <div class="article-more-info article-more-info-post hairline">
 
             <div class="article-date">
-  <time datetime="2022-02-13T05:39:09.000Z" itemprop="datePublished">2022-02-13</time>
+  <time datetime="2022-02-13T06:38:29.000Z" itemprop="datePublished">2022-02-13</time>
 </div>
 
             
@@ -143,79 +143,35 @@
         </div>
 
         <div class="article-entry post-inner-html hairline" itemprop="articleBody">
-            <p><strong>在css样式兼容性方面，我们可以使用autoprefixer插件</strong></p>
-<pre><code>postcss可以被理解为一个平台，可以让一些插件在上面跑。它提供了一个解析器，可以将CSS解析成抽象语法树。通过PostCSS这个平台，我们能够开发一些插件，来处理CSS。热门插件如autoprefixer。
-
-vue-cli已经自动集成了postcss，所以我们可以在postcss.config.js这个配置文件中直接添加autoprefixer这个插件
+            <h2 id="1-本地存储和离线缓存区别："><a href="#1-本地存储和离线缓存区别：" class="headerlink" title="1.本地存储和离线缓存区别："></a>1.本地存储和离线缓存区别：</h2><ul>
+<li>本地存储主要是将网站会话过程中的数据保存在客户端，突破了原来cookie存储大小的限制，相当于一个针对于前端页面的数据库。</li>
+<li>离线缓存主要作用是让用户在没有网络的情况下仍然可以访问缓存的网页，可以减少服务器的负载</li>
+<li>本地存储一般存储的都是数据，而离线缓存一般存储的是网页等</li>
+</ul>
+<h2 id="2-本地存储的用法"><a href="#2-本地存储的用法" class="headerlink" title="2.本地存储的用法"></a>2.本地存储的用法</h2><pre><code>localStorage.setItem(&quot;key&quot;,&quot;value&quot;);//存储
+localStorage.getItems(key);//按key进行取值
+localStorage.removeItems(key);//按key单个删除
+localStorage.clear();//删除全部数据
+localStorage.length;//获得数据的数量
+localStorage.valueOf();//获取全部值
 </code></pre>
-<p><strong>在屏幕大小适配方面，我们可以使用下面两种方案</strong></p>
-<p>a) 使用flexible和 postcss-px2rem，    //autoprefixer 自动补全css前缀的东西</p>
-<pre><code>之前使用rem适配的思路：使用媒体查询，确定不同屏幕下html标签的font-size  (即1rem单位)，然后在写css样式的时候，就可以使用1rem , 2rem这样的单位来做适配了。
-
-但是这种适配的问题是需要手动把px单位换算成rem单位，比较麻烦。对应的，我们可以使用flexible和 postcss-px2rem来解决这个问题
+<h2 id="3-离线缓存的用法"><a href="#3-离线缓存的用法" class="headerlink" title="3.离线缓存的用法"></a>3.离线缓存的用法</h2><p>​    a. 在html标签添加manifest属性<br>​    在页面的html标签中添加manifest属性，属性值为manifest文件的路径。如：</p>
+<pre><code>&lt;!DOCTYPE HTML&gt; 
+        &lt;html manifest=&quot;../js/demo.manifest&quot;&gt;
+                ...
+        &lt;/html&gt;
 </code></pre>
-<pre><code class="javascript">//1.安装flexible。 flexible主要是实现在各种不同的移动端界面实现一稿搞定所有的设备兼容自适应问题
-npm install lib-flexible --save
-
-//2.main.js引入flexible
-import &#39;lib-flexible&#39;
-
-//此时运行程序会看到html中自动加上了font-size    font-size的默认值为viewport的十分之一
-//在页面中引入flexible.js后，flexible会在&lt;html&gt;标签上增加一个data-dpr属性和font-size样式（如下图）。
-
-//3.安装postcss-pxtorem
-npm install postcss-pxtorem --save-dev
-
-//4.修改postcss.config.js
-module.exports = &#123;
-  plugins: &#123;   //自己补充：插件
-    //autoprefixer 自动补全css前缀的东西
-    &#39;autoprefixer&#39;: &#123;
-      //兼容的机型
-      browsers: [&#39;Android &gt;= 4.0&#39;, &#39;iOS &gt;= 7&#39;]
-    &#125;,
-    &#39;postcss-pxtorem&#39;: &#123;
-      rootValue: 37.5, //换算基数，一般和html的font-size一致
-      propList: [&#39;*&#39;]  //哪些css属性需要换算
-    &#125;
-  &#125;
-&#125;;
-</code></pre>
-<p>b) 使用postcss-px-to-viewport</p>
-<pre><code>`vw` 与 `vh`单位，以`viewport`为基准，`1vw` 与 `1vh`分别为`window.innerWidth` 与 `window.innerHeight`的百分之一。
-
-vw/vh 单位其实出现比较早了，只是以前支持性不太好，现在随着浏览器的发展，大部分（92%以上）的浏览器已经支持了vw/vh
-</code></pre>
-<pre><code class="javascript">npm i postcss-px-to-viewport -save -dev
-
-//修改postcss.config.js
-module.exports = &#123;
-  plugins: &#123;
-      autoprefixer: &#123;
-          //兼容的机型
-            browsers: [&#39;Android &gt;= 4.0&#39;, &#39;iOS &gt;= 7&#39;]
-      &#125;,
-    //px转换为vw单位的插件
-    &quot;postcss-px-to-viewport&quot;: &#123;
-      //1vw = 3.2
-      viewportWidth: 320,
-      //1vh = 5.68
-      viewportHeight: 568,
-      // px to vw无法整除时，保留几位小数
-      unitPrecision: 5,
-      // 转换成vw单位   
-      viewportUnit: &#39;vw&#39;,
-     //不转换的类名
-      selectorBlackList: [],
-      // 小于1px不转换
-      minPixelValue: 1,
-     //允许媒体查询中转换
-      mediaQuery: false,
-      //排除node_modules文件中第三方css文件
-      exclude: /(\/|\\)(node_modules)(\/|\\)/  
-    &#125;,
-  &#125;
-&#125;;
+<p>b. 编写manifest文件<br>manifest文件是简单的文本文件，它会告知浏览器需要缓存的内容以及不需要缓存的内容。</p>
+<p>manifest文件可分为三部分：<br>(1) CACHE MANIFEST - 在此标题下列出的文件将在首次下载后进行缓存<br>(2) NETWORK - 在此标题下列出的文件需要与服务器的连接，且不会被缓存<br>(3) FALLBACK - 在此标题下列出的文件规定当页面无法访问时的回退页面（比如 404 页面）</p>
+<p>简单示例:</p>
+<pre><code>    CACHE MANIFEST
+        #version 1.1   /*版本号*/
+        CACHE:
+            html/index.html /*需要缓存的文件*/
+        NETWORK:
+            js/jquery.js /*不需要缓存的文件*/
+        FALLBACK: 
+            html/index.html /*当页面无法访问时的回退页面*/
 </code></pre>
 
         </div>
@@ -241,19 +197,19 @@ module.exports = &#123;
     
 <nav class="article-nav">
   
-    <a href="/ckzkundll000bpsv9aqur46ce.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/ckzkwo7zn0003pov97fd1c6ge.html" id="article-nav-newer" class="article-nav-link-wrap">
       <div class="article-nav-caption">下一篇</div>
       <div class="article-nav-title">
         
-          31_vue-cli工程中如何使用背景图
+          55_jquery的选择器
         
       </div>
     </a>
   
   
-    <a href="/ckzkundli0007psv9h98hht0w.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/ckzkwo7zg0000pov97cvofrsp.html" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-caption">上一篇</div>
-      <div class="article-nav-title">28_axios、fetch与ajax有什么区别</div>
+      <div class="article-nav-title">53_浏览器的进程</div>
     </a>
   
 </nav>
@@ -262,15 +218,15 @@ module.exports = &#123;
     <section class="share">
         <div class="share-title">分享</div>
         <a class="share-item" target="_blank"
-            href="https://twitter.com/share?text=30_如何适配移动端 - 小豆子的博客&url=https://dtting.top/ckzkundli0008psv99pe7h39y.html">
+            href="https://twitter.com/share?text=54_本地存储和离线缓存的区别 - 小豆子的博客&url=https://dtting.top/ckzkwo7zm0002pov99rondnf2.html">
             <box-icon type='logo' name='twitter'></box-icon>
         </a>
         <a class="share-item" target="_blank"
-            href="https://www.facebook.com/sharer.php?title=30_如何适配移动端 - 小豆子的博客&u=https://dtting.top/ckzkundli0008psv99pe7h39y.html">
+            href="https://www.facebook.com/sharer.php?title=54_本地存储和离线缓存的区别 - 小豆子的博客&u=https://dtting.top/ckzkwo7zm0002pov99rondnf2.html">
             <box-icon name='facebook-square' type='logo' ></box-icon>
         </a>
         <!-- <a class="share-item" target="_blank"
-            href="https://service.weibo.com/share/share.php?title=30_如何适配移动端 - 小豆子的博客&url=https://dtting.top/ckzkundli0008psv99pe7h39y.html&pic=">
+            href="https://service.weibo.com/share/share.php?title=54_本地存储和离线缓存的区别 - 小豆子的博客&url=https://dtting.top/ckzkwo7zm0002pov99rondnf2.html&pic=">
             <div class="n-icon n-icon-weibo"></div>
         </a> -->
     </section>

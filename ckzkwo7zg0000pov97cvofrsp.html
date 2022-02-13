@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>30_如何适配移动端 | 小豆子的博客</title>
+    <title>53_浏览器的进程 | 小豆子的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     
@@ -105,7 +105,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-ckzkundli0008psv99pe7h39y" class="article article-type-post" itemscope
+    <article id="post-ckzkwo7zg0000pov97cvofrsp" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -121,7 +121,7 @@
             
   
     <h1 class="article-title" itemprop="name">
-      30_如何适配移动端
+      53_浏览器的进程
     </h1>
   
 
@@ -131,7 +131,7 @@
         <div class="article-more-info article-more-info-post hairline">
 
             <div class="article-date">
-  <time datetime="2022-02-13T05:39:09.000Z" itemprop="datePublished">2022-02-13</time>
+  <time datetime="2022-02-13T06:34:57.000Z" itemprop="datePublished">2022-02-13</time>
 </div>
 
             
@@ -143,79 +143,34 @@
         </div>
 
         <div class="article-entry post-inner-html hairline" itemprop="articleBody">
-            <p><strong>在css样式兼容性方面，我们可以使用autoprefixer插件</strong></p>
-<pre><code>postcss可以被理解为一个平台，可以让一些插件在上面跑。它提供了一个解析器，可以将CSS解析成抽象语法树。通过PostCSS这个平台，我们能够开发一些插件，来处理CSS。热门插件如autoprefixer。
+            <p>浏览器包括四个进程：</p>
+<p>1.主进程(Browser进程)，浏览器只有一个主进程，负责资源下载、界面展示等主要基础功能；<br>2.GPU进程，负责3D图示绘制<br>3.第三方插件进程，负责第三方插件处理<br>4.渲染进程(Render进程)，负责js执行，页面渲染等功能</p>
+<p><strong>渲染进程中主要包括的线程及各个线程的功能</strong></p>
+<pre><code>1.GUI渲染线程
+ - 负责渲染浏览器界面，解析HTML，CSS，构建DOM树和RenderObject树，布局和绘制等。
+ - 当界面需要重绘（Repaint）或由于某种操作引发回流(reflow)时，该线程就会执行
+ - 注意，GUI渲染线程与JS引擎线程是互斥的，当JS引擎执行时GUI线程会被挂起（相当于被冻结了），GUI更新会被保存在一个队列中等到JS引擎空闲时立即被执行。
 
-vue-cli已经自动集成了postcss，所以我们可以在postcss.config.js这个配置文件中直接添加autoprefixer这个插件
-</code></pre>
-<p><strong>在屏幕大小适配方面，我们可以使用下面两种方案</strong></p>
-<p>a) 使用flexible和 postcss-px2rem，    //autoprefixer 自动补全css前缀的东西</p>
-<pre><code>之前使用rem适配的思路：使用媒体查询，确定不同屏幕下html标签的font-size  (即1rem单位)，然后在写css样式的时候，就可以使用1rem , 2rem这样的单位来做适配了。
+2.JS引擎线程
+ - 也称为JS内核，负责处理Javascript脚本程序。（例如V8引擎）
+ - JS引擎线程负责解析Javascript脚本，运行代码。
+ - JS引擎一直等待着任务队列中任务的到来，然后加以处理，一个Tab页（renderer进程）中无论什么时候都只有一个JS线程在运行JS程序
+ - 同样注意，GUI渲染线程与JS引擎线程是互斥的，所以如果JS执行的时间过长，这样就会造成页面的渲染不连贯，导致页面渲染加载阻塞。
 
-但是这种适配的问题是需要手动把px单位换算成rem单位，比较麻烦。对应的，我们可以使用flexible和 postcss-px2rem来解决这个问题
-</code></pre>
-<pre><code class="javascript">//1.安装flexible。 flexible主要是实现在各种不同的移动端界面实现一稿搞定所有的设备兼容自适应问题
-npm install lib-flexible --save
+3.事件触发线程
+ - 用来控制事件循环（可以理解，JS引擎自己都忙不过来，需要浏览器另开线程协助）
+ - 当JS引擎执行代码块如setTimeOut时（也可是鼠标点击、AJAX异步请求等），会将对应任务添加到事件线程中
+ - 当对应的事件符合触发条件被触发时，该线程会把事件添加到待处理队列的队尾，等待JS引擎的处理
+ - 注意，由于JS的单线程关系，所以这些待处理队列中的事件都得排队等待JS引擎处理（当JS引擎空闲时才会去执行）
 
-//2.main.js引入flexible
-import &#39;lib-flexible&#39;
+4.定时触发器线程
+ - 浏览器定时计数器并不是由JavaScript引擎计数的（因为JavaScript引擎是单线程的, 如果处于阻塞线程状态就会影响记计时的准确）
+ - 因此通过单独线程来计时并触发定时（计时完毕后，添加到事件队列中，等待JS引擎空闲后执行）
+ - 注意，W3C在HTML标准中规定，规定要求setTimeout中低于4ms的时间间隔算为4ms。
 
-//此时运行程序会看到html中自动加上了font-size    font-size的默认值为viewport的十分之一
-//在页面中引入flexible.js后，flexible会在&lt;html&gt;标签上增加一个data-dpr属性和font-size样式（如下图）。
-
-//3.安装postcss-pxtorem
-npm install postcss-pxtorem --save-dev
-
-//4.修改postcss.config.js
-module.exports = &#123;
-  plugins: &#123;   //自己补充：插件
-    //autoprefixer 自动补全css前缀的东西
-    &#39;autoprefixer&#39;: &#123;
-      //兼容的机型
-      browsers: [&#39;Android &gt;= 4.0&#39;, &#39;iOS &gt;= 7&#39;]
-    &#125;,
-    &#39;postcss-pxtorem&#39;: &#123;
-      rootValue: 37.5, //换算基数，一般和html的font-size一致
-      propList: [&#39;*&#39;]  //哪些css属性需要换算
-    &#125;
-  &#125;
-&#125;;
-</code></pre>
-<p>b) 使用postcss-px-to-viewport</p>
-<pre><code>`vw` 与 `vh`单位，以`viewport`为基准，`1vw` 与 `1vh`分别为`window.innerWidth` 与 `window.innerHeight`的百分之一。
-
-vw/vh 单位其实出现比较早了，只是以前支持性不太好，现在随着浏览器的发展，大部分（92%以上）的浏览器已经支持了vw/vh
-</code></pre>
-<pre><code class="javascript">npm i postcss-px-to-viewport -save -dev
-
-//修改postcss.config.js
-module.exports = &#123;
-  plugins: &#123;
-      autoprefixer: &#123;
-          //兼容的机型
-            browsers: [&#39;Android &gt;= 4.0&#39;, &#39;iOS &gt;= 7&#39;]
-      &#125;,
-    //px转换为vw单位的插件
-    &quot;postcss-px-to-viewport&quot;: &#123;
-      //1vw = 3.2
-      viewportWidth: 320,
-      //1vh = 5.68
-      viewportHeight: 568,
-      // px to vw无法整除时，保留几位小数
-      unitPrecision: 5,
-      // 转换成vw单位   
-      viewportUnit: &#39;vw&#39;,
-     //不转换的类名
-      selectorBlackList: [],
-      // 小于1px不转换
-      minPixelValue: 1,
-     //允许媒体查询中转换
-      mediaQuery: false,
-      //排除node_modules文件中第三方css文件
-      exclude: /(\/|\\)(node_modules)(\/|\\)/  
-    &#125;,
-  &#125;
-&#125;;
+5.异步http请求线程
+ - 在XMLHttpRequest在连接后是通过浏览器新开一个线程请求
+ - 将检测到状态变更时，如果设置有回调函数，异步线程就产生状态变更事件，将这个回调再放入事件队列中。再由JavaScript引擎执行。
 </code></pre>
 
         </div>
@@ -241,19 +196,19 @@ module.exports = &#123;
     
 <nav class="article-nav">
   
-    <a href="/ckzkundll000bpsv9aqur46ce.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/ckzkwo7zm0002pov99rondnf2.html" id="article-nav-newer" class="article-nav-link-wrap">
       <div class="article-nav-caption">下一篇</div>
       <div class="article-nav-title">
         
-          31_vue-cli工程中如何使用背景图
+          54_本地存储和离线缓存的区别
         
       </div>
     </a>
   
   
-    <a href="/ckzkundli0007psv9h98hht0w.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/ckzkwo7zk0001pov9ed69ba5a.html" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-caption">上一篇</div>
-      <div class="article-nav-title">28_axios、fetch与ajax有什么区别</div>
+      <div class="article-nav-title">52_this指向问题</div>
     </a>
   
 </nav>
@@ -262,15 +217,15 @@ module.exports = &#123;
     <section class="share">
         <div class="share-title">分享</div>
         <a class="share-item" target="_blank"
-            href="https://twitter.com/share?text=30_如何适配移动端 - 小豆子的博客&url=https://dtting.top/ckzkundli0008psv99pe7h39y.html">
+            href="https://twitter.com/share?text=53_浏览器的进程 - 小豆子的博客&url=https://dtting.top/ckzkwo7zg0000pov97cvofrsp.html">
             <box-icon type='logo' name='twitter'></box-icon>
         </a>
         <a class="share-item" target="_blank"
-            href="https://www.facebook.com/sharer.php?title=30_如何适配移动端 - 小豆子的博客&u=https://dtting.top/ckzkundli0008psv99pe7h39y.html">
+            href="https://www.facebook.com/sharer.php?title=53_浏览器的进程 - 小豆子的博客&u=https://dtting.top/ckzkwo7zg0000pov97cvofrsp.html">
             <box-icon name='facebook-square' type='logo' ></box-icon>
         </a>
         <!-- <a class="share-item" target="_blank"
-            href="https://service.weibo.com/share/share.php?title=30_如何适配移动端 - 小豆子的博客&url=https://dtting.top/ckzkundli0008psv99pe7h39y.html&pic=">
+            href="https://service.weibo.com/share/share.php?title=53_浏览器的进程 - 小豆子的博客&url=https://dtting.top/ckzkwo7zg0000pov97cvofrsp.html&pic=">
             <div class="n-icon n-icon-weibo"></div>
         </a> -->
     </section>
