@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>08_js经典输出顺序问题 | 小豆子的博客</title>
+    <title>10_Vue diff算法原理 | 小豆子的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     
@@ -105,7 +105,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-ckwvnv7iz0000l8v934zt8fgu" class="article article-type-post" itemscope
+    <article id="post-ckzkqxjap0000wov90uh3hgic" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -121,7 +121,7 @@
             
   
     <h1 class="article-title" itemprop="name">
-      08_js经典输出顺序问题
+      10_Vue diff算法原理
     </h1>
   
 
@@ -131,7 +131,7 @@
         <div class="article-more-info article-more-info-post hairline">
 
             <div class="article-date">
-  <time datetime="2021-12-07T05:03:48.000Z" itemprop="datePublished">2021-12-07</time>
+  <time datetime="2022-02-12T08:05:50.000Z" itemprop="datePublished">2022-02-12</time>
 </div>
 
             
@@ -143,52 +143,31 @@
         </div>
 
         <div class="article-entry post-inner-html hairline" itemprop="articleBody">
-            <p>分析下面代码：</p>
-<pre><code class="javascript">&lt;script&gt;
-    console.log(11);
-    setTimeout(function()&#123;
-        console.log(22);
-    &#125;)
-    // Promise所入参的函数是立马执行的
-    new Promise(function(resolve)&#123;
-        console.log(33);
-        resolve();
-        console.log(44);
-    &#125;)
-    // Promise的then是在resolve和reject后执行的
-    .then(function()&#123;
-        console.log(55);
-    &#125;)
-    new Promise(function(resolve)&#123;
-        resolve()
-    &#125;)
-    .then(function()&#123;
-        console.log(77);
-    &#125;)
-    console.log(66);
-    // 打印顺序是  11  33  44  66  55  77  22
-&lt;/script&gt;
-</code></pre>
-<p>分析：</p>
-<img src="imgs/2021.12.07/图片1.png">
+            <img src="imgs/2022.02.13/图片1.png">
 
-<p>整个script代码会先进入主栈，从上向下运行，则先<strong>打印11</strong></p>
-<img src="imgs/2021.12.07/图片2.png">
+<ul>
+<li>Vue.js通过编译将template 模板转换成渲染函数(render ) ，执行渲染函数就可以得到一个虚拟节点树</li>
+<li>VNode 虚拟节点：（它可以代表一个真实的 dom 节点。）通过 createElement 方法能将 VNode 渲染成 dom 节点。（简单地说，vnode可以理解成节点描述对象，它描述了应该怎样去创建真实的DOM节点。）</li>
+<li>patch(也叫做patching算法)：虚拟DOM最核心的部分，它可以将vnode 渲染成真实的DOM，这个过程是对比新旧虚拟节点之间有哪些不同，然后根据对比结果找出需要更新的的节点进行更新。（这点我们从单词含义就可以看出， patch本身就有补丁、修补的意思，其实际作用是在现有DOM上进行修改来实现更新视图的目的。Vue的Virtual DOM Patching算法是基于Snabbdom的实现，并在些基础上作了很多的调整和改进。）</li>
+</ul>
+<img src="imgs/2022.02.13/图片2.png">
 
-<p>然后是setTimeout定时器会放在线程里（这里不考虑线程，只需知道线程处理完后都会交给队列），由于定时器没有设置时间，然后会进入宏任务队列。然后是Promise，Promise所入参的函数立马执行，则会<strong>打印33</strong>，这里有resolve，一resolve这个then会立马执行，Promise的then会进入微任务队列，Promise里还剩下一个44，所以在主栈中<strong>打印44</strong>。然后还是一个Promise，Promise里没有打印，Promise的then会进入微任务队列，接着<strong>打印66</strong>。</p>
-<img src="imgs/2021.12.07/图片3.png">
+<p>a) Vue2.x diff算法原理</p>
+<p>传统diff算法通过循环递归对节点进行依次对比效率低下，算法复杂度达到O(N^3)，主要原因在于其追求完全比对和最小修改，而React、Vue则是放弃了完全比对及最小修改，才实现从O(N^3) =&gt; O(N)。</p>
+<p>Vue2 diff过程整体遵循深度优先、同层比较的策略。 当数据发生改变时，会调用Dep.notify通知所有Watcher，调用patch给真实的DOM打补丁，更新相应的视图。 </p>
+<img src="imgs/2022.02.13/图片3.png">
 
-<p>主栈所有任务执行完毕，主栈清空，主栈清空后，会到任务队列拿任务执行，先把微任务队列的所有任务拿到主栈执行，根据队列的先进先出原则，会先拿微任务队列的55到主栈，<strong>55执行完毕</strong>，主栈清空，接着拿微任务队列的77,<strong>77执行完毕</strong>，主栈清空。</p>
-<img src="imgs/2021.12.07/图片4.png">
+<p>b) Vue3.0 diff</p>
+<p>vue2.x中的虚拟dom是进行<strong>「全量的对比」</strong>，在运行时会对所有节点生成一个虚拟节点树，当页面数据发生变更好，会遍历判断virtual dom所有节点（包括一些不会变化的节点）有没有发生变化；虽然说diff算法确实减少了多DOM节点的直接操作，但是这个<strong>「减少是有成本的」</strong>，如果是复杂的大型项目，必然存在很复杂的父子关系的VNode,<strong>「而Vue2.x的diff算法，会不断地递归调用 patchVNode，不断堆叠而成的几毫秒，最终就会造成 VNode 更新缓慢」</strong>。 </p>
+<p>在Vue3.0中，在这个模版编译时，编译器会在动态标签末尾加上 /* Text*/ PatchFlag。<strong>「也就是在生成VNode的时候，同时打上标记，在这个基础上再进行核心的diff算法」</strong>并且 PatchFlag 会标识动态的属性类型有哪些，比如这里 的TEXT 表示只有节点中的文字是动态的。而patchFlag的类型也很多。这里直接引用一张图片。</p>
+<img src="imgs/2022.02.13/图片4.png">
 
-<img src="imgs/2021.12.07/图片5.png">
-
-<img src="imgs/2021.12.07/图片6.png">
-
-<p>然后去宏任务队列拿任务22到主栈，<strong>22执行完毕</strong>，主栈清空，所有任务执行完毕。</p>
-<blockquote>
-<p>总结：默认情况下，script整个代码块会入主栈执行，当遇到setTimeout，setInterval等代码块的时候会入宏任务队列，当遇到process.nextTick，Promise.then的时候会入微任务队列，当主栈执行完整个script代码块的时候，会先从微任务队列把所有的微任务放到主栈执行（遵循先进先出原则），当微任务队列的所有任务清空后，再从宏任务队列拿一个任务到主栈执行，然后依次反复。</p>
-</blockquote>
+<p>其中大致可以分为两类：</p>
+<ul>
+<li>当 patchFlag 的值「大于」 0 时，代表所对应的元素在 patchVNode 时或 render 时是可以被优化生成或更新的。</li>
+<li>当 patchFlag 的值「小于」 0 时，代表所对应的元素在 patchVNode 时，是需要被 full diff，即进行递归遍历 VNode tree 的比较更新过程。</li>
+</ul>
+<p>总结：<strong>「Vue3.0对于不参与更新的元素，做静态标记并提示，只会被创建一次，在渲染时直接复用。」</strong></p>
 
         </div>
 
@@ -213,19 +192,10 @@
     
 <nav class="article-nav">
   
-    <a href="/ckz0tqj9l0000mcv968j96rzy.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <div class="article-nav-caption">下一篇</div>
-      <div class="article-nav-title">
-        
-          09_mongodb数据库使用流程
-        
-      </div>
-    </a>
   
-  
-    <a href="/ckwstx9ps0000mwv9ew0l4cy0.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/ckz0tqj9l0000mcv968j96rzy.html" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-caption">上一篇</div>
-      <div class="article-nav-title">07_对象的引用、浅拷贝、深拷贝</div>
+      <div class="article-nav-title">09_mongodb数据库使用流程</div>
     </a>
   
 </nav>
@@ -234,15 +204,15 @@
     <section class="share">
         <div class="share-title">分享</div>
         <a class="share-item" target="_blank"
-            href="https://twitter.com/share?text=08_js经典输出顺序问题 - 小豆子的博客&url=https://dtting.top/ckwvnv7iz0000l8v934zt8fgu.html">
+            href="https://twitter.com/share?text=10_Vue diff算法原理 - 小豆子的博客&url=https://dtting.top/ckzkqxjap0000wov90uh3hgic.html">
             <box-icon type='logo' name='twitter'></box-icon>
         </a>
         <a class="share-item" target="_blank"
-            href="https://www.facebook.com/sharer.php?title=08_js经典输出顺序问题 - 小豆子的博客&u=https://dtting.top/ckwvnv7iz0000l8v934zt8fgu.html">
+            href="https://www.facebook.com/sharer.php?title=10_Vue diff算法原理 - 小豆子的博客&u=https://dtting.top/ckzkqxjap0000wov90uh3hgic.html">
             <box-icon name='facebook-square' type='logo' ></box-icon>
         </a>
         <!-- <a class="share-item" target="_blank"
-            href="https://service.weibo.com/share/share.php?title=08_js经典输出顺序问题 - 小豆子的博客&url=https://dtting.top/ckwvnv7iz0000l8v934zt8fgu.html&pic=">
+            href="https://service.weibo.com/share/share.php?title=10_Vue diff算法原理 - 小豆子的博客&url=https://dtting.top/ckzkqxjap0000wov90uh3hgic.html&pic=">
             <div class="n-icon n-icon-weibo"></div>
         </a> -->
     </section>
