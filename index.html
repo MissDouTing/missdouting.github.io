@@ -108,6 +108,67 @@
   
     
       <article
+id="post-12_跨域问题的解决方案"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkrt8zl0000ycv9adxhabkz.html">12_跨域问题的解决方案</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <h2 id="什么是同源策略？"><a href="#什么是同源策略？" class="headerlink" title="什么是同源策略？"></a>什么是同源策略？</h2><p>同源策略可防止 JavaScript 发起跨域请求。源被定义为 URI、主机名和端口号的组合。此策略可防止页面上的恶意脚本通过该页面的文档对象模型，访问另一个网页上的敏感数据。</p>
+<p>同源策略： 协议、主机、端口必须完全一致。</p>
+<h2 id="跨域问题产生的原因？"><a href="#跨域问题产生的原因？" class="headerlink" title="跨域问题产生的原因？"></a>跨域问题产生的原因？</h2><p>浏览器的同源策略导致了跨域。在前端开发中，当我们使用ajax/fetch这些技术向服务器发送网络请求的时候，当协议、主机（域名）、端口号有任何一个不一致的时候，则构成跨域。</p>
+<p>浏览器只有使用ajax发送请求才会出现跨域。href属性与src属性不会出现跨域。</p>
+<h2 id="跨域问题的解决方案？"><a href="#跨域问题的解决方案？" class="headerlink" title="跨域问题的解决方案？"></a>跨域问题的解决方案？</h2><p>跨域问题有很多中解决方案：我所用过的有：</p>
+<p>1.jsonp 他的本质是使用script标签去发送请求，然后服务器返回一段js脚本以供客户端执行</p>
+<p>2.cors 他需要在服务器端配置跨域访问的响应头</p>
+<pre><code> res.writeHead(200, &#123;
+        &quot;Content-Type&quot;: &quot;text/html; charset=UTF-8&quot;,
+        &quot;Access-Control-Allow-Origin&quot;:&#39;http://localhost&#39;,
+        &#39;Access-Control-Allow-Methods&#39;: &#39;GET, POST, OPTIONS&#39;,
+        &#39;Access-Control-Allow-Headers&#39;: &#39;X-Requested-With, Content-Type&#39;
+    &#125;);
+</code></pre>
+<p>3.在前端的工程化项目(webpack)中,我们可以通过配置devserver的proxy来解决跨域访问的问题。他的原理是在本地开启一个服务器向数据服务器发送请求，因为服务器和服务器之间是没有跨域，配置在客户端。</p>
+<p>4.但是因为webpack的devserver只在开发环境下有效，当项目发布上线之后仍然会有跨域问题，为了解决项目上线的跨域问题，我们配置服务器的反向代理（nginx），配置在服务器的。</p>
+<p>5.除此之外，我还知道当项目打包成apk之后就不存在跨域问题了，所以如果项目要打包成apk，我们需要在项目中的所有请求中写全路径(此时我们可以配置axios.default.baseURL来解决)</p>
+<p>6.iframe 嵌套通讯，postmessage</p>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T04:22:43.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
 id="post-11_MVVM模式和MVC模式"
 class="article article-type-post"
 >
@@ -894,70 +955,6 @@ class="article article-type-post"
 
     
   
-    
-      <article
-id="post-02_node的安装和配置淘宝镜像源"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/ckumokpl60000y8v9ezdx6p0g.html">02_node的安装和配置淘宝镜像源</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <h2 id="安装node的步骤："><a href="#安装node的步骤：" class="headerlink" title="安装node的步骤："></a>安装node的步骤：</h2><h3 id="1、下载node安装包"><a href="#1、下载node安装包" class="headerlink" title="1、下载node安装包"></a>1、下载node安装包</h3><p>Node.js安装包及源码下载地址：<a target="_blank" rel="noopener" href="http://nodejs.cn/download/%EF%BC%8C%E8%BF%99%E4%B8%AA%E6%98%AFnode%E4%B8%AD%E6%96%87%E7%BD%91%EF%BC%8C%E5%BA%94%E8%AF%A5%E5%9C%A8%E4%B8%AD%E6%96%87%E7%BD%91%E5%AE%89%E8%A3%85%E3%80%82">http://nodejs.cn/download/，这个是node中文网，建议在中文网安装。</a></p>
-<p><a target="_blank" rel="noopener" href="https://nodejs.org/en/download/%E8%BF%99%E4%B8%AA%E6%98%AF%E5%9B%BD%E5%A4%96%E7%9A%84node%E7%BD%91%E7%AB%99%EF%BC%8C%E5%AE%B9%E6%98%93%E4%B8%8B%E8%BD%BD%E4%B8%8D%E4%B8%8B%E6%9D%A5%E3%80%82">https://nodejs.org/en/download/这个是国外的node网站，容易下载不下来。</a></p>
-<p>根据不同平台系统选择需要的Node.js安装包。</p>
-<h3 id="2、安装"><a href="#2、安装" class="headerlink" title="2、安装"></a>2、安装</h3><p>1)、下载完成后，双击下载后的安装包 node-v6.10.3-x64，进入node的安装向导界面，直接点击next。</p>
-<p>2)、然后勾选接受协议选项，点击Next，开始下一步。</p>
-<p>3)、选择nodejs的安装位置，Node.js默认安装目录。为：”C:\Program Files\nodejs\”，你可以修改目录，并点击next（下一步）。</p>
-<p>4)、点击树形图标来选择你需要的安装模式，然后点击下一步。</p>
-<p>5)、点击Install（安装）开始安装Node.js。</p>
-<p>6)、等待一会，点击finish完成。</p>
-<p><strong>以上操作，和普通软件安装步骤一样</strong></p>
-<p>7)、打开cmd，输入命令，检查node是否安装成功，显示如下图所示版本号，即是安装成功。</p>
-<img src="imgs/2021.10.11/图片1.png">
-
-<p>8)、Node.js安装完成后npm也就安装上了，可查看npm的版本，如下图：</p>
-<img src="imgs/2021.10.11/图片2.png">
-
-<h2 id="配置淘宝镜像源："><a href="#配置淘宝镜像源：" class="headerlink" title="配置淘宝镜像源："></a>配置淘宝镜像源：</h2><p>9)、配置node的淘宝镜像源，在cmd中输入以下命令：</p>
-<p>npm config set registry <a target="_blank" rel="noopener" href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>
-<p>10)、 验证是否配置成功：</p>
-<p>在cmd中输入命令npm config get registry</p>
-<p>如果返回的<a target="_blank" rel="noopener" href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a> 说明镜像配置成功。</p>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2021-10-11T12:50:55.000Z" itemprop="datePublished">2021-10-11</time>
-</div>
-    
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
 
   
     <nav class="pagination">
@@ -998,6 +995,10 @@ class="article article-type-post"
       <ul>
         
           <li>
+            <a href="/ckzkrt8zl0000ycv9adxhabkz.html">12_跨域问题的解决方案</a>
+          </li>
+        
+          <li>
             <a href="/ckzkrdt230000x8v90f79027s.html">11_MVVM模式和MVC模式</a>
           </li>
         
@@ -1011,10 +1012,6 @@ class="article article-type-post"
         
           <li>
             <a href="/ckwvnv7iz0000l8v934zt8fgu.html">08_js经典输出顺序问题</a>
-          </li>
-        
-          <li>
-            <a href="/ckwstx9ps0000mwv9ew0l4cy0.html">07_对象的引用、浅拷贝、深拷贝</a>
           </li>
         
       </ul>
