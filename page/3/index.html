@@ -108,6 +108,71 @@
   
     
       <article
+id="post-31_vue-cli工程中如何使用背景图"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkundll000bpsv9aqur46ce.html">31_vue-cli工程中如何使用背景图</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <blockquote>
+<p>第一种方法：通过 <code>import</code> 引入</p>
+</blockquote>
+<pre><code>首先，引入要使用的背景图片：
+&lt;script type=&quot;text/javascript&quot;&gt;
+    import  cover  from  &quot;../assets/images/cover.png&quot;;
+    export  default&#123;
+        ...
+    &#125;
+&lt;/script&gt;
+
+然后，通过 v-bind:style 使用：
+&lt;div :style=&quot;&#123; backgroundImage:&#39;url(&#39; + cover + &#39;)&#39; &#125;&quot;&gt;&lt;/div&gt;
+</code></pre>
+<blockquote>
+<p>第二种方法：通过 <code>require</code> 引入：</p>
+</blockquote>
+<pre><code>直接通过 v-bind 和 require 配合使用
+
+&lt;div :style=&quot;&#123; backgroundImage:&#39;url(&#39; + require(&#39;../assets/images/couver.png&#39;) + &#39;)&#39; &#125;&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p>如果在css文件中使用图片作为背景，可以直接 background:url(../../logg.png)</p>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T05:40:33.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
 id="post-30_如何适配移动端"
 class="article article-type-post"
 >
@@ -832,70 +897,10 @@ class="article article-type-post"
 
     
   
-    
-      <article
-id="post-21_vue的自定义指令"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/ckzkth9ho0000awv91ouzgrxo.html">21_vue的自定义指令</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <h2 id="什么是vue的自定义指令？"><a href="#什么是vue的自定义指令？" class="headerlink" title="什么是vue的自定义指令？"></a>什么是vue的自定义指令？</h2><p>Vue里面有许多内置的指令，比如<code>v-if</code>和<code>v-show</code>，这些丰富的指令能满足我们的绝大部分业务需求，不过在需要一些特殊功能时，我们仍然希望对<code>DOM</code>进行底层的操作，这时就要用到自定义指令。</p>
-<h2 id="使用方法？"><a href="#使用方法？" class="headerlink" title="使用方法？"></a>使用方法？</h2><pre><code>app.directive(&#39;focus&#39;, &#123;
-    beforeMount: function (el) &#123; 
-        // 每当指令绑定到元素上的时候，会立即执行这个beforeMount函数，只执行一次
-        // 注意： 在每个函数中，第一个参数永远是el，表示被绑定了指令的那个元素，这个el参数，是一个原生的JS对象
-        // 在元素刚绑定了指令的时候还没有插入到DOM中去的时候调用focus方法没有作用。因为，一个元素只有插入DOM之后才能获取焦点
-        // el.focus()
-    &#125;,
-    mounted: function (el) &#123;  
-        // 指定绑定的远古三插入到DOM中的时候执行【触发1次】
-        el.focus()
-    &#125;,
-    updated : function (el) &#123;  
-        // 在包含组件的 VNode 及其子组件的 VNode 更新后调用
-    &#125;
-&#125;)
-</code></pre>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-02-13T05:16:47.000Z" itemprop="datePublished">2022-02-13</time>
-</div>
-    
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
 
   
     <nav class="pagination">
-        <a class="extend prev" rel="prev" href="/page/2/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next</a>
+        <a class="extend prev" rel="prev" href="/page/2/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next</a>
     </nav>
   
 </div>
@@ -932,6 +937,10 @@ class="article article-type-post"
       <ul>
         
           <li>
+            <a href="/ckzkw1mmm000098v96qneg6ml.html">51_es6常用语法</a>
+          </li>
+        
+          <li>
             <a href="/ckzkvyzdq000cr0v92yrj72oj.html">50_js模块化规范</a>
           </li>
         
@@ -945,10 +954,6 @@ class="article article-type-post"
         
           <li>
             <a href="/ckzkvyzdq000br0v9a5cjenzy.html">47_前端兼容问题的解决方案</a>
-          </li>
-        
-          <li>
-            <a href="/ckzkvyzdn0008r0v9770t0w5s.html">46_js延迟加载的方式有哪些</a>
           </li>
         
       </ul>

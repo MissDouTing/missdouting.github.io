@@ -108,6 +108,68 @@
   
     
       <article
+id="post-41_闭包"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkvyzdi0003r0v91b7t9hh7.html">41_闭包</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <p>闭包就是函数嵌套函数，并将该内部函数作为返回值返回或者存储在某个对象的属性里，这时就会形成一个闭包。</p>
+<pre><code class="javascript">function aa()&#123;
+    var num = 10;
+    return function bb()&#123;
+        console.log(num);
+    &#125;
+&#125;
+
+var b = aa();
+</code></pre>
+<pre><code>用途：
+1.缓存，延长变量的作用域链
+2.面向对象中的对象
+3.实现封装，防止变量跑到外层作用域中，发生命名冲突
+
+危害：
+1.闭包有一个非常严重的问题，那就是内存浪费问题，这个内存浪费不仅仅因为它常驻内存，更重要的是，对闭包的使用不当的话会内存泄漏。解决方法是，在退出函数之前，将不使用的局部变量全部删除。
+2.性能问题，使用闭包时，会涉及到跨作用域访问，由于闭包内部变量优先级高于外部变量，所以多查找作用域链中的一个层次，就会在一定程度上影响查找速度。
+</code></pre>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T06:07:03.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
 id="post-40_正则表达式"
 class="article article-type-post"
 >
@@ -717,75 +779,10 @@ export default router;
 
     
   
-    
-      <article
-id="post-31_vue-cli工程中如何使用背景图"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/ckzkundll000bpsv9aqur46ce.html">31_vue-cli工程中如何使用背景图</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <blockquote>
-<p>第一种方法：通过 <code>import</code> 引入</p>
-</blockquote>
-<pre><code>首先，引入要使用的背景图片：
-&lt;script type=&quot;text/javascript&quot;&gt;
-    import  cover  from  &quot;../assets/images/cover.png&quot;;
-    export  default&#123;
-        ...
-    &#125;
-&lt;/script&gt;
-
-然后，通过 v-bind:style 使用：
-&lt;div :style=&quot;&#123; backgroundImage:&#39;url(&#39; + cover + &#39;)&#39; &#125;&quot;&gt;&lt;/div&gt;
-</code></pre>
-<blockquote>
-<p>第二种方法：通过 <code>require</code> 引入：</p>
-</blockquote>
-<pre><code>直接通过 v-bind 和 require 配合使用
-
-&lt;div :style=&quot;&#123; backgroundImage:&#39;url(&#39; + require(&#39;../assets/images/couver.png&#39;) + &#39;)&#39; &#125;&quot;&gt;&lt;/div&gt;
-</code></pre>
-<p>如果在css文件中使用图片作为背景，可以直接 background:url(../../logg.png)</p>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-02-13T05:40:33.000Z" itemprop="datePublished">2022-02-13</time>
-</div>
-    
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
 
   
     <nav class="pagination">
-        <a class="extend prev" rel="prev" href="/">Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next</a>
+        <a class="extend prev" rel="prev" href="/">Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next</a>
     </nav>
   
 </div>
@@ -822,6 +819,10 @@ class="article article-type-post"
       <ul>
         
           <li>
+            <a href="/ckzkw1mmm000098v96qneg6ml.html">51_es6常用语法</a>
+          </li>
+        
+          <li>
             <a href="/ckzkvyzdq000cr0v92yrj72oj.html">50_js模块化规范</a>
           </li>
         
@@ -835,10 +836,6 @@ class="article article-type-post"
         
           <li>
             <a href="/ckzkvyzdq000br0v9a5cjenzy.html">47_前端兼容问题的解决方案</a>
-          </li>
-        
-          <li>
-            <a href="/ckzkvyzdn0008r0v9770t0w5s.html">46_js延迟加载的方式有哪些</a>
           </li>
         
       </ul>

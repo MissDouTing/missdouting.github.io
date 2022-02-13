@@ -108,6 +108,161 @@
   
     
       <article
+id="post-51_es6常用语法"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkw1mmm000098v96qneg6ml.html">51_es6常用语法</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <p>ES6 主要是为了解决 ES5 的先天不足，比如 JavaScript 里并没有类的概念，但是目前浏览器的 JavaScript 是 ES5 版本，大多数高版本的浏览器也支持 ES6，不过只实现了 ES6 的部分特性和功能。</p>
+<p>一、新增箭头函数</p>
+<pre><code class="javascript">- 简化了写法， 少打代码，结构清晰
+- 明确了this。传统JS的this是在运行的时候确定的，而不是在定义的时候确定的；而箭头函数的this是在定义时就确定的，不能被改变，也不能被call,apply,bind这些方法修改。      
+</code></pre>
+<p>二、块级作用域</p>
+<pre><code class="javascript">- ES6中的let声明的变量有块级作用域
+- ES5中是没有块级作用域的，并且var有变量提升的概念
+- let声明的变量在同一个作用域内只有一个
+- 要声明常量使用const
+</code></pre>
+<p>三、解构赋值</p>
+<pre><code class="javascript">ES6中变量的解构赋值，比如：
+let [a,b,c] = [0,1,2];
+let &#123;foo:abc,bar&#125; = &#123;foo:&#39;hello&#39;,bar:&#39;hi&#39;&#125;;
+</code></pre>
+<p>四、Symbol</p>
+<pre><code class="javascript">//ES6新增了一种Symbol数据类型，表示全局唯一的对象
+
+let a1 = Symbol();
+let a2 = Symbol();
+console.log(a1 === a2);   //false   a1和a2永远不相等
+
+let a3 = Symbol.for(&quot;a3&quot;);
+let a4 = Symbol.for(&quot;a3&quot;);
+console.log(a3 === a4);  //true
+</code></pre>
+<p>五、模板字符串</p>
+<pre><code class="javascript">var name = &quot;张三&quot;;
+var age = 12;
+var gender=&quot;男&quot;;
+let str = `姓名$&#123;name&#125;,年龄$&#123;age&#125;,性别$&#123;gender&#125;`;
+</code></pre>
+<p>六、展开运算符</p>
+<pre><code class="javascript">let arr1 = [1,2,3];
+let arr2 = [4,5,6];
+let arr3 = [...arr1,...arr2];
+</code></pre>
+<p>七、类</p>
+<p>ES6引入Class这个概念，让JS拥有其他面向对象语言的语法糖。</p>
+<pre><code class="javascript">&#123;
+  // 继承传递参数
+  class Parent&#123;
+    constructor(name=&#39;mukewang&#39;)&#123;
+      this.name=name;
+    &#125;
+  &#125;
+
+  class Child extends Parent&#123;
+    constructor(name=&#39;child&#39;)&#123;
+      //先初始化父亲的信息，在初始化自己的信息  
+      super(name);
+      this.type=&#39;child&#39;;
+    &#125;
+  &#125;
+  console.log(&#39;继承传递参数&#39;,new Child(&#39;hello&#39;));
+&#125;
+</code></pre>
+<p>八、Promise</p>
+<pre><code class="javascript">//ES6的Promise主要用于解决JS回调地狱问题
+
+var fs = require(&#39;fs&#39;)
+
+function pReadFile(filePath) &#123;
+  return new Promise(function (resolve, reject) &#123;
+    fs.readFile(filePath, &#39;utf8&#39;, function (err, data) &#123;
+      if (err) &#123;
+        reject(err)
+      &#125; else &#123;
+        resolve(data)
+      &#125;
+    &#125;)
+  &#125;)
+&#125;
+
+pReadFile(&#39;./data/a.txt&#39;)
+  .then(function (data) &#123;
+    console.log(data)
+    return pReadFile(&#39;./data/b.txt&#39;)
+  &#125;)
+  .then(function (data) &#123;
+    console.log(data)
+    return pReadFile(&#39;./data/c.txt&#39;)
+  &#125;)
+  .then(function (data) &#123;
+    console.log(data)
+  &#125;)
+</code></pre>
+<p>九、ES6的迭代器</p>
+<pre><code class="javascript">//for ... of 是ES6中新增加的语法,主要用来循环实现了Iterator接口类型的对象
+//for ... of 可以遍历Array、Set、Map不能遍历Object 
+let arr = [&#39;China&#39;, &#39;America&#39;, &#39;Korea&#39;]
+for (let o of arr) &#123;
+    console.log(o) //China, America, Korea
+&#125;
+</code></pre>
+<p>十、ES6模块化</p>
+<pre><code class="javascript">//1.导出
+//导出单个成员
+export let name = &#39;leo&#39;;
+export let age= 30;
+let name= &#39;leo&#39;;
+let age= 30;
+let kk = &quot;abc&quot;
+//导出多个成员
+export &#123;name, age&#125;;
+//导出默认成员
+export default kk;
+
+//2.引入
+import kk,&#123;name,age&#125; from &#39;a.js&#39;
+</code></pre>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T06:29:24.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
 id="post-50_js模块化规范"
 class="article article-type-post"
 >
@@ -897,72 +1052,10 @@ div &#123;
 
     
   
-    
-      <article
-id="post-41_闭包"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/ckzkvyzdi0003r0v91b7t9hh7.html">41_闭包</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <p>闭包就是函数嵌套函数，并将该内部函数作为返回值返回或者存储在某个对象的属性里，这时就会形成一个闭包。</p>
-<pre><code class="javascript">function aa()&#123;
-    var num = 10;
-    return function bb()&#123;
-        console.log(num);
-    &#125;
-&#125;
-
-var b = aa();
-</code></pre>
-<pre><code>用途：
-1.缓存，延长变量的作用域链
-2.面向对象中的对象
-3.实现封装，防止变量跑到外层作用域中，发生命名冲突
-
-危害：
-1.闭包有一个非常严重的问题，那就是内存浪费问题，这个内存浪费不仅仅因为它常驻内存，更重要的是，对闭包的使用不当的话会内存泄漏。解决方法是，在退出函数之前，将不使用的局部变量全部删除。
-2.性能问题，使用闭包时，会涉及到跨作用域访问，由于闭包内部变量优先级高于外部变量，所以多查找作用域链中的一个层次，就会在一定程度上影响查找速度。
-</code></pre>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-02-13T06:07:03.000Z" itemprop="datePublished">2022-02-13</time>
-</div>
-    
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
 
   
     <nav class="pagination">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next</a>
+        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next</a>
     </nav>
   
 </div>
@@ -999,6 +1092,10 @@ var b = aa();
       <ul>
         
           <li>
+            <a href="/ckzkw1mmm000098v96qneg6ml.html">51_es6常用语法</a>
+          </li>
+        
+          <li>
             <a href="/ckzkvyzdq000cr0v92yrj72oj.html">50_js模块化规范</a>
           </li>
         
@@ -1012,10 +1109,6 @@ var b = aa();
         
           <li>
             <a href="/ckzkvyzdq000br0v9a5cjenzy.html">47_前端兼容问题的解决方案</a>
-          </li>
-        
-          <li>
-            <a href="/ckzkvyzdn0008r0v9770t0w5s.html">46_js延迟加载的方式有哪些</a>
           </li>
         
       </ul>

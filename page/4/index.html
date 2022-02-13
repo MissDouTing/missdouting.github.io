@@ -108,6 +108,66 @@
   
     
       <article
+id="post-21_vue的自定义指令"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkth9ho0000awv91ouzgrxo.html">21_vue的自定义指令</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <h2 id="什么是vue的自定义指令？"><a href="#什么是vue的自定义指令？" class="headerlink" title="什么是vue的自定义指令？"></a>什么是vue的自定义指令？</h2><p>Vue里面有许多内置的指令，比如<code>v-if</code>和<code>v-show</code>，这些丰富的指令能满足我们的绝大部分业务需求，不过在需要一些特殊功能时，我们仍然希望对<code>DOM</code>进行底层的操作，这时就要用到自定义指令。</p>
+<h2 id="使用方法？"><a href="#使用方法？" class="headerlink" title="使用方法？"></a>使用方法？</h2><pre><code>app.directive(&#39;focus&#39;, &#123;
+    beforeMount: function (el) &#123; 
+        // 每当指令绑定到元素上的时候，会立即执行这个beforeMount函数，只执行一次
+        // 注意： 在每个函数中，第一个参数永远是el，表示被绑定了指令的那个元素，这个el参数，是一个原生的JS对象
+        // 在元素刚绑定了指令的时候还没有插入到DOM中去的时候调用focus方法没有作用。因为，一个元素只有插入DOM之后才能获取焦点
+        // el.focus()
+    &#125;,
+    mounted: function (el) &#123;  
+        // 指定绑定的远古三插入到DOM中的时候执行【触发1次】
+        el.focus()
+    &#125;,
+    updated : function (el) &#123;  
+        // 在包含组件的 VNode 及其子组件的 VNode 更新后调用
+    &#125;
+&#125;)
+</code></pre>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T05:16:47.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
 id="post-20_vue等单页面应用及其优缺点"
 class="article article-type-post"
 >
@@ -914,73 +974,10 @@ class="article article-type-post"
 
     
   
-    
-      <article
-id="post-11_MVVM模式和MVC模式"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/ckzkrdt230000x8v90f79027s.html">11_MVVM模式和MVC模式</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <h2 id="什么是mvvm？"><a href="#什么是mvvm？" class="headerlink" title="什么是mvvm？"></a>什么是mvvm？</h2><ul>
-<li><p>MVVM最早由微软提出来，它借鉴了桌面应用程序的MVC思想，在前端页面中，把Model用纯JavaScript对象表示，View负责显示，两者做到了最大限度的分离，把Model和View关联起来的就是ViewModel。</p>
-</li>
-<li><p>ViewModel负责把Model的数据同步到View显示出来，还负责把View的修改同步回Model</p>
-</li>
-<li><p>View 和 Model 之间的同步工作完全是自动的，无需人为干涉（由viewModel完成）</p>
-</li>
-<li><p>因此开发者只需关注业务逻辑，不需要手动操作DOM, 不需要关注数据状态的同步问题，复杂的数据状态维护完全由 MVVM 来统一管理</p>
-</li>
-</ul>
-<h2 id="MVVM模式的优点"><a href="#MVVM模式的优点" class="headerlink" title="MVVM模式的优点"></a>MVVM模式的优点</h2><p>1、低耦合：MVVM模式中，数据是独立于UI的，ViewModel只负责处理和提供数据，UI想怎么处理数据都由UI自己决定，ViewModel不涉及任何和UI相关的事，即使控件改变（input换成p）,ViewModel几乎不需要更改任何代码，专注自己的数据处理就可以了   //模块和模块之间他们的依赖关系</p>
-<p>2.自动同步数据:ViewModel通过双向数据绑定把View层和Model层连接了起来，View和Model这两者可以自动同步。程序员不需要手动操作DOM, 不需要关注数据状态的同步问题，MVVM 统一管理了复杂的数据状态维护</p>
-<p>3、可重用性：你可以把一些视图逻辑放在一个ViewModel里面，让很多view重用这段视图逻辑。</p>
-<p>4、独立开发：开发人员可以专注于业务逻辑和数据的开发（ViewModel），设计人员可以专注于页面设计。</p>
-<p>5、可测试：ViewModel里面是数据和业务逻辑，View中关注的是UI，这样的做测试是很方便的，完全没有彼此的依赖，不管是UI的单元测试还是业务逻辑的单元测试，都是低耦合的</p>
-<h2 id="MVVM-和-MVC-的区别"><a href="#MVVM-和-MVC-的区别" class="headerlink" title="MVVM 和 MVC 的区别"></a>MVVM 和 MVC 的区别</h2><p>mvc 和 mvvm 其实区别并不大。都是一种设计思想，主要区别如下：<br>1.mvc 中 Controller演变成 mvvm 中的 viewModel<br>2.mvvm 通过数据来驱动视图层的显示而不是节点操作。<br>3.mvc中Mmodel和View是可以直接打交道的，造成Model层和View层之间的耦合度高。而mvvm中Model和View不直接交互，而是通过中间桥梁ViewModel来同步<br>4.mvvm主要解决了mvc中大量的DOM 操作，使页面渲染性能降低，加载速度变慢，影响用户体验。</p>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-02-13T04:15:38.000Z" itemprop="datePublished">2022-02-13</time>
-</div>
-    
-    
-        <div class="article-tag">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%80%E4%B9%88%E6%98%AFMVVM%EF%BC%8CMVVM%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BC%98%E7%82%B9%E4%BB%A5%E5%8F%8A%E4%B8%8EMVC%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="tag">什么是MVVM，MVVM模式的优点以及与MVC模式的区别</a></li></ul>
-        </div>
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
 
   
     <nav class="pagination">
-        <a class="extend prev" rel="prev" href="/page/3/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next</a>
+        <a class="extend prev" rel="prev" href="/page/3/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next</a>
     </nav>
   
 </div>
@@ -1017,6 +1014,10 @@ class="article article-type-post"
       <ul>
         
           <li>
+            <a href="/ckzkw1mmm000098v96qneg6ml.html">51_es6常用语法</a>
+          </li>
+        
+          <li>
             <a href="/ckzkvyzdq000cr0v92yrj72oj.html">50_js模块化规范</a>
           </li>
         
@@ -1030,10 +1031,6 @@ class="article article-type-post"
         
           <li>
             <a href="/ckzkvyzdq000br0v9a5cjenzy.html">47_前端兼容问题的解决方案</a>
-          </li>
-        
-          <li>
-            <a href="/ckzkvyzdn0008r0v9770t0w5s.html">46_js延迟加载的方式有哪些</a>
           </li>
         
       </ul>
