@@ -108,6 +108,98 @@
   
     
       <article
+id="post-14_vue开发命令npm-run-dev输入后的执行过程"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzks8ap00000vov939wggxj7.html">14_vue开发命令npm run dev输入后的执行过程</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <ol>
+<li>npm run dev 是执行配置在package.json中的脚本，比如：</li>
+</ol>
+<pre><code class="javascript">&quot;scripts&quot;: &#123;
+    &quot;dev&quot;: &quot;webpack-dev-server --inline --progress --config webpack.conf.js&quot;,
+    &quot;start&quot;: &quot;npm run dev&quot;,
+    &quot;lint&quot;: &quot;eslint --ext .js,.vue src&quot;,
+    &quot;build&quot;: &quot;node build/build.js&quot;
+  &#125;,
+  
+npm run dev 执行的就是webpack-dev-server --inline ....命令,通过webpack-dev-server开启一个本地调试服务器。
+</code></pre>
+<ol start="2">
+<li><p>在webpack.conf.js文件中找到App的入口文件  ./src/main.js</p>
+<pre><code>entry: &#123;
+   app: &#39;./src/main.js&#39;
+&#125;,
+</code></pre>
+</li>
+<li><p>main.js用到了页面元素#app、用到了路由和根组件App，并根据这些信息创建一个vue实例</p>
+</li>
+</ol>
+<pre><code>new Vue(&#123;
+     el: &#39;#app&#39;,
+     router,
+     components: &#123; App &#125;,
+     template: &#39;&lt;App/&gt;&#39;
+&#125;)
+</code></pre>
+<ol start="4">
+<li>webpack-dev-server会将main.js中的代码以及所有引用打包成一个bundle.js，然后配置到内存中</li>
+<li>webpack.config.js中配置的HtmlWebpackPlugin会将index.html文件配置到内存，并且将内存中的bundle.js注入到内存中的index.html中</li>
+</ol>
+<pre><code>new HtmlWebpackPlugin(&#123;
+      filename: &#39;index.html&#39;,
+      template: &#39;index.html&#39;,
+      inject: true
+&#125;),
+</code></pre>
+<ol start="6">
+<li>根据webpack.config.js中所配置的devServer的信息，会决定是否自动打开浏览器呈现网页</li>
+</ol>
+<pre><code>devServer: &#123; 
+    open: true, // 自动打开浏览器
+    port: 3000, // 设置启动时候的运行端口
+    contentBase: &#39;src&#39;, // 指定托管的根目录
+    hot: true // 启用热更新 的 第1步
+&#125;,
+</code></pre>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T04:42:05.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
 id="post-13_函数的去抖和节流"
 class="article article-type-post"
 >
@@ -933,62 +1025,6 @@ class="article article-type-post"
 
     
   
-    
-      <article
-id="post-04_vscode的几种打开方式及区别"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/ckuo5p5po0000s8v93auf9ytg.html">04_vscode的几种打开方式及区别</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <h2 id="在vscode中如何打开网页"><a href="#在vscode中如何打开网页" class="headerlink" title="在vscode中如何打开网页"></a>在vscode中如何打开网页</h2><p>方式一： 右键网页，点击open with live server</p>
-<p>方式二：右键网页，点击open with default browser</p>
-<p>方式三： 开启node服务器，配置静态资源目录，手动打开浏览器，输入指定网址直接访问对应的页面</p>
-<p>方式四：开启node服务器，安装express-art-template，写api接口，在api接口中通过res.render方法渲染页面，打开浏览器，输入网址访问对应的接口。</p>
-<h2 id="区别："><a href="#区别：" class="headerlink" title="区别："></a>区别：</h2><p>方式一，vscode会给我们开启一个静态服务器（使用的协议是http，仅是个静态服务器，不像node服务器，有node服务器的若干功能），在服务器中显示该网页（使用端口是5500），这种方式一般只出现在写html，css，原生js，jquery中时使用，node之后基本不会再使用这种方式。</p>
-<p>方式二：这种方式没有服务器，是通过file协议直接打开网页。这种方式和右击文件后点击在文件资源管理器中显示，然后点击网页打开的方式一样。就相当于直接打开本地磁盘的文件，这种方式几乎不用，因为这种方式不支持c3的媒体查询（c3的媒体查询是@media ）。</p>
-<img src="imgs/2021.10.12/图片1.png">
-方式三：相当于前后端分离的开发模式，可以在静态资源的网页中去写ajax请求，去发请求拿数据，没有在app.js（后端）里渲染页面。
-
-<img src="imgs/2021.10.12/图片2.png">
-
-<p>方式四： 相当于纯后端渲染的开发模式。</p>
-<p> （PS：方式一和方式二如果没有，说明没有装对应的插件）</p>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2021-10-12T13:58:04.000Z" itemprop="datePublished">2021-10-12</time>
-</div>
-    
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
 
   
     <nav class="pagination">
@@ -1029,6 +1065,10 @@ class="article article-type-post"
       <ul>
         
           <li>
+            <a href="/ckzks8ap00000vov939wggxj7.html">14_vue开发命令npm run dev输入后的执行过程</a>
+          </li>
+        
+          <li>
             <a href="/ckzks19kt00001wv9405u4kt5.html">13_函数的去抖和节流</a>
           </li>
         
@@ -1042,10 +1082,6 @@ class="article article-type-post"
         
           <li>
             <a href="/ckzkqxjap0000wov90uh3hgic.html">10_Vue-diff算法原理</a>
-          </li>
-        
-          <li>
-            <a href="/ckz0tqj9l0000mcv968j96rzy.html">09_mongodb数据库使用流程</a>
           </li>
         
       </ul>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Tag | 对象的引用、浅拷贝、深拷贝在内存中的实现过程、三者的区别 | 小豆子的博客</title>
+    <title>14_vue开发命令npm run dev输入后的执行过程 | 小豆子的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     
@@ -26,7 +26,7 @@
 
 
     <script>
-        window.isPost = false
+        window.isPost = true
         window.aomori = {
             
             
@@ -104,35 +104,157 @@
         <div class="main">
             <section class="inner">
                 <section class="inner-main">
-                    <section class="archives-cover"></section>
+                    <div class="post">
+    <article id="post-ckzks8ap00000vov939wggxj7" class="article article-type-post" itemscope
+    itemprop="blogPost">
 
+    <div class="article-inner">
 
-    
-    
-    
-    
-    <section class="archives-wrap">
-        <div class="archive-year-wrap">
-        <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
+        
+          
+        
+        
+        
+
+        
+        <header class="article-header">
+            
   
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/ckwstx9ps0000mwv9ew0l4cy0.html">07_对象的引用、浅拷贝、深拷贝</a>
+    <h1 class="article-title" itemprop="name">
+      14_vue开发命令npm run dev输入后的执行过程
     </h1>
   
+
+        </header>
+        
+
+        <div class="article-more-info article-more-info-post hairline">
+
+            <div class="article-date">
+  <time datetime="2022-02-13T04:42:05.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+
+            
+
+            
+
+            
+
+        </div>
+
+        <div class="article-entry post-inner-html hairline" itemprop="articleBody">
+            <ol>
+<li>npm run dev 是执行配置在package.json中的脚本，比如：</li>
+</ol>
+<pre><code class="javascript">&quot;scripts&quot;: &#123;
+    &quot;dev&quot;: &quot;webpack-dev-server --inline --progress --config webpack.conf.js&quot;,
+    &quot;start&quot;: &quot;npm run dev&quot;,
+    &quot;lint&quot;: &quot;eslint --ext .js,.vue src&quot;,
+    &quot;build&quot;: &quot;node build/build.js&quot;
+  &#125;,
+  
+npm run dev 执行的就是webpack-dev-server --inline ....命令,通过webpack-dev-server开启一个本地调试服务器。
+</code></pre>
+<ol start="2">
+<li><p>在webpack.conf.js文件中找到App的入口文件  ./src/main.js</p>
+<pre><code>entry: &#123;
+   app: &#39;./src/main.js&#39;
+&#125;,
+</code></pre>
+</li>
+<li><p>main.js用到了页面元素#app、用到了路由和根组件App，并根据这些信息创建一个vue实例</p>
+</li>
+</ol>
+<pre><code>new Vue(&#123;
+     el: &#39;#app&#39;,
+     router,
+     components: &#123; App &#125;,
+     template: &#39;&lt;App/&gt;&#39;
+&#125;)
+</code></pre>
+<ol start="4">
+<li>webpack-dev-server会将main.js中的代码以及所有引用打包成一个bundle.js，然后配置到内存中</li>
+<li>webpack.config.js中配置的HtmlWebpackPlugin会将index.html文件配置到内存，并且将内存中的bundle.js注入到内存中的index.html中</li>
+</ol>
+<pre><code>new HtmlWebpackPlugin(&#123;
+      filename: &#39;index.html&#39;,
+      template: &#39;index.html&#39;,
+      inject: true
+&#125;),
+</code></pre>
+<ol start="6">
+<li>根据webpack.config.js中所配置的devServer的信息，会决定是否自动打开浏览器呈现网页</li>
+</ol>
+<pre><code>devServer: &#123; 
+    open: true, // 自动打开浏览器
+    port: 3000, // 设置启动时候的运行端口
+    contentBase: &#39;src&#39;, // 指定托管的根目录
+    hot: true // 启用热更新 的 第1步
+&#125;,
+</code></pre>
+
+        </div>
+
+    </div>
+
+    
+
+    
+
+    
+
+    
+<div class="article-copyright hairline">
+  <p>
+    本作品采用 <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a> 进行许可。
+  </p>
+</div>
+
+
+    
+
+    
+<nav class="article-nav">
+  
+  
+    <a href="/ckzks19kt00001wv9405u4kt5.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-caption">上一篇</div>
+      <div class="article-nav-title">13_函数的去抖和节流</div>
+    </a>
+  
+</nav>
+
+
+    <section class="share">
+        <div class="share-title">分享</div>
+        <a class="share-item" target="_blank"
+            href="https://twitter.com/share?text=14_vue开发命令npm run dev输入后的执行过程 - 小豆子的博客&url=https://dtting.top/ckzks8ap00000vov939wggxj7.html">
+            <box-icon type='logo' name='twitter'></box-icon>
+        </a>
+        <a class="share-item" target="_blank"
+            href="https://www.facebook.com/sharer.php?title=14_vue开发命令npm run dev输入后的执行过程 - 小豆子的博客&u=https://dtting.top/ckzks8ap00000vov939wggxj7.html">
+            <box-icon name='facebook-square' type='logo' ></box-icon>
+        </a>
+        <!-- <a class="share-item" target="_blank"
+            href="https://service.weibo.com/share/share.php?title=14_vue开发命令npm run dev输入后的执行过程 - 小豆子的博客&url=https://dtting.top/ckzks8ap00000vov939wggxj7.html&pic=">
+            <div class="n-icon n-icon-weibo"></div>
+        </a> -->
+    </section>
 
 </article>
 
 
-    </div></section>
 
 
 
 
+
+
+
+
+
+
+</div>
                 </section>
             </section>
 
@@ -144,6 +266,12 @@
 <div class="widget" id="widget">
     
       
+  <div class="widget-wrap">
+    <div class="widget-inner">
+      <div class="toc post-toc-html"></div>
+    </div>
+  </div>
+
     
       
 

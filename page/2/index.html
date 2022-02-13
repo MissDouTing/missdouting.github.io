@@ -108,6 +108,62 @@
   
     
       <article
+id="post-04_vscode的几种打开方式及区别"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckuo5p5po0000s8v93auf9ytg.html">04_vscode的几种打开方式及区别</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <h2 id="在vscode中如何打开网页"><a href="#在vscode中如何打开网页" class="headerlink" title="在vscode中如何打开网页"></a>在vscode中如何打开网页</h2><p>方式一： 右键网页，点击open with live server</p>
+<p>方式二：右键网页，点击open with default browser</p>
+<p>方式三： 开启node服务器，配置静态资源目录，手动打开浏览器，输入指定网址直接访问对应的页面</p>
+<p>方式四：开启node服务器，安装express-art-template，写api接口，在api接口中通过res.render方法渲染页面，打开浏览器，输入网址访问对应的接口。</p>
+<h2 id="区别："><a href="#区别：" class="headerlink" title="区别："></a>区别：</h2><p>方式一，vscode会给我们开启一个静态服务器（使用的协议是http，仅是个静态服务器，不像node服务器，有node服务器的若干功能），在服务器中显示该网页（使用端口是5500），这种方式一般只出现在写html，css，原生js，jquery中时使用，node之后基本不会再使用这种方式。</p>
+<p>方式二：这种方式没有服务器，是通过file协议直接打开网页。这种方式和右击文件后点击在文件资源管理器中显示，然后点击网页打开的方式一样。就相当于直接打开本地磁盘的文件，这种方式几乎不用，因为这种方式不支持c3的媒体查询（c3的媒体查询是@media ）。</p>
+<img src="imgs/2021.10.12/图片1.png">
+方式三：相当于前后端分离的开发模式，可以在静态资源的网页中去写ajax请求，去发请求拿数据，没有在app.js（后端）里渲染页面。
+
+<img src="imgs/2021.10.12/图片2.png">
+
+<p>方式四： 相当于纯后端渲染的开发模式。</p>
+<p> （PS：方式一和方式二如果没有，说明没有装对应的插件）</p>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2021-10-12T13:58:04.000Z" itemprop="datePublished">2021-10-12</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
 id="post-03_node的使用方法"
 class="article article-type-post"
 >
@@ -433,6 +489,10 @@ foo.prop = 123;
       <ul>
         
           <li>
+            <a href="/ckzks8ap00000vov939wggxj7.html">14_vue开发命令npm run dev输入后的执行过程</a>
+          </li>
+        
+          <li>
             <a href="/ckzks19kt00001wv9405u4kt5.html">13_函数的去抖和节流</a>
           </li>
         
@@ -446,10 +506,6 @@ foo.prop = 123;
         
           <li>
             <a href="/ckzkqxjap0000wov90uh3hgic.html">10_Vue-diff算法原理</a>
-          </li>
-        
-          <li>
-            <a href="/ckz0tqj9l0000mcv968j96rzy.html">09_mongodb数据库使用流程</a>
           </li>
         
       </ul>
