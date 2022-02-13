@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>18_vue生命周期和生命周期钩子函数 | 小豆子的博客</title>
+    <title>23_vue-router如何响应路由参数的变化 | 小豆子的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     
@@ -105,7 +105,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-ckzktd6qg00020wv9emgh00qy" class="article article-type-post" itemscope
+    <article id="post-ckzkundlg0005psv90031dbi8" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -121,7 +121,7 @@
             
   
     <h1 class="article-title" itemprop="name">
-      18_vue生命周期和生命周期钩子函数
+      23_vue-router如何响应路由参数的变化
     </h1>
   
 
@@ -131,7 +131,7 @@
         <div class="article-more-info article-more-info-post hairline">
 
             <div class="article-date">
-  <time datetime="2022-02-13T05:05:33.000Z" itemprop="datePublished">2022-02-13</time>
+  <time datetime="2022-02-13T05:26:17.000Z" itemprop="datePublished">2022-02-13</time>
 </div>
 
             
@@ -143,83 +143,49 @@
         </div>
 
         <div class="article-entry post-inner-html hairline" itemprop="articleBody">
-            <h2 id="什么是vue生命周期？"><a href="#什么是vue生命周期？" class="headerlink" title="什么是vue生命周期？"></a>什么是vue生命周期？</h2><p><code>vue 的生命周期是：</code> vue 实例从创建到销毁，也就是从<code>开始创建</code>、<code>初始化数据</code>、<code>编译模板</code>、<code>挂载Dom→渲染</code>、<code>更新→渲染</code>、<code>卸载</code>等一系列过程。</p>
-<h2 id="什么是vue生命周期钩子函数？"><a href="#什么是vue生命周期钩子函数？" class="headerlink" title="什么是vue生命周期钩子函数？"></a>什么是vue生命周期钩子函数？</h2><p>在vue声明周期过程中也会<code>运行</code>一些叫做<code>生命周期钩子的函数</code>，这给了<code>用户</code>在不同阶段<code>添加自己的代码</code>的机会。</p>
-<h2 id="22-vue生命周期钩子函数有哪些"><a href="#22-vue生命周期钩子函数有哪些" class="headerlink" title="22.vue生命周期钩子函数有哪些?"></a>22.vue生命周期钩子函数有哪些?</h2><table>
-<thead>
-<tr>
-<th>生命周期钩子函数（11个）</th>
-<th>类型</th>
-<th>详细</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>beforeCreate</td>
-<td>Function</td>
-<td>在<code>实例初始化之后</code>，数据观测 (data observer) 和 event/watcher 事件配置之前被调用。</td>
-</tr>
-<tr>
-<td>created</td>
-<td>Function</td>
-<td>在<code>实例创建完成后</code>被立即调用。在这一步，实例已完成以下的配置：<code>数据观测 (data observer)</code>， <code>属性和方法的运算</code>，<code>watch/event 事件回调</code>。然而，挂载阶段还没开始，$el 属性目前不可见。</td>
-</tr>
-<tr>
-<td>beforeMount</td>
-<td>Function</td>
-<td>在<code>挂载开始之前</code>被调用：相关的 render 函数首次被调用。</td>
-</tr>
-<tr>
-<td>mounted</td>
-<td>Function</td>
-<td><code>el</code> 被新创建的 <code>vm.$el</code> 替换，并<code>挂载到实例上去之后</code>调用该钩子。如果 root 实例挂载了一个文档内元素，当 mounted 被调用时 vm.$el 也在文档内。</td>
-</tr>
-<tr>
-<td>beforeUpdate</td>
-<td>Function</td>
-<td><code>数据更新时调用</code>，发生在虚拟 DOM 打补丁之前。这里适合在更新之前访问现有的 DOM，比如手动移除已添加的事件监听器。<strong>该钩子在服务器端渲染期间不被调用，因为只有初次渲染会在服务端进行。</strong></td>
-</tr>
-<tr>
-<td>updated</td>
-<td>Function</td>
-<td>由于数据更改导致的<code>虚拟 DOM 重新渲染和打补丁</code>，在这<code>之后</code>会<code>调用</code>该钩子。</td>
-</tr>
-<tr>
-<td>activated</td>
-<td>Function</td>
-<td><code>keep-alive 组件激活时调用</code>。<strong>该钩子在服务器端渲染期间不被调用。</strong></td>
-</tr>
-<tr>
-<td>deactivated</td>
-<td>Function</td>
-<td><code>keep-alive 组件停用时调用</code>。<strong>该钩子在服务器端渲染期间不被调用。</strong></td>
-</tr>
-<tr>
-<td>beforeUnmounted</td>
-<td>Function</td>
-<td>实例销毁之前调用。在这一步，实例仍然完全可用。<strong>该钩子在服务器端渲染期间不被调用。</strong></td>
-</tr>
-<tr>
-<td>unmounted</td>
-<td>Function</td>
-<td>Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。<strong>该钩子在服务器端渲染期间不被调用。</strong></td>
-</tr>
-<tr>
-<td>errorCaptured（2.5.0+ 新增）</td>
-<td>(err: Error, vm: Component, info: string) =&gt; ?boolean</td>
-<td>当捕获一个来自子孙组件的错误时被调用。此钩子会收到三个参数：错误对象、发生错误的组件实例以及一个包含错误来源信息的字符串。此钩子可以返回 false 以阻止该错误继续向上传播。</td>
-</tr>
-</tbody></table>
-<p><strong>注意：</strong></p>
-<pre><code>1、mounted、updated不会承诺所有的子组件也都一起被挂载。如果你希望等到整个视图都渲染完毕，可以用vm.$nextTick替换掉mounted、updated：
+            <blockquote>
+<p>问题：当使用路由参数时，例如从 <code>/content?id=1</code> 到 <code>content?id=2</code>，此时原来的组件实例会被复用。这也意味着组件的<code>生命周期钩子不会再被调用</code>，此时vue应该如何响应<code>路由参数</code> 的变化？</p>
+</blockquote>
+<p>解决方案：</p>
+<p>1.用 :key 来阻止“复用”</p>
+<pre><code>//在父组件中使用
+&lt;router-view :key=&quot;key&quot;&gt;&lt;/router-view&gt;
 
-updated: function () &#123;
-    this.$nextTick(function () &#123;
-        // Code that will run only after the
-        // entire view has been re-rendered
-    &#125;)
+computed: &#123;
+    key() &#123;
+        return this.$route.name !== undefined? this.$route.name +new Date(): this.$route +new Date()
+    &#125;
 &#125;
 
-2、http请求建议在 created 生命周期内发出
+//这种办法实质上是让每次路由跳转时重新构建该组件，我们在它的生命周期中写一个打印语句就能看出来。
+</code></pre>
+<p>2.复用组件时，想对路由参数的变化作出响应的话， 可以<code>watch (监测变化) $route 对象</code>：</p>
+<pre><code class="javascript">const User = &#123;
+  template: &#39;...&#39;,
+  watch: &#123;
+    &#39;$route&#39; (to, from) &#123;
+      // 对路由变化作出响应...
+    &#125;
+  &#125;
+&#125;
+</code></pre>
+<p>3.通过 <code>vue-router </code>的钩子函数 <code>beforeRouteEnter </code> <code>beforeRouteUpdate</code>  <code>beforeRouteLeave</code></p>
+<pre><code class="javascript">//localhost:3000/login/1   ---&gt;localhost:3000/login/2
+beforeRouteEnter (to, from, next) &#123;
+   // 在渲染该组件的对应路由被 confirm 前调用
+   // 不！能！获取组件实例 `this`
+   // 因为当钩子执行前，组件实例还没被创建
+&#125;,
+beforeRouteUpdate (to, from, next) &#123;
+   // 在当前路由改变，但是该组件被复用时调用
+   // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
+   // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
+   // 可以访问组件实例 `this`
+&#125;,
+beforeRouteLeave (to, from, next) &#123;
+   // 导航离开该组件的对应路由时调用
+   // 可以访问组件实例 `this`
+&#125;
 </code></pre>
 
         </div>
@@ -245,19 +211,19 @@ updated: function () &#123;
     
 <nav class="article-nav">
   
-    <a href="/ckzktd6qe00010wv947ll8kzu.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/ckzkundl70000psv98rbt5ltg.html" id="article-nav-newer" class="article-nav-link-wrap">
       <div class="article-nav-caption">下一篇</div>
       <div class="article-nav-title">
         
-          19_vue-cli工作中如何自定义一个过滤器
+          23_vue-router如何响应路由参数的变化
         
       </div>
     </a>
   
   
-    <a href="/ckzktd6q400000wv90edjdd1i.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/ckzkundlc0001psv9hu3jf7ol.html" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-caption">上一篇</div>
-      <div class="article-nav-title">17_vue监听键盘事件的按键修饰符</div>
+      <div class="article-nav-title">22_自定义指令的钩子函数及其参数</div>
     </a>
   
 </nav>
@@ -266,15 +232,15 @@ updated: function () &#123;
     <section class="share">
         <div class="share-title">分享</div>
         <a class="share-item" target="_blank"
-            href="https://twitter.com/share?text=18_vue生命周期和生命周期钩子函数 - 小豆子的博客&url=https://dtting.top/ckzktd6qg00020wv9emgh00qy.html">
+            href="https://twitter.com/share?text=23_vue-router如何响应路由参数的变化 - 小豆子的博客&url=https://dtting.top/ckzkundlg0005psv90031dbi8.html">
             <box-icon type='logo' name='twitter'></box-icon>
         </a>
         <a class="share-item" target="_blank"
-            href="https://www.facebook.com/sharer.php?title=18_vue生命周期和生命周期钩子函数 - 小豆子的博客&u=https://dtting.top/ckzktd6qg00020wv9emgh00qy.html">
+            href="https://www.facebook.com/sharer.php?title=23_vue-router如何响应路由参数的变化 - 小豆子的博客&u=https://dtting.top/ckzkundlg0005psv90031dbi8.html">
             <box-icon name='facebook-square' type='logo' ></box-icon>
         </a>
         <!-- <a class="share-item" target="_blank"
-            href="https://service.weibo.com/share/share.php?title=18_vue生命周期和生命周期钩子函数 - 小豆子的博客&url=https://dtting.top/ckzktd6qg00020wv9emgh00qy.html&pic=">
+            href="https://service.weibo.com/share/share.php?title=23_vue-router如何响应路由参数的变化 - 小豆子的博客&url=https://dtting.top/ckzkundlg0005psv90031dbi8.html&pic=">
             <div class="n-icon n-icon-weibo"></div>
         </a> -->
     </section>

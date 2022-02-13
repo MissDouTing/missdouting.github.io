@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>18_vue生命周期和生命周期钩子函数 | 小豆子的博客</title>
+    <title>28_axios、fetch与ajax有什么区别 | 小豆子的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     
@@ -105,7 +105,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-ckzktd6qg00020wv9emgh00qy" class="article article-type-post" itemscope
+    <article id="post-ckzkundli0007psv9h98hht0w" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -121,7 +121,7 @@
             
   
     <h1 class="article-title" itemprop="name">
-      18_vue生命周期和生命周期钩子函数
+      28_axios、fetch与ajax有什么区别
     </h1>
   
 
@@ -131,7 +131,7 @@
         <div class="article-more-info article-more-info-post hairline">
 
             <div class="article-date">
-  <time datetime="2022-02-13T05:05:33.000Z" itemprop="datePublished">2022-02-13</time>
+  <time datetime="2022-02-13T05:36:48.000Z" itemprop="datePublished">2022-02-13</time>
 </div>
 
             
@@ -143,84 +143,12 @@
         </div>
 
         <div class="article-entry post-inner-html hairline" itemprop="articleBody">
-            <h2 id="什么是vue生命周期？"><a href="#什么是vue生命周期？" class="headerlink" title="什么是vue生命周期？"></a>什么是vue生命周期？</h2><p><code>vue 的生命周期是：</code> vue 实例从创建到销毁，也就是从<code>开始创建</code>、<code>初始化数据</code>、<code>编译模板</code>、<code>挂载Dom→渲染</code>、<code>更新→渲染</code>、<code>卸载</code>等一系列过程。</p>
-<h2 id="什么是vue生命周期钩子函数？"><a href="#什么是vue生命周期钩子函数？" class="headerlink" title="什么是vue生命周期钩子函数？"></a>什么是vue生命周期钩子函数？</h2><p>在vue声明周期过程中也会<code>运行</code>一些叫做<code>生命周期钩子的函数</code>，这给了<code>用户</code>在不同阶段<code>添加自己的代码</code>的机会。</p>
-<h2 id="22-vue生命周期钩子函数有哪些"><a href="#22-vue生命周期钩子函数有哪些" class="headerlink" title="22.vue生命周期钩子函数有哪些?"></a>22.vue生命周期钩子函数有哪些?</h2><table>
-<thead>
-<tr>
-<th>生命周期钩子函数（11个）</th>
-<th>类型</th>
-<th>详细</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>beforeCreate</td>
-<td>Function</td>
-<td>在<code>实例初始化之后</code>，数据观测 (data observer) 和 event/watcher 事件配置之前被调用。</td>
-</tr>
-<tr>
-<td>created</td>
-<td>Function</td>
-<td>在<code>实例创建完成后</code>被立即调用。在这一步，实例已完成以下的配置：<code>数据观测 (data observer)</code>， <code>属性和方法的运算</code>，<code>watch/event 事件回调</code>。然而，挂载阶段还没开始，$el 属性目前不可见。</td>
-</tr>
-<tr>
-<td>beforeMount</td>
-<td>Function</td>
-<td>在<code>挂载开始之前</code>被调用：相关的 render 函数首次被调用。</td>
-</tr>
-<tr>
-<td>mounted</td>
-<td>Function</td>
-<td><code>el</code> 被新创建的 <code>vm.$el</code> 替换，并<code>挂载到实例上去之后</code>调用该钩子。如果 root 实例挂载了一个文档内元素，当 mounted 被调用时 vm.$el 也在文档内。</td>
-</tr>
-<tr>
-<td>beforeUpdate</td>
-<td>Function</td>
-<td><code>数据更新时调用</code>，发生在虚拟 DOM 打补丁之前。这里适合在更新之前访问现有的 DOM，比如手动移除已添加的事件监听器。<strong>该钩子在服务器端渲染期间不被调用，因为只有初次渲染会在服务端进行。</strong></td>
-</tr>
-<tr>
-<td>updated</td>
-<td>Function</td>
-<td>由于数据更改导致的<code>虚拟 DOM 重新渲染和打补丁</code>，在这<code>之后</code>会<code>调用</code>该钩子。</td>
-</tr>
-<tr>
-<td>activated</td>
-<td>Function</td>
-<td><code>keep-alive 组件激活时调用</code>。<strong>该钩子在服务器端渲染期间不被调用。</strong></td>
-</tr>
-<tr>
-<td>deactivated</td>
-<td>Function</td>
-<td><code>keep-alive 组件停用时调用</code>。<strong>该钩子在服务器端渲染期间不被调用。</strong></td>
-</tr>
-<tr>
-<td>beforeUnmounted</td>
-<td>Function</td>
-<td>实例销毁之前调用。在这一步，实例仍然完全可用。<strong>该钩子在服务器端渲染期间不被调用。</strong></td>
-</tr>
-<tr>
-<td>unmounted</td>
-<td>Function</td>
-<td>Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。<strong>该钩子在服务器端渲染期间不被调用。</strong></td>
-</tr>
-<tr>
-<td>errorCaptured（2.5.0+ 新增）</td>
-<td>(err: Error, vm: Component, info: string) =&gt; ?boolean</td>
-<td>当捕获一个来自子孙组件的错误时被调用。此钩子会收到三个参数：错误对象、发生错误的组件实例以及一个包含错误来源信息的字符串。此钩子可以返回 false 以阻止该错误继续向上传播。</td>
-</tr>
-</tbody></table>
-<p><strong>注意：</strong></p>
-<pre><code>1、mounted、updated不会承诺所有的子组件也都一起被挂载。如果你希望等到整个视图都渲染完毕，可以用vm.$nextTick替换掉mounted、updated：
-
-updated: function () &#123;
-    this.$nextTick(function () &#123;
-        // Code that will run only after the
-        // entire view has been re-rendered
-    &#125;)
-&#125;
-
-2、http请求建议在 created 生命周期内发出
-</code></pre>
+            <h2 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h2><p>Ajax指的是XMLHttpRequest（XHR）， 最早出现的发送后端请求技术，核心使用XMLHttpRequest对象，如果多个请求之间如果有先后关系的话，就会出现回调地狱。</p>
+<p>JQuery ajax 是对原生XHR的封装，除此以外还增添了对JSONP的支持。经过多年的更新维护，真的已经是非常的方便了，优点无需多言</p>
+<p>Ajax的缺点：<br>1.本身是针对MVC的编程,不符合现在前端MVVM的浪潮<br>2.基于原生的XHR开发，XHR本身的架构不清晰。<br>3.JQuery整个项目太大，单纯使用ajax却要引入整个JQuery非常的不合理（采取个性化打包的方案又不能享受CDN服务）<br>4.容易出现回调地狱的问题<br>5.不符合关注分离的原则</p>
+<h2 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h2><p>Vue2.0之后，尤雨溪推荐我们使用axios替换JQuery ajax。<br>axios 是一个基于Promise的请求库，用于浏览器和nodejs中，本质上浏览器的axios也是对原生XHR的封装，只不过它是Promise的实现版本，符合最新的ES规范，它本身具有以下特征：<br>1.从浏览器中创建 XMLHttpRequest<br>2.支持 Promise API<br>3.客户端支持防止CSRF<br>4.提供了一些并发请求的接口（重要，方便了很多的操作）<br>5.从node.js创建 http 请求<br>6.拦截请求和响应<br>7.转换请求和响应数据<br>8.取消请求<br>9.自动转换JSON数据</p>
+<h2 id="fetch"><a href="#fetch" class="headerlink" title="fetch"></a>fetch</h2><p>fetch号称是AJAX的替代品，是在ES6出现的，使用了ES6中的promise对象。Fetch是基于promise设计的，Fetch的代码结构比起ajax简单多了，参数有点像jQuery ajax。但是一定记住fetch不是ajax的进一步封装，而是原生js，没有使用XMLHttpRequest对象。</p>
+<p>fetch的优点：<br>1.符合关注分离，没有将输入、输出和用事件来跟踪的状态混杂在一个对象里<br>2.更好更方便的写法<br>3.基于标准 Promise 实现，支持 async/await<br>4.更加底层，提供的API丰富（request, response）<br>5.脱离了XHR，是ES6规范里新的实现方式</p>
 
         </div>
 
@@ -245,19 +173,19 @@ updated: function () &#123;
     
 <nav class="article-nav">
   
-    <a href="/ckzktd6qe00010wv947ll8kzu.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/ckzkundli0008psv99pe7h39y.html" id="article-nav-newer" class="article-nav-link-wrap">
       <div class="article-nav-caption">下一篇</div>
       <div class="article-nav-title">
         
-          19_vue-cli工作中如何自定义一个过滤器
+          30_如何适配移动端
         
       </div>
     </a>
   
   
-    <a href="/ckzktd6q400000wv90edjdd1i.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/ckzkundlf0004psv9c13odfom.html" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-caption">上一篇</div>
-      <div class="article-nav-title">17_vue监听键盘事件的按键修饰符</div>
+      <div class="article-nav-title">27_Promise对象</div>
     </a>
   
 </nav>
@@ -266,15 +194,15 @@ updated: function () &#123;
     <section class="share">
         <div class="share-title">分享</div>
         <a class="share-item" target="_blank"
-            href="https://twitter.com/share?text=18_vue生命周期和生命周期钩子函数 - 小豆子的博客&url=https://dtting.top/ckzktd6qg00020wv9emgh00qy.html">
+            href="https://twitter.com/share?text=28_axios、fetch与ajax有什么区别 - 小豆子的博客&url=https://dtting.top/ckzkundli0007psv9h98hht0w.html">
             <box-icon type='logo' name='twitter'></box-icon>
         </a>
         <a class="share-item" target="_blank"
-            href="https://www.facebook.com/sharer.php?title=18_vue生命周期和生命周期钩子函数 - 小豆子的博客&u=https://dtting.top/ckzktd6qg00020wv9emgh00qy.html">
+            href="https://www.facebook.com/sharer.php?title=28_axios、fetch与ajax有什么区别 - 小豆子的博客&u=https://dtting.top/ckzkundli0007psv9h98hht0w.html">
             <box-icon name='facebook-square' type='logo' ></box-icon>
         </a>
         <!-- <a class="share-item" target="_blank"
-            href="https://service.weibo.com/share/share.php?title=18_vue生命周期和生命周期钩子函数 - 小豆子的博客&url=https://dtting.top/ckzktd6qg00020wv9emgh00qy.html&pic=">
+            href="https://service.weibo.com/share/share.php?title=28_axios、fetch与ajax有什么区别 - 小豆子的博客&url=https://dtting.top/ckzkundli0007psv9h98hht0w.html&pic=">
             <div class="n-icon n-icon-weibo"></div>
         </a> -->
     </section>

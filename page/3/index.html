@@ -108,7 +108,7 @@
   
     
       <article
-id="post-01_js常量、变量、函数的声明"
+id="post-15_什么是vuex"
 class="article article-type-post"
 >
 
@@ -119,127 +119,130 @@ class="article article-type-post"
 
     <div class="article-body">
     <header class="article-title">
-        <a href="/ckumokpli0001y8v9cgmb4ois.html">js常量、变量、函数的声明</a>
+        <a href="/ckzksi8950000p0v9hlb9ajwq.html">15_什么是vuex</a>
     </header>
     <div class="article-entry post-inner-html">
         
-        <h2 id="js常量的两种声明方式"><a href="#js常量的两种声明方式" class="headerlink" title="js常量的两种声明方式"></a>js常量的两种声明方式</h2><h3 id="1-用const声明常量："><a href="#1-用const声明常量：" class="headerlink" title="1. 用const声明常量："></a>1. 用const声明常量：</h3><p>const声明一个只读的常量。一旦声明，常量的值就不能改变。</p>
-<pre><code class="javascript">if (true) &#123;
+        <h2 id="什么是vuex？"><a href="#什么是vuex？" class="headerlink" title="什么是vuex？"></a>什么是vuex？</h2><p>Vuex 是一个专为 Vue.js 应用程序开发的状态管理器，采用 集中式存储 管理所有组件的状态。<br>主要用于维护vue组件间共用的一些 变量 和 方法</p>
+<p><strong>vuex的原理其实非常简单，它为什么能实现所有的组件共享同一份数据？</strong></p>
+<p>因为vuex生成了一个store实例，并且把这个实例挂在了所有的组件上，所有的组件引用的都是同一个store实例。<br>store实例上有数据，有方法，方法改变的都是store实例上的数据。由于其他组件引用的是同样的实例，所以一个组件改变了store上的数据，导致另一个组件上的数据也会改变，就像是一个对象的引用。</p>
+<h2 id="vuex的核心概念？"><a href="#vuex的核心概念？" class="headerlink" title="vuex的核心概念？"></a>vuex的核心概念？</h2><p>每一个 Vuex 应用的核心就是 store（仓库）。“store”基本上就是一个容器，它包含着你的应用中大部分的状态 (state)。</p>
+<p><strong>vuex的核心概念和核心概念图：</strong><br>1、state - Vuex store实例的根状态对象，用于定义共享的状态变量。<br>2、Action -动作，向store发出调用通知，执行本地或者远端的某一个操作（可以理解为store的methods）<br>3、Mutations -修改器，它只用于修改state中定义的状态变量。<br>4、getter -读取器，外部程序通过它获取变量的具体值，或者在取值前做一些计算（可以认为是store的计算属性）</p>
+<p><strong>Vuex的应用场景：</strong><br>Vuex主要用于：<br> 1、多层嵌套的组件之间进行状态传递<br> 2、兄弟组件间进行状态传递时（当然也可以使用中央事件总线BUS）<br> 3、多组件共享状态时</p>
+<p>更为具体的场景：组件之间的状态、音乐播放、登录状态、加入购物车…</p>
+<img src="imgs/2022.02.13.2/图片1.png">
 
- const MAX = 5;&#125;
- 
-MAX // Uncaught ReferenceError: MAX is not defined
-</code></pre>
-<p>上面代码表明改变常量的值会报错。</p>
-<p><code>const</code>的作用域与<code>let</code>命令相同：只在声明所在的块级作用域内有效。</p>
-<pre><code class="javascript">if (true) &#123;
-  const MAX = 5;
-&#125;
+<h2 id="vuex的使用？"><a href="#vuex的使用？" class="headerlink" title="vuex的使用？"></a>vuex的使用？</h2><pre><code>#1.安装vuex
+npm install vuex@next --save
 
-MAX // Uncaught ReferenceError: MAX is not defined
-</code></pre>
-<p><code>const</code>命令声明的常量也是不提升，同样存在暂时性死区，只能在声明的位置后面使用。</p>
-<pre><code class="javascript">if (true) &#123;
-  console.log(MAX); // ReferenceError
-  const MAX = 5;
-&#125;
-</code></pre>
-<p>上面代码在常量<code>MAX</code>声明之前就调用，结果报错。</p>
-<p><code>const</code>声明的常量，也与<code>let</code>一样不可重复声明。</p>
-<pre><code class="javascript">var message = &quot;Hello!&quot;;
-let age = 25;
+#2.main.js
+import &#123; createStore &#125; from &quot;vuex&quot;;
 
-// 以下两行都会报错
-const message = &quot;Goodbye!&quot;;
-const age = 30;
-</code></pre>
-<h3 id="2-用var声明常量："><a href="#2-用var声明常量：" class="headerlink" title="2.用var声明常量："></a>2.用var声明常量：</h3><p>没什么特殊的，全局常量。</p>
-<h2 id="js变量的四种声明方式"><a href="#js变量的四种声明方式" class="headerlink" title="js变量的四种声明方式"></a>js变量的四种声明方式</h2><h3 id="1-用var声明变量："><a href="#1-用var声明变量：" class="headerlink" title="1.用var声明变量："></a>1.用var声明变量：</h3><p>var声明的变量是全局变量。</p>
-<h3 id="2-用let声明变量："><a href="#2-用let声明变量：" class="headerlink" title="2.用let声明变量："></a>2.用let声明变量：</h3><p><code>for</code>循环的计数器，就很合适使用<code>let</code>命令。</p>
-<pre><code class="javascript">for (let i = 0; i &lt; 10; i++) &#123;
-  // ...
-&#125;
-
-console.log(i);
-// ReferenceError: i is not defined
-</code></pre>
-<p>上面代码中，计数器<code>i</code>只在<code>for</code>循环体内有效，在循环体外引用就会报错。</p>
-<p>下面的代码如果使用<code>var</code>，最后输出的是<code>10</code>。</p>
-<pre><code class="javascript">var a = [];
-for (var i = 0; i &lt; 10; i++) &#123;
-  a[i] = function () &#123;
-    console.log(i);
-  &#125;;
-&#125;
-a[6](); // 10
-</code></pre>
-<p>上面代码中，变量<code>i</code>是<code>var</code>命令声明的，在全局范围内都有效，所以全局只有一个变量<code>i</code>。每一次循环，变量<code>i</code>的值都会发生改变，而循环内被赋给数组<code>a</code>的函数内部的<code>console.log(i)</code>，里面的<code>i</code>指向的就是全局的<code>i</code>。也就是说，所有数组<code>a</code>的成员里面的<code>i</code>，指向的都是同一个<code>i</code>，导致运行时输出的是最后一轮的<code>i</code>的值，也就是 10。</p>
-<p>如果使用<code>let</code>，声明的变量仅在块级作用域内有效，最后输出的是 6。</p>
-<pre><code class="javascript">var a = [];
-for (let i = 0; i &lt; 10; i++) &#123;
-  a[i] = function () &#123;
-    console.log(i);
-  &#125;;
-&#125;
-a[6](); // 6
-</code></pre>
-<p>上面代码中，变量<code>i</code>是<code>let</code>声明的，当前的<code>i</code>只在本轮循环有效，所以每一次循环的<code>i</code>其实都是一个新的变量，所以最后输出的是<code>6</code>。你可能会问，如果每一轮循环的变量<code>i</code>都是重新声明的，那它怎么知道上一轮循环的值，从而计算出本轮循环的值？这是因为 JavaScript 引擎内部会记住上一轮循环的值，初始化本轮的变量<code>i</code>时，就在上一轮循环的基础上进行计算。</p>
-<h3 id="3-用const声明变量："><a href="#3-用const声明变量：" class="headerlink" title="3.用const声明变量："></a>3.用const声明变量：</h3><p><code>const</code>声明的变量不得改变值，这意味着，<code>const</code>一旦声明变量，就必须立即初始化，不能留到以后赋值。</p>
-<pre><code class="javascript">const foo;
-// SyntaxError: Missing initializer in const declaration
-</code></pre>
-<p>上面代码表示，对于<code>const</code>来说，只声明不赋值，就会报错。</p>
-<p>const声明常数和变量的本质：</p>
-<p><code>const</code>实际上保证的，并不是变量的值不得改动，而是变量指向的那个内存地址所保存的数据不得改动。对于简单类型的数据（数值、字符串、布尔值），值就保存在变量指向的那个内存地址，因此等同于常量。但对于复合类型的数据（主要是对象和数组），变量指向的内存地址，保存的只是一个指向实际数据的指针，<code>const</code>只能保证这个指针是固定的（即总是指向另一个固定的地址），至于它指向的数据结构是不是可变的，就完全不能控制了。因此，将一个对象声明为常量必须非常小心。</p>
-<pre><code class="javascript">const foo = &#123;&#125;;
-
-// 为 foo 添加一个属性，可以成功
-foo.prop = 123;
-foo.prop // 123
-
-// 将 foo 指向另一个对象，就会报错
-foo = &#123;&#125;; // TypeError: &quot;foo&quot; is read-only
-</code></pre>
-<p>上面代码中，常量<code>foo</code>储存的是一个地址，这个地址指向一个对象。不可变的只是这个地址，即不能把<code>foo</code>指向另一个地址，但对象本身是可变的，所以依然可以为其添加新属性。</p>
-<p>下面是另一个例子。</p>
-<pre><code class="javascript">const a = [];
-a.push(&#39;Hello&#39;); // 可执行
-a.length = 0;    // 可执行
-a = [&#39;Dave&#39;];    // 报错
-</code></pre>
-<p>上面代码中，常量<code>a</code>是一个数组，这个数组本身是可写的，但是如果将另一个数组赋值给<code>a</code>，就会报错。</p>
-<p>如果真的想将对象冻结，应该使用<code>Object.freeze</code>方法。</p>
-<pre><code class="javascript">const foo = Object.freeze(&#123;&#125;);
-
-// 常规模式时，下面一行不起作用；
-// 严格模式时，该行会报错
-foo.prop = 123;
-</code></pre>
-<p>上面代码中，常量<code>foo</code>指向一个冻结的对象，所以添加新属性不起作用，严格模式时还会报错。</p>
-<p>除了将对象本身冻结，对象的属性也应该冻结。下面是一个将对象彻底冻结的函数。</p>
-<pre><code class="javascript">var constantize = (obj) =&gt; &#123;
-  Object.freeze(obj);
-  Object.keys(obj).forEach( (key, i) =&gt; &#123;
-    if ( typeof obj[key] === &#39;object&#39; ) &#123;
-      constantize( obj[key] );
+// new Vuex.Store()实例，得到一个数据仓储对象
+// 可以在组件中通过this.$store.state.xx 来访问store中的数据
+var store = createStore(&#123;
+    //state相当于组件中的data
+    state: &#123;
+        count: 0
+    &#125;,
+    //如果要修改store中state的值，需要调用 mutations提供的方法，可以通过this.$store.commit(&#39;方法名&#39;)来调用
+    mutations: &#123;
+        increment(state) &#123;
+            state.count++
+        &#125;,
+        //mutations函数参数列表中最多支持两个参数，其中参数1是state； 参数2是通过commit提交过来的参数；
+        subtract(state, obj) &#123;
+            console.log(obj)
+            state.count -= obj.step;
+        &#125;
+    &#125;,
+    getters: &#123;
+        //这里的getters只负责对外提供数据，不负责修改数据，如果想要修改 state 中的数据需要在mutations中修改
+        optCount: function (state) &#123;
+            return &#39;当前最新的count值是：&#39; + state.count
+        &#125;
     &#125;
-  &#125;);
+&#125;)
+
+// 总结：
+// 1. state中的数据，不能直接修改，如果想要修改，必须通过 mutations
+// 2. 如果组件想要直接 从 state 上获取数据： 需要 this.$store.state.***
+// 3. 如果组件想要修改数据，必须使用 mutations 提供的方法，需要通过 this.$store.commit(&#39;方法的名称&#39;， 唯一的一个参数)
+// 4. store中state上的数据在对外提供的时候建议做一层包装，推荐使用 getters。调用的时候则用this.$store.getters.***
+
+import &#123; createApp &#125; from &quot;vue&quot;;
+import App from &quot;./App.vue&quot;;
+import store from &#39;./store&#39;
+
+const app = createApp(App);
+//挂载路由实例(use方法挂载插件)
+app.use(store).mount(&quot;#app&quot;);
+
+#3.index.html
+&lt;body&gt;
+    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+
+#4.App.vue
+&lt;template&gt;
+    &lt;div&gt;
+        &lt;h1&gt;这是 App 组件&lt;/h1&gt;
+        &lt;hr&gt;
+        &lt;counter&gt;&lt;/counter&gt;
+        &lt;hr&gt;
+        &lt;amount&gt;&lt;/amount&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+    import counter from &quot;./components/counter.vue&quot;;
+    import amount from &quot;./components/amount.vue&quot;;
+
+    export default &#123;
+        data() &#123;
+            return &#123;&#125;;
+        &#125;,
+        components: &#123;
+            counter,
+            amount
+        &#125;
+    &#125;;
+&lt;/script&gt;
+
+#5.components/amount.vue
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;h3&gt;&#123;&#123; $store.getters.optCount &#125;&#125;&lt;/h3&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+#6.components/counter.vue
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;input type=&quot;button&quot; value=&quot;绑定事件-减少&quot; @click=&quot;sub&quot;&gt;
+    &lt;input type=&quot;button&quot; value=&quot;绑定事件-增加&quot; @click=&quot;add&quot;&gt;
+    &lt;br&gt;
+    &lt;input type=&quot;text&quot; v-model=&quot;$store.state.count&quot;&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default &#123;
+  data() &#123;
+    return &#123;
+    &#125;;
+  &#125;,
+  methods: &#123;
+    add() &#123;
+       this.$store.commit(&quot;increment&quot;);
+    &#125;,
+    sub() &#123;
+      this.$store.commit(&quot;subtract&quot;,&#123; step:3&#125;);
+    &#125;
+  &#125;
 &#125;;
+&lt;/script&gt;
 </code></pre>
-<h3 id="4-用function声明变量："><a href="#4-用function声明变量：" class="headerlink" title="4.用function声明变量："></a>4.用function声明变量：</h3><p>在ES2015之前，声明变量只有var 和 function 这两个关键字，var 用于声明普通变量，function用于声明函数或者方法（高级变量，方法和函数的区别在下面），因此function声明变量和function声明函数是一个意思，所以这部分内容放在了function声明函数里。</p>
-<p>同时var声明的变量和function声明的变量会有变量提升的问题。函数提升在前，变量提升在后。也就是function声明的变量在上面，var声明的变量在它的下面。</p>
-<img src="imgs/2021.10.09/图片1.png">
-
-<p>方法（method）和函数（function）的区别：<br>　　1）函数是一段代码，通过名字来进行调用。它能将一些数据（参数）传递进去进行处理，然后返回一些数据（返回值），也可以没有返回值。<br>　　所有传递给函数的数据都是显式传递的。函数和对象无关。<br>　　2）方法也是一段代码，也是通过名字来进行调用，但它跟一个对象相关联。方法和函数大致上是相同的，但有两个主要的不同之处：<br>　　方法中的数据是隐式传递的；方法和对象相关。<br>　　方法可以操作类内部的数据（请记住，对象是类的实例化–类定义了一个数据类型，而对象是该数据类型的一个实例化）</p>
-<p>方法（method）是通过对象调用js函数。也就是说，方法也是函数，只是比较特殊的函数。</p>
-<p>当将函数和对象和写在一起时，函数（function）就变成了方法（method）。有对象时的函数成为方法，无对象时的函数称为方法。</p>
-<h2 id="js函数的两种声明方式"><a href="#js函数的两种声明方式" class="headerlink" title="js函数的两种声明方式"></a>js函数的两种声明方式</h2><h3 id="1-用var声明函数"><a href="#1-用var声明函数" class="headerlink" title="1.用var声明函数"></a>1.用var声明函数</h3><img src="imgs/2021.10.09/图片2.png">
-
-<p>此操作是把函数赋值给刚声明的h。 函数只有在var语句声明之后才能被调用，这种写法导致只能在这个函数下面写的代码才能调用此函数。</p>
-<h3 id="2-用function声明函数"><a href="#2-用function声明函数" class="headerlink" title="2.用function声明函数"></a>2.用function声明函数</h3><img src="imgs/2021.10.09/图片3.png">
-
-<p>函数可以在function声明之前被调用，这种写法可以使在这个函数上面写的代码就可以调用此函数。</p>
-<h3 id="3-用Function-构造器声明函数"><a href="#3-用Function-构造器声明函数" class="headerlink" title="3.用Function()构造器声明函数"></a>3.用Function()构造器声明函数</h3><p>不推荐这种用法, 容易出问题</p>
 
         
     </div>
@@ -255,12 +258,866 @@ foo.prop = 123;
 <footer class="article-footer">
     <div class="article-more-info">
     <div class="article-date">
-  <time datetime="2021-10-09T11:58:30.000Z" itemprop="datePublished">2021-10-09</time>
+  <time datetime="2022-02-13T04:45:24.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-14_vue开发命令npm-run-dev输入后的执行过程"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzks8ap00000vov939wggxj7.html">14_vue开发命令npm run dev输入后的执行过程</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <ol>
+<li>npm run dev 是执行配置在package.json中的脚本，比如：</li>
+</ol>
+<pre><code class="javascript">&quot;scripts&quot;: &#123;
+    &quot;dev&quot;: &quot;webpack-dev-server --inline --progress --config webpack.conf.js&quot;,
+    &quot;start&quot;: &quot;npm run dev&quot;,
+    &quot;lint&quot;: &quot;eslint --ext .js,.vue src&quot;,
+    &quot;build&quot;: &quot;node build/build.js&quot;
+  &#125;,
+  
+npm run dev 执行的就是webpack-dev-server --inline ....命令,通过webpack-dev-server开启一个本地调试服务器。
+</code></pre>
+<ol start="2">
+<li><p>在webpack.conf.js文件中找到App的入口文件  ./src/main.js</p>
+<pre><code>entry: &#123;
+   app: &#39;./src/main.js&#39;
+&#125;,
+</code></pre>
+</li>
+<li><p>main.js用到了页面元素#app、用到了路由和根组件App，并根据这些信息创建一个vue实例</p>
+</li>
+</ol>
+<pre><code>new Vue(&#123;
+     el: &#39;#app&#39;,
+     router,
+     components: &#123; App &#125;,
+     template: &#39;&lt;App/&gt;&#39;
+&#125;)
+</code></pre>
+<ol start="4">
+<li>webpack-dev-server会将main.js中的代码以及所有引用打包成一个bundle.js，然后配置到内存中</li>
+<li>webpack.config.js中配置的HtmlWebpackPlugin会将index.html文件配置到内存，并且将内存中的bundle.js注入到内存中的index.html中</li>
+</ol>
+<pre><code>new HtmlWebpackPlugin(&#123;
+      filename: &#39;index.html&#39;,
+      template: &#39;index.html&#39;,
+      inject: true
+&#125;),
+</code></pre>
+<ol start="6">
+<li>根据webpack.config.js中所配置的devServer的信息，会决定是否自动打开浏览器呈现网页</li>
+</ol>
+<pre><code>devServer: &#123; 
+    open: true, // 自动打开浏览器
+    port: 3000, // 设置启动时候的运行端口
+    contentBase: &#39;src&#39;, // 指定托管的根目录
+    hot: true // 启用热更新 的 第1步
+&#125;,
+</code></pre>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T04:42:05.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-13_函数的去抖和节流"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzks19kt00001wv9405u4kt5.html">13_函数的去抖和节流</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <h2 id="函数的去抖"><a href="#函数的去抖" class="headerlink" title="函数的去抖"></a>函数的去抖</h2><p>函数调用n秒后才会执行，如果函数在n秒内被调用的话则函数不执行，重新计算执行时间。函数去抖主要避免快速多次执行函数（操作DOM，加载资源等等）给内存带来大量的消耗从而一定程度上降低性能问题。</p>
+<p>  函数去抖的应用场景：<br>    1.监控键盘keypress事件，每当内容变化的时候就向服务器发送请求<br>    2.在页面滚动的时候监控页面的滚动事件，会频繁执行scroll事件<br>    3.监控页面的resize事件，拉动窗口改变大小的时候，resize事件被频繁的执行</p>
+<p>上面三种场景中都会频繁触发指定事件，比如第一种情况，每当输入框内容变化之后就向服务器发送请求，可能会导致一秒钟向服务器请求很多次，这显然是不合理的，我们可以使用函数去抖来优化。</p>
+<pre><code>//loadsh里有去抖函数的封装
+
+ &lt;input type=&quot;text&quot; oninput=&quot;textInput()&quot;&gt;
+       
+       //模拟发送请求的方法
+        function ajax() &#123;
+            console.log(&quot;发送请求&quot;)
+        &#125;
+        //文本框输入内容的时候频繁的触发func方法
+        var func = debounce(ajax,1000)
+        function textInput() &#123;
+            func();
+        &#125;
+    
+        //函数去抖方法的封装
+        //debounce: 当调用动作n毫秒后，才会执行该动作，若在这n毫秒内又调用此动作则将重新计算执行时间。
+        function debounce(method, delay) &#123;
+            var timer = null;
+            return function () &#123;
+                var context = this
+                var args = arguments;
+                clearTimeout(timer);
+                timer = setTimeout(function () &#123;
+                    method.apply(context, args);
+                &#125;, delay);
+            &#125;
+        &#125;
+</code></pre>
+<h2 id="函数的节流"><a href="#函数的节流" class="headerlink" title="函数的节流"></a>函数的节流</h2><p>函数节流（throttle）：函数预先设定一个执行周期(或者节流阀)，当调用动作的时刻大于等于执行周期则执行该动作，然后进入下一个新周期。</p>
+<pre><code>function throttle(method,duration)&#123;
+        var  begin = new Date();
+        return function()&#123;
+            var context = this
+            var args=arguments
+            var current=new Date();
+            if(current-begin&gt;=duration)&#123;
+                 method.apply(context,args);
+                 begin = current;
+            &#125;
+        &#125;
+&#125;
+function resizehandler()&#123;
+    console.log(++n);
+&#125;
+window.onresize=throttle(resizehandler,500);
+</code></pre>
+<p>函数节流的应用场景：<br>1.上拉下拉刷新，每拉动一次彻底完毕之后才可以下一次拉动<br>2.图片轮播动画，每一张图片动画完成之后才开始下一个图片的动画</p>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T04:33:24.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-12_跨域问题的解决方案"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkrt8zl0000ycv9adxhabkz.html">12_跨域问题的解决方案</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <h2 id="什么是同源策略？"><a href="#什么是同源策略？" class="headerlink" title="什么是同源策略？"></a>什么是同源策略？</h2><p>同源策略可防止 JavaScript 发起跨域请求。源被定义为 URI、主机名和端口号的组合。此策略可防止页面上的恶意脚本通过该页面的文档对象模型，访问另一个网页上的敏感数据。</p>
+<p>同源策略： 协议、主机、端口必须完全一致。</p>
+<h2 id="跨域问题产生的原因？"><a href="#跨域问题产生的原因？" class="headerlink" title="跨域问题产生的原因？"></a>跨域问题产生的原因？</h2><p>浏览器的同源策略导致了跨域。在前端开发中，当我们使用ajax/fetch这些技术向服务器发送网络请求的时候，当协议、主机（域名）、端口号有任何一个不一致的时候，则构成跨域。</p>
+<p>浏览器只有使用ajax发送请求才会出现跨域。href属性与src属性不会出现跨域。</p>
+<h2 id="跨域问题的解决方案？"><a href="#跨域问题的解决方案？" class="headerlink" title="跨域问题的解决方案？"></a>跨域问题的解决方案？</h2><p>跨域问题有很多中解决方案：我所用过的有：</p>
+<p>1.jsonp 他的本质是使用script标签去发送请求，然后服务器返回一段js脚本以供客户端执行</p>
+<p>2.cors 他需要在服务器端配置跨域访问的响应头</p>
+<pre><code> res.writeHead(200, &#123;
+        &quot;Content-Type&quot;: &quot;text/html; charset=UTF-8&quot;,
+        &quot;Access-Control-Allow-Origin&quot;:&#39;http://localhost&#39;,
+        &#39;Access-Control-Allow-Methods&#39;: &#39;GET, POST, OPTIONS&#39;,
+        &#39;Access-Control-Allow-Headers&#39;: &#39;X-Requested-With, Content-Type&#39;
+    &#125;);
+</code></pre>
+<p>3.在前端的工程化项目(webpack)中,我们可以通过配置devserver的proxy来解决跨域访问的问题。他的原理是在本地开启一个服务器向数据服务器发送请求，因为服务器和服务器之间是没有跨域，配置在客户端。</p>
+<p>4.但是因为webpack的devserver只在开发环境下有效，当项目发布上线之后仍然会有跨域问题，为了解决项目上线的跨域问题，我们配置服务器的反向代理（nginx），配置在服务器的。</p>
+<p>5.除此之外，我还知道当项目打包成apk之后就不存在跨域问题了，所以如果项目要打包成apk，我们需要在项目中的所有请求中写全路径(此时我们可以配置axios.default.baseURL来解决)</p>
+<p>6.iframe 嵌套通讯，postmessage</p>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T04:22:43.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-11_MVVM模式和MVC模式"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkrdt230000x8v90f79027s.html">11_MVVM模式和MVC模式</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <h2 id="什么是mvvm？"><a href="#什么是mvvm？" class="headerlink" title="什么是mvvm？"></a>什么是mvvm？</h2><ul>
+<li><p>MVVM最早由微软提出来，它借鉴了桌面应用程序的MVC思想，在前端页面中，把Model用纯JavaScript对象表示，View负责显示，两者做到了最大限度的分离，把Model和View关联起来的就是ViewModel。</p>
+</li>
+<li><p>ViewModel负责把Model的数据同步到View显示出来，还负责把View的修改同步回Model</p>
+</li>
+<li><p>View 和 Model 之间的同步工作完全是自动的，无需人为干涉（由viewModel完成）</p>
+</li>
+<li><p>因此开发者只需关注业务逻辑，不需要手动操作DOM, 不需要关注数据状态的同步问题，复杂的数据状态维护完全由 MVVM 来统一管理</p>
+</li>
+</ul>
+<h2 id="MVVM模式的优点"><a href="#MVVM模式的优点" class="headerlink" title="MVVM模式的优点"></a>MVVM模式的优点</h2><p>1、低耦合：MVVM模式中，数据是独立于UI的，ViewModel只负责处理和提供数据，UI想怎么处理数据都由UI自己决定，ViewModel不涉及任何和UI相关的事，即使控件改变（input换成p）,ViewModel几乎不需要更改任何代码，专注自己的数据处理就可以了   //模块和模块之间他们的依赖关系</p>
+<p>2.自动同步数据:ViewModel通过双向数据绑定把View层和Model层连接了起来，View和Model这两者可以自动同步。程序员不需要手动操作DOM, 不需要关注数据状态的同步问题，MVVM 统一管理了复杂的数据状态维护</p>
+<p>3、可重用性：你可以把一些视图逻辑放在一个ViewModel里面，让很多view重用这段视图逻辑。</p>
+<p>4、独立开发：开发人员可以专注于业务逻辑和数据的开发（ViewModel），设计人员可以专注于页面设计。</p>
+<p>5、可测试：ViewModel里面是数据和业务逻辑，View中关注的是UI，这样的做测试是很方便的，完全没有彼此的依赖，不管是UI的单元测试还是业务逻辑的单元测试，都是低耦合的</p>
+<h2 id="MVVM-和-MVC-的区别"><a href="#MVVM-和-MVC-的区别" class="headerlink" title="MVVM 和 MVC 的区别"></a>MVVM 和 MVC 的区别</h2><p>mvc 和 mvvm 其实区别并不大。都是一种设计思想，主要区别如下：<br>1.mvc 中 Controller演变成 mvvm 中的 viewModel<br>2.mvvm 通过数据来驱动视图层的显示而不是节点操作。<br>3.mvc中Mmodel和View是可以直接打交道的，造成Model层和View层之间的耦合度高。而mvvm中Model和View不直接交互，而是通过中间桥梁ViewModel来同步<br>4.mvvm主要解决了mvc中大量的DOM 操作，使页面渲染性能降低，加载速度变慢，影响用户体验。</p>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T04:15:38.000Z" itemprop="datePublished">2022-02-13</time>
 </div>
     
     
         <div class="article-tag">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AF%B9%E4%B8%89%E8%80%85%E7%9A%84%E5%A3%B0%E6%98%8E%E6%96%B9%E5%BC%8F%E8%BF%9B%E8%A1%8C%E5%8C%BA%E5%88%86/" rel="tag">对三者的声明方式进行区分</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%80%E4%B9%88%E6%98%AFMVVM%EF%BC%8CMVVM%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BC%98%E7%82%B9%E4%BB%A5%E5%8F%8A%E4%B8%8EMVC%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="tag">什么是MVVM，MVVM模式的优点以及与MVC模式的区别</a></li></ul>
+        </div>
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-10_Vue-diff算法原理"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkqxjap0000wov90uh3hgic.html">10_Vue-diff算法原理</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <img src="imgs/2022.02.13/图片1.png">
+
+<ul>
+<li>Vue.js通过编译将template 模板转换成渲染函数(render ) ，执行渲染函数就可以得到一个虚拟节点树</li>
+<li>VNode 虚拟节点：（它可以代表一个真实的 dom 节点。）通过 createElement 方法能将 VNode 渲染成 dom 节点。（简单地说，vnode可以理解成节点描述对象，它描述了应该怎样去创建真实的DOM节点。）</li>
+<li>patch(也叫做patching算法)：虚拟DOM最核心的部分，它可以将vnode 渲染成真实的DOM，这个过程是对比新旧虚拟节点之间有哪些不同，然后根据对比结果找出需要更新的的节点进行更新。（这点我们从单词含义就可以看出， patch本身就有补丁、修补的意思，其实际作用是在现有DOM上进行修改来实现更新视图的目的。Vue的Virtual DOM Patching算法是基于Snabbdom的实现，并在些基础上作了很多的调整和改进。）</li>
+</ul>
+<img src="imgs/2022.02.13/图片2.png">
+
+<h2 id="a-Vue2-x-diff算法原理"><a href="#a-Vue2-x-diff算法原理" class="headerlink" title="a) Vue2.x diff算法原理"></a>a) Vue2.x diff算法原理</h2><p>传统diff算法通过循环递归对节点进行依次对比效率低下，算法复杂度达到O(N^3)，主要原因在于其追求完全比对和最小修改，而React、Vue则是放弃了完全比对及最小修改，才实现从O(N^3) =&gt; O(N)。</p>
+<p>Vue2 diff过程整体遵循深度优先、同层比较的策略。 当数据发生改变时，会调用Dep.notify通知所有Watcher，调用patch给真实的DOM打补丁，更新相应的视图。 </p>
+<img src="imgs/2022.02.13/图片3.png">
+
+<h2 id="b-Vue3-0-diff"><a href="#b-Vue3-0-diff" class="headerlink" title="b) Vue3.0 diff"></a>b) Vue3.0 diff</h2><p>vue2.x中的虚拟dom是进行<strong>「全量的对比」</strong>，在运行时会对所有节点生成一个虚拟节点树，当页面数据发生变更好，会遍历判断virtual dom所有节点（包括一些不会变化的节点）有没有发生变化；虽然说diff算法确实减少了多DOM节点的直接操作，但是这个<strong>「减少是有成本的」</strong>，如果是复杂的大型项目，必然存在很复杂的父子关系的VNode,<strong>「而Vue2.x的diff算法，会不断地递归调用 patchVNode，不断堆叠而成的几毫秒，最终就会造成 VNode 更新缓慢」</strong>。 </p>
+<p>在Vue3.0中，在这个模版编译时，编译器会在动态标签末尾加上 /* Text*/ PatchFlag。<strong>「也就是在生成VNode的时候，同时打上标记，在这个基础上再进行核心的diff算法」</strong>并且 PatchFlag 会标识动态的属性类型有哪些，比如这里 的TEXT 表示只有节点中的文字是动态的。而patchFlag的类型也很多。这里直接引用一张图片。</p>
+<img src="imgs/2022.02.13/图片4.png">
+
+<p>其中大致可以分为两类：</p>
+<ul>
+<li>当 patchFlag 的值「大于」 0 时，代表所对应的元素在 patchVNode 时或 render 时是可以被优化生成或更新的。</li>
+<li>当 patchFlag 的值「小于」 0 时，代表所对应的元素在 patchVNode 时，是需要被 full diff，即进行递归遍历 VNode tree 的比较更新过程。</li>
+</ul>
+<p>总结：<strong>「Vue3.0对于不参与更新的元素，做静态标记并提示，只会被创建一次，在渲染时直接复用。」</strong></p>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-12T08:05:50.000Z" itemprop="datePublished">2022-02-12</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-09_mongodb数据库使用流程"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckz0tqj9l0000mcv968j96rzy.html">09_mongodb数据库使用流程</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <p>使用mongodb数据库的方式</p>
+<h2 id="安装："><a href="#安装：" class="headerlink" title="安装："></a><strong>安装</strong>：</h2><p>在<a target="_blank" rel="noopener" href="https://www.mongodb.org/dl/win32%E7%BD%91%E5%9D%80%E4%B8%AD%E4%B8%8B%E8%BD%BD64%E4%BD%8Dmongodb%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E6%9C%AC%E6%9C%BA%E6%98%AF64%E4%BD%8D%E7%94%B5%E8%84%91%EF%BC%8C%E5%9C%A8%E6%AD%A4%E7%BD%91%E5%9D%80%E4%B8%AD%E4%B8%8B%E8%BD%BD%E5%8D%B3%E5%8F%AF%EF%BC%89">https://www.mongodb.org/dl/win32网址中下载64位mongodb数据库（本机是64位电脑，在此网址中下载即可）</a></p>
+<p>在<a target="_blank" rel="noopener" href="https://www.mongodb.org/dl/win32/i386%E7%BD%91%E5%9D%80%E4%B8%AD%E4%B8%8B%E8%BD%BD32%E4%BD%8Dmongodb%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%82">https://www.mongodb.org/dl/win32/i386网址中下载32位mongodb数据库。</a></p>
+<p>下载完成后，双击进行安装，按提示点击即可。（注意下图中的默认选项取消，否则会下载的非常慢！原因是他会在中途帮你下载推荐的东西）</p>
+<img src="imgs/2022.01.30/图片1.png">
+
+<p>注意：安装完成后在电脑上找不到这个软件图标。启动方式是通过cmd命令行进行启动。</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用:"></a><strong>使用:</strong></h2><h3 id="一、启动mongodb数据库。"><a href="#一、启动mongodb数据库。" class="headerlink" title="一、启动mongodb数据库。"></a><strong>一、启动mongodb数据库。</strong></h3><p>在cmd中输入命令<code>mongod</code>回车，看到 waiting for connections on port 27017表示mongodb数据库启动成功，等待连接。注意这个cmd命令行窗口不能关闭，否则会关闭mongobd数据库。</p>
+<h3 id="二、客户端连接mongodb数据库。"><a href="#二、客户端连接mongodb数据库。" class="headerlink" title="二、客户端连接mongodb数据库。"></a><strong>二、客户端连接mongodb数据库。</strong></h3><p>连接mongodb数据库有两种方式：</p>
+<p>方法一：再打开一个cmd窗口，输入<code>mongo</code>命令（连接上数据库），输入<code>show dbs;</code>命令（查看有几个数据库）</p>
+<p>方法二：使用mongodb客户端软件（注意：因为方法一通过输入命令操作数据库比较麻烦，本文使用方法二）。打开mongdb客户端软件，点击connect按钮进行配置，使mongodb客户端连接上mongodb数据库。（不用改动任何配置，使用默认即可，mongodb数据库的端口号是27017）</p>
+<h3 id="三、客户端操作mongodb数据库。"><a href="#三、客户端操作mongodb数据库。" class="headerlink" title="三、客户端操作mongodb数据库。"></a><strong>三、客户端操作mongodb数据库。</strong></h3><h4 id="1-客户端常用命令"><a href="#1-客户端常用命令" class="headerlink" title="1.客户端常用命令"></a><strong>1.客户端常用命令</strong></h4><p>然后在该mongodb客户端软件中输入相关命令进行填写数据库。常用的命令如下：</p>
+<pre><code>// 删除当前使用数据库
+db.dropDatabase();   
+
+//创建youshi数据库（创建后不会显示，必须有数据填入才能显示该数据库）
+use youshi
+
+// 向youshi数据库里的student集合下插入一条数据
+db.student.insert(&#123;id:1,name:&quot;花仙子&quot;&#125;)
+
+// 查看student集合下的所有数据
+db.student.find()
+
+// 删除student集合
+db.student.drop();
+
+db.dou_ting_ting.drop();
+
+db.dou_ting_tings.find()
+
+//删除集合下的数据 
+db.dou_ting_tings.remove(&#123;&#125;)
+</code></pre>
+<h4 id="2-批量插入数据库的方法"><a href="#2-批量插入数据库的方法" class="headerlink" title="2.批量插入数据库的方法"></a><strong>2.批量插入数据库的方法</strong></h4><p>1.例如通过记事本方式导入，把该写入数据的记事本放在桌面或者你需要放入的位置（记住路径）</p>
+<img src="imgs/2022.01.30/图片2.png">
+
+<p>打开新的cmd命令行，输入命令<code>mongoimport -d igeek -c student ./student.txt</code>（也就是mongoimport -d 数据库名字 -c 集合的名字 文件名 -d参数表示需要往哪个数据库导入数据，-c参数表示需要往哪个集合（表）中导入数据）</p>
+<p>2.数据库导入成功，在mongodb客户端查看。（如何查看mongodb数据库都有哪些命令？在c盘/Program Files/MongoDB/Server/4.0/bin中文件名，去掉后缀，即是mongodb数据库的命令）</p>
+<h3 id="四、Vscode连接数据库。"><a href="#四、Vscode连接数据库。" class="headerlink" title="四、Vscode连接数据库。"></a><strong>四、Vscode连接数据库。</strong></h3><p>然后在vscode中进行连接mongodb数据库，使后台能够操作数据库。</p>
+<p>1.首先对vscode的文件夹进行一系列初始化操作（详情请看我的另外一篇文章）。</p>
+<p>这里以node的express后台连接数据库为例：在vscode从终端打开中输入命令<code>npm init -y</code>出现package.json文件 ， <code>npm install express</code>出现node_modules文件夹，建立app.js文件，在app.js文件中输入 </p>
+<img src="imgs/2022.01.30/图片3.png">
+
+<p>初始化操作完毕。</p>
+<p>2.安装mongoose。在vscode中输入命令<code>npm install mongoose</code>（用node安装mongoose），这样能在后台能够通过node的mongoose去连接数据库。</p>
+<p>3.在app.js中引入mongoose。</p>
+<img src="imgs/2022.01.30/图片4.png">
+
+<p>4.使用mongoose连接数据库。</p>
+<img src="imgs/2022.01.30/图片5.png">
+
+<p>5.输入命令<code>nodemon app.js</code>，显示“连接成功”说明数据库已经连接到后台了。</p>
+<h3 id="五、vscode操作数据库。"><a href="#五、vscode操作数据库。" class="headerlink" title="五、vscode操作数据库。"></a><strong>五、vscode操作数据库。</strong></h3><h4 id="1-后端操作数据库"><a href="#1-后端操作数据库" class="headerlink" title="1.后端操作数据库"></a><strong>1.后端操作数据库</strong></h4><p>1.在app.js中声明一个Scheme</p>
+<img src="imgs/2022.01.30/图片6.png">
+
+<p>2.在app.js中创建Model</p>
+<img src="imgs/2022.01.30/图片7.png">
+
+<p>3.在app.js中写接口并且向数据库的animal集合中插入数据</p>
+<img src="imgs/2022.01.30/图片8.png">
+
+<p>测试该接口是否能用，在浏览器中输入localhost:8000/save，显示“保存数据成功”，说明接口创建成功。</p>
+<p>补充：req为从浏览器获取数据，res为向浏览器发送数据。req.body()方法为后台从前台获取数据，res.send()方法为后台向前台发送数据。集合名.find()方法为在数据库中查找对应的条件，集合名.save()方法为保存到数据库，集合名.remove()方法为删除数据库中的数据。new 集合/对象名()为新建一个集合/对象（在数据库中叫集合，在代码中叫对象）。</p>
+<p>4.打开mongodb客户端软件，刷新数据库，发现igeek数据库中原本只有student集合，现在多了个animals集合。（注意接口中写的是animal集合对应的就是animals集合，会多个s，记住必须是带s的，自己导入的数据库也得带s）</p>
+<p>5.后端连接数据库完毕。</p>
+<h4 id="2-优化"><a href="#2-优化" class="headerlink" title="2.优化"></a><strong>2.优化</strong></h4><p>1.在vscode中输入命令<code>npm i art-template express-art-template</code></p>
+<p>2.把下面代码注释掉</p>
+<img src="imgs/2022.01.30/图片9.png">
+
+<p>3.新建一个views文件夹，并在views里新建一个student.html文件。</p>
+<img src="imgs/2022.01.30/图片10.png">
+
+<p>4.在app.js中配置art-template</p>
+<img src="imgs/2022.01.30/图片11.png">
+
+<p>5.写接口</p>
+<img src="imgs/2022.01.30/图片12.png">
+
+<p>输入命令<code>Nodemon app.js</code>启动端口</p>
+<p>在浏览器中输入localhost:8000/student，显示“学生列表页面”表示写接口成功。</p>
+<p>6.建立router文件夹，在router文件夹中建立student.js文件。写入代码</p>
+<img src="imgs/2022.01.30/图片13.png">
+
+<p>并把上一步在app.js中写的/student接口去掉。</p>
+<p>7.在app.js中写入。这样我们就把接口写在router文件夹里去了。</p>
+<img src="imgs/2022.01.30/图片14.png">
+
+<p>8.连数据库查数据。创建一个models文件夹（放所有和数据相关的代码），在models文件夹中建立student.js文件。写入如下代码</p>
+<img src="imgs/2022.01.30/图片15.png">
+
+<p>9.在接口中查数据。也就是在router/student.js中查数据</p>
+<img src="imgs/2022.01.30/图片16.png">
+
+<p>补充：</p>
+<img src="imgs/2022.01.30/图片17.png">
+
+<p>10.后端重构完成</p>
+<h4 id="3-前端使用数据库"><a href="#3-前端使用数据库" class="headerlink" title="3.前端使用数据库"></a><strong>3.前端使用数据库</strong></h4><p>1.在前台页面渲染数据。</p>
+<p>在views/student.html中写入代码：</p>
+<img src="imgs/2022.01.30/图片18.png">
+
+<img src="imgs/2022.01.30/图片19.png">
+
+<img src="imgs/2022.01.30/图片20.png">
+
+<p>显示效果如下：</p>
+<img src="imgs/2022.01.30/图片21.png">
+
+<p>表单已经有了，需要提交给后台，因为form表单提交用的post请求，则后台需要有接口，并且是post请求。</p>
+<p>2.写post接口：在router/student.js中写入</p>
+<img src="imgs/2022.01.30/图片22.png">
+
+<p>3.如何从post请求获取参数？安装body-parser，输入命令<code>npm install body-parser</code></p>
+<p>在app.js中引入body-parser，并配置</p>
+<img src="imgs/2022.01.30/图片23.png">
+
+<p>然后重启接口，输入命令<code>nodemon app.js</code></p>
+<p>4.在router/student.js中写入</p>
+<img src="imgs/2022.01.30/图片24.png">
+
+<img src="imgs/2022.01.30/图片25.png">
+
+<p>5.把数据保存到数据库：</p>
+<img src="imgs/2022.01.30/图片26.png">
+
+<p>6.结束。</p>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-01-30T04:44:01.000Z" itemprop="datePublished">2022-01-30</time>
+</div>
+    
+    
+        <div class="article-tag">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongodb%E7%9A%84%E5%AE%89%E8%A3%85%E3%80%81%E4%BD%BF%E7%94%A8%EF%BC%8C%E4%B8%8Enode%E5%90%8E%E7%AB%AF%E8%BF%9E%E6%8E%A5%EF%BC%8C%E5%89%8D%E7%AB%AF%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="tag">mongodb的安装、使用，与node后端连接，前端的使用</a></li></ul>
+        </div>
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-08_js经典输出顺序问题"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckwvnv7iz0000l8v934zt8fgu.html">08_js经典输出顺序问题</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <p>分析下面代码：</p>
+<pre><code class="javascript">&lt;script&gt;
+    console.log(11);
+    setTimeout(function()&#123;
+        console.log(22);
+    &#125;)
+    // Promise所入参的函数是立马执行的
+    new Promise(function(resolve)&#123;
+        console.log(33);
+        resolve();
+        console.log(44);
+    &#125;)
+    // Promise的then是在resolve和reject后执行的
+    .then(function()&#123;
+        console.log(55);
+    &#125;)
+    new Promise(function(resolve)&#123;
+        resolve()
+    &#125;)
+    .then(function()&#123;
+        console.log(77);
+    &#125;)
+    console.log(66);
+    // 打印顺序是  11  33  44  66  55  77  22
+&lt;/script&gt;
+</code></pre>
+<p>分析：</p>
+<img src="imgs/2021.12.07/图片1.png">
+
+<p>整个script代码会先进入主栈，从上向下运行，则先<strong>打印11</strong></p>
+<img src="imgs/2021.12.07/图片2.png">
+
+<p>然后是setTimeout定时器会放在线程里（这里不考虑线程，只需知道线程处理完后都会交给队列），由于定时器没有设置时间，然后会进入宏任务队列。然后是Promise，Promise所入参的函数立马执行，则会<strong>打印33</strong>，这里有resolve，一resolve这个then会立马执行，Promise的then会进入微任务队列，Promise里还剩下一个44，所以在主栈中<strong>打印44</strong>。然后还是一个Promise，Promise里没有打印，Promise的then会进入微任务队列，接着<strong>打印66</strong>。</p>
+<img src="imgs/2021.12.07/图片3.png">
+
+<p>主栈所有任务执行完毕，主栈清空，主栈清空后，会到任务队列拿任务执行，先把微任务队列的所有任务拿到主栈执行，根据队列的先进先出原则，会先拿微任务队列的55到主栈，<strong>55执行完毕</strong>，主栈清空，接着拿微任务队列的77,<strong>77执行完毕</strong>，主栈清空。</p>
+<img src="imgs/2021.12.07/图片4.png">
+
+<img src="imgs/2021.12.07/图片5.png">
+
+<img src="imgs/2021.12.07/图片6.png">
+
+<p>然后去宏任务队列拿任务22到主栈，<strong>22执行完毕</strong>，主栈清空，所有任务执行完毕。</p>
+<blockquote>
+<p>总结：默认情况下，script整个代码块会入主栈执行，当遇到setTimeout，setInterval等代码块的时候会入宏任务队列，当遇到process.nextTick，Promise.then的时候会入微任务队列，当主栈执行完整个script代码块的时候，会先从微任务队列把所有的微任务放到主栈执行（遵循先进先出原则），当微任务队列的所有任务清空后，再从宏任务队列拿一个任务到主栈执行，然后依次反复。</p>
+</blockquote>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2021-12-07T05:03:48.000Z" itemprop="datePublished">2021-12-07</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-07_对象的引用、浅拷贝、深拷贝"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckwstx9ps0000mwv9ew0l4cy0.html">07_对象的引用、浅拷贝、深拷贝</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <p>本文是对对象在内存中的三种表现形式进行讲解：</p>
+<h2 id="1-对象的引用赋值："><a href="#1-对象的引用赋值：" class="headerlink" title="1.对象的引用赋值："></a>1.对象的引用赋值：</h2><p>对象是引用类型，引用类型在不同的编程语言中叫法不同，在c语言、c++中引用类型叫指针，在java、javaScript语言中叫引用类型。（本文以javaScript语言为例）</p>
+<pre><code>&lt;script&gt;
+    const info = &#123;name:&quot;yoyo&quot;,age:18&#125;;
+    const obj = info;
+    info.name = &quot;kobe&quot;;
+    console.log(obj.name);//kobe
+&lt;/script&gt;
+</code></pre>
+<p>在内存中的表现：</p>
+<p>首先<code>const info = &#123;name :&quot;yoyo&quot; , age: 18&#125;;</code>在内存中实现：</p>
+<p>info是对象，一旦是对象，就会在堆内存里创建一个空间，用来存放对象里的相关内容。栈里放的是这块空间的地址，比如0x100（一般内存地址都是16进制，则以0x开头）</p>
+<img src="imgs/2021.12.05/图片1.png">
+
+<img src="imgs/2021.12.05/图片2.png">
+
+<p>若此时<code>const obj = info</code>，则在内存中的表现为：取出info的内存地址0x100，然后把该内存地址赋值给obj。</p>
+<img src="imgs/2021.12.05/图片3.png">
+
+<img src="imgs/2021.12.05/图片4.png">
+
+<p>若此时<code>info.name=&quot;kabe&quot;</code>，则意味着0x100.name=”kobe”</p>
+<img src="imgs/2021.12.05/图片5.png">
+
+<img src="imgs/2021.12.05/图片6.png">
+
+<p>此时打印<code>console.log(obj.name)</code>，结果为kobe，因为obj和info指向的同一个对象。</p>
+<p><strong>为什么叫对象的引用赋值？因为这个案例仅是把info对象的引用（地址）赋值给了obj</strong>。</p>
+<h2 id="2-对象的浅拷贝"><a href="#2-对象的浅拷贝" class="headerlink" title="2.对象的浅拷贝"></a>2.对象的浅拷贝</h2><h3 id="第一种类型："><a href="#第一种类型：" class="headerlink" title="第一种类型："></a>第一种类型：</h3><pre><code>&lt;script&gt;
+    const info = &#123;name:&quot;yoyo&quot;,age:18&#125;;
+    //assign方法会把info对象的所有属性拷贝一份放&#123;&#125;里，然后作为返回值返回给obj
+    //浅拷贝的方法有很多，我这里选择assign方法做演示
+    const obj = Object.assign(&#123;&#125;,info);
+    info.name = &quot;kobe&quot;;
+    console.log(obj.name)   //yoyo
+&lt;/script&gt;
+</code></pre>
+<p>在内存中的表现：</p>
+<p><code>const info = &#123;name :&quot;yoyo&quot; , age: 18&#125;;</code>在内存中的实现过程上面已展示。</p>
+<p><code>const obj = Object.assign(&#123;&#125;,info);</code>在内存中的实现过程</p>
+<img src="imgs/2021.12.05/图片7.png">
+
+<img src="imgs/2021.12.05/图片8.png">
+
+<p>若此时<code>info.name = &quot;kobe&quot;</code>，改变的是info对象的name，而不是拷贝后对象的name。</p>
+<img src="imgs/2021.12.05/图片9.png">
+
+<img src="imgs/2021.12.05/图片10.png">
+
+<p>打印<code>console.log(obj.name)</code>结果为yoyo，因为他们指向的不是同一个对象。</p>
+<h3 id="第二种类型："><a href="#第二种类型：" class="headerlink" title="第二种类型："></a>第二种类型：</h3><pre><code>&lt;script&gt;
+    const info = &#123;name:&quot;yoyo&quot;,age:18,friend:&#123;name:&quot;kobe&quot;,height:1.80&#125;&#125;;
+    //assign方法会把info对象的所有属性拷贝一份放&#123;&#125;里，然后作为返回值返回给obj
+    //浅拷贝的方法有很多，我这里选择assign方法做演示
+    const obj = Object.assign(&#123;&#125;,info);
+    info.friend.name = &quot;jame&quot;;
+    console.log(obj.frend.name)   //jame
+&lt;/script&gt;
+</code></pre>
+<p>在内存中的表现：</p>
+<p><code>const info = &#123;name:&quot;yoyo&quot;,age:18,friend:&#123;name:&quot;kobe&quot;,height:1.80&#125;&#125;;</code>在内存中的实现过程</p>
+<img src="imgs/2021.12.05/图片11.png">
+
+<img src="imgs/2021.12.05/图片12.png">
+
+<p><code>const obj = Object.assign(&#123;&#125;,info);</code>在内存中的实现过程</p>
+<img src="imgs/2021.12.05/图片13.png">
+
+<img src="imgs/2021.12.05/图片14.png">
+
+<p><code>info.friend.name = &quot;jame&quot;;</code>在内存中的实现过程</p>
+<img src="imgs/2021.12.05/图片15.png">
+
+<img src="imgs/2021.12.05/图片16.png">
+
+<p>打印<code>console.log(obj.frend.name)</code>结果为jame，原因是：虽然不是指向的同一个对象，但是不同对象里的对象是同一个。</p>
+<h2 id="3-对象的深拷贝"><a href="#3-对象的深拷贝" class="headerlink" title="3.对象的深拷贝"></a>3.对象的深拷贝</h2><pre><code>&lt;script&gt;
+    const info = &#123;name:&quot;yoyo&quot;,age:18,friend:&#123;name:&quot;kobe&quot;,height:1.80&#125;&#125;;
+    //JSOn.stringify方法把对象转化为字符串
+    //JSON.parse方法把字符串转化为对象（也就是还原），还原时会在内存中生成新的对象，和原来对象没有任何关系
+    const obj = JSON.parse(JSON.stringify(info));
+    info.friend.name = &quot;jame&quot;;
+    console.log(obj.friend.name);//kobe
+&lt;/script&gt;
+</code></pre>
+<p>上述借助了JSON方法对对象做了深拷贝，深拷贝后的对象和原先的对象没有任何关系，也就是对象里的所有内容都会拷贝一份新的，包括对象里的对象。（这里就不再重复画图了，原理一样，下面是关键步骤图）</p>
+<img src="imgs/2021.12.05/图片17.png">
+
+<img src="imgs/2021.12.05/图片18.png">
+
+<p>深拷贝实现还有其他方法，比如借助lodash第三方库，（用法是在js中先引入，再使用对应的方法）</p>
+<pre><code>&lt;script&gt;
+    const info = &#123;name:&quot;yoyo&quot;,age:18,friend:&#123;name:&quot;kobe&quot;,height:1.80&#125;&#125;;
+    //使用lodash库的方法进行深拷贝
+    const obj = _.cloneDeep(info);
+    info.friend.name = &quot;jame&quot;;
+    console.log(obj.friend.name);//kobe
+&lt;/script&gt;
+</code></pre>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2021-12-05T05:16:30.000Z" itemprop="datePublished">2021-12-05</time>
+</div>
+    
+    
+        <div class="article-tag">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BC%95%E7%94%A8%E3%80%81%E6%B5%85%E6%8B%B7%E8%B4%9D%E3%80%81%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B%E3%80%81%E4%B8%89%E8%80%85%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="tag">对象的引用、浅拷贝、深拷贝在内存中的实现过程、三者的区别</a></li></ul>
+        </div>
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-06_js基本类型和引用类型"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckwstwhy100008ov97drxan3v.html">06_js基本类型和引用类型</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <h2 id="js数据类型的种类"><a href="#js数据类型的种类" class="headerlink" title="js数据类型的种类"></a>js数据类型的种类</h2><p>js的数据类型分为两种：基本数据类型和引用数据类型（也叫对象类型）</p>
+<p>js的数据类型分为两种：基本数据类型和引用数据类型（也叫对象类型）</p>
+<ul>
+<li><p>常用的js基础数据类型有number, string, boolean, null, underfined</p>
+</li>
+<li><p>js引用数据类型有object,array,function,data等（除基本数据类型外都是引用数据类型）</p>
+</li>
+</ul>
+<h2 id="基本数据类型详解"><a href="#基本数据类型详解" class="headerlink" title="基本数据类型详解"></a>基本数据类型详解</h2><p>1.number类型。数字类型（整数和小数）</p>
+<p>2.string类型。字符串类型（通过单引号或者是双引号括起来的值）</p>
+<p>3.boolean类型。布尔类型（值只有两个：true和false）</p>
+<p>4.null类型。空类型（有值，但是不知道值属于什么数据类型，无法辨认。比如：number类型+boolean类型形成的值，这个值就是null）</p>
+<p>5.undefined类型。未定义数据类型（无值，因为没有值，所以不知道值的数据类型，js是通过值来判断数据类型的。比如：变量声明好了，但是没有赋值，这个值就是undefined）</p>
+<h2 id="引用数据类型详解"><a href="#引用数据类型详解" class="headerlink" title="引用数据类型详解"></a>引用数据类型详解</h2><p>1.object类型。对象类型（javaScript中所有对象的顶级父元素）</p>
+<p>2.array类型。数组类型</p>
+<p>3.function类型。函数类型（每个函数都是function类型的实例）</p>
+<p>4.data类型。数据类型（通过new Date()来定义Date对象）</p>
+<h2 id="两者区别"><a href="#两者区别" class="headerlink" title="两者区别"></a>两者区别</h2><ul>
+<li><p>基本数据类型是按值访问的，因为可以直接操作保存在变量中的实际值。</p>
+</li>
+<li><p>js的引用数据类型是保存在堆内存中的对象，与其他语言的不同是，你不可以直接访问堆内存空间中的位置和操作堆内存空间。只能操作对象在栈内存中的引用地址。</p>
+</li>
+<li><p>引用数据类型具有属性和方法，基本数据类型没有。</p>
+</li>
+</ul>
+<img src="imgs/2021.11.25/图片1.png">
+
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2021-11-25T08:10:01.000Z" itemprop="datePublished">2021-11-25</time>
+</div>
+    
+    
+        <div class="article-tag">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%AF%A6%E8%A7%A3/" rel="tag">js的基本数据类型和引用数据类型详解</a></li></ul>
         </div>
     
     </div>
@@ -273,7 +1130,7 @@ foo.prop = 123;
 
   
     <nav class="pagination">
-        <a class="extend prev" rel="prev" href="/page/2/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+        <a class="extend prev" rel="prev" href="/page/2/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next</a>
     </nav>
   
 </div>
@@ -310,23 +1167,23 @@ foo.prop = 123;
       <ul>
         
           <li>
-            <a href="/ckzkth9ho0000awv91ouzgrxo.html">21_vue的自定义指令</a>
+            <a href="/ckzkundlj0009psv92wak8gvv.html">35_vue3的hook与react的hook不同点</a>
           </li>
         
           <li>
-            <a href="/ckzktd6qh00030wv9e41w20ox.html">20_vue等单页面应用及其优缺点</a>
+            <a href="/ckzkundln000dpsv96d0aez56.html">34_vue的双向绑定的原理</a>
           </li>
         
           <li>
-            <a href="/ckzktd6qe00010wv947ll8kzu.html">19_vue-cli工作中如何自定义一个过滤器</a>
+            <a href="/ckzkundlk000apsv9940c90jb.html">33_vue-cli打包后会生成哪些文件</a>
           </li>
         
           <li>
-            <a href="/ckzktd6qg00020wv9emgh00qy.html">18_vue生命周期和生命周期钩子函数</a>
+            <a href="/ckzkundlm000cpsv9cyb7hf2r.html">32_vue利用keep-alive标签实现组件缓存功能</a>
           </li>
         
           <li>
-            <a href="/ckzktd6q400000wv90edjdd1i.html">17_vue监听键盘事件的按键修饰符</a>
+            <a href="/ckzkundll000bpsv9aqur46ce.html">31_vue-cli工程中如何使用背景图</a>
           </li>
         
       </ul>

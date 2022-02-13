@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>18_vue生命周期和生命周期钩子函数 | 小豆子的博客</title>
+    <title>22_自定义指令的钩子函数及其参数 | 小豆子的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     
@@ -105,7 +105,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-ckzktd6qg00020wv9emgh00qy" class="article article-type-post" itemscope
+    <article id="post-ckzkundlc0001psv9hu3jf7ol" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -121,7 +121,7 @@
             
   
     <h1 class="article-title" itemprop="name">
-      18_vue生命周期和生命周期钩子函数
+      22_自定义指令的钩子函数及其参数
     </h1>
   
 
@@ -131,7 +131,7 @@
         <div class="article-more-info article-more-info-post hairline">
 
             <div class="article-date">
-  <time datetime="2022-02-13T05:05:33.000Z" itemprop="datePublished">2022-02-13</time>
+  <time datetime="2022-02-13T05:23:16.000Z" itemprop="datePublished">2022-02-13</time>
 </div>
 
             
@@ -143,84 +143,34 @@
         </div>
 
         <div class="article-entry post-inner-html hairline" itemprop="articleBody">
-            <h2 id="什么是vue生命周期？"><a href="#什么是vue生命周期？" class="headerlink" title="什么是vue生命周期？"></a>什么是vue生命周期？</h2><p><code>vue 的生命周期是：</code> vue 实例从创建到销毁，也就是从<code>开始创建</code>、<code>初始化数据</code>、<code>编译模板</code>、<code>挂载Dom→渲染</code>、<code>更新→渲染</code>、<code>卸载</code>等一系列过程。</p>
-<h2 id="什么是vue生命周期钩子函数？"><a href="#什么是vue生命周期钩子函数？" class="headerlink" title="什么是vue生命周期钩子函数？"></a>什么是vue生命周期钩子函数？</h2><p>在vue声明周期过程中也会<code>运行</code>一些叫做<code>生命周期钩子的函数</code>，这给了<code>用户</code>在不同阶段<code>添加自己的代码</code>的机会。</p>
-<h2 id="22-vue生命周期钩子函数有哪些"><a href="#22-vue生命周期钩子函数有哪些" class="headerlink" title="22.vue生命周期钩子函数有哪些?"></a>22.vue生命周期钩子函数有哪些?</h2><table>
-<thead>
-<tr>
-<th>生命周期钩子函数（11个）</th>
-<th>类型</th>
-<th>详细</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>beforeCreate</td>
-<td>Function</td>
-<td>在<code>实例初始化之后</code>，数据观测 (data observer) 和 event/watcher 事件配置之前被调用。</td>
-</tr>
-<tr>
-<td>created</td>
-<td>Function</td>
-<td>在<code>实例创建完成后</code>被立即调用。在这一步，实例已完成以下的配置：<code>数据观测 (data observer)</code>， <code>属性和方法的运算</code>，<code>watch/event 事件回调</code>。然而，挂载阶段还没开始，$el 属性目前不可见。</td>
-</tr>
-<tr>
-<td>beforeMount</td>
-<td>Function</td>
-<td>在<code>挂载开始之前</code>被调用：相关的 render 函数首次被调用。</td>
-</tr>
-<tr>
-<td>mounted</td>
-<td>Function</td>
-<td><code>el</code> 被新创建的 <code>vm.$el</code> 替换，并<code>挂载到实例上去之后</code>调用该钩子。如果 root 实例挂载了一个文档内元素，当 mounted 被调用时 vm.$el 也在文档内。</td>
-</tr>
-<tr>
-<td>beforeUpdate</td>
-<td>Function</td>
-<td><code>数据更新时调用</code>，发生在虚拟 DOM 打补丁之前。这里适合在更新之前访问现有的 DOM，比如手动移除已添加的事件监听器。<strong>该钩子在服务器端渲染期间不被调用，因为只有初次渲染会在服务端进行。</strong></td>
-</tr>
-<tr>
-<td>updated</td>
-<td>Function</td>
-<td>由于数据更改导致的<code>虚拟 DOM 重新渲染和打补丁</code>，在这<code>之后</code>会<code>调用</code>该钩子。</td>
-</tr>
-<tr>
-<td>activated</td>
-<td>Function</td>
-<td><code>keep-alive 组件激活时调用</code>。<strong>该钩子在服务器端渲染期间不被调用。</strong></td>
-</tr>
-<tr>
-<td>deactivated</td>
-<td>Function</td>
-<td><code>keep-alive 组件停用时调用</code>。<strong>该钩子在服务器端渲染期间不被调用。</strong></td>
-</tr>
-<tr>
-<td>beforeUnmounted</td>
-<td>Function</td>
-<td>实例销毁之前调用。在这一步，实例仍然完全可用。<strong>该钩子在服务器端渲染期间不被调用。</strong></td>
-</tr>
-<tr>
-<td>unmounted</td>
-<td>Function</td>
-<td>Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。<strong>该钩子在服务器端渲染期间不被调用。</strong></td>
-</tr>
-<tr>
-<td>errorCaptured（2.5.0+ 新增）</td>
-<td>(err: Error, vm: Component, info: string) =&gt; ?boolean</td>
-<td>当捕获一个来自子孙组件的错误时被调用。此钩子会收到三个参数：错误对象、发生错误的组件实例以及一个包含错误来源信息的字符串。此钩子可以返回 false 以阻止该错误继续向上传播。</td>
-</tr>
-</tbody></table>
-<p><strong>注意：</strong></p>
-<pre><code>1、mounted、updated不会承诺所有的子组件也都一起被挂载。如果你希望等到整个视图都渲染完毕，可以用vm.$nextTick替换掉mounted、updated：
-
-updated: function () &#123;
-    this.$nextTick(function () &#123;
-        // Code that will run only after the
-        // entire view has been re-rendered
-    &#125;)
-&#125;
-
-2、http请求建议在 created 生命周期内发出
+            <h2 id="自定义指令的钩子函数"><a href="#自定义指令的钩子函数" class="headerlink" title="自定义指令的钩子函数"></a>自定义指令的钩子函数</h2><p>自定义组件就是实现Vue提供的钩子函数，在Vue3中钩子函数的生命周期和组件的生命周期类似：</p>
+<pre><code>- created - 元素创建后，但是属性和事件还没有生效时调用。
+- beforeMount- 仅调用一次，当指令第一次绑定元素的时候。
+- mounted- 仅调用一次，元素被插入父元素时调用.
+- beforeUpdate: 在更新包含组件的 VNode 之前调用。
+- updated - 在包含组件的 VNode 及其子组件的 VNode 更新后调用。
+- beforeUnmount: 元素卸载前调用，仅调用一次
+- unmounted -当指令卸载后调用，仅调用一次
 </code></pre>
+<h2 id="自定义指令钩子函数参数"><a href="#自定义指令钩子函数参数" class="headerlink" title="自定义指令钩子函数参数"></a>自定义指令钩子函数参数</h2><blockquote>
+<p>在自定义指令钩子函数的参数中，除了 el 之外，其它参数都应该是只读的，切勿进行修改。</p>
+</blockquote>
+<ul>
+<li>每一个钩子函数都有如下参数：<ul>
+<li>el: 指令绑定的元素，可以用来直接操作DOM</li>
+<li>binding: 数据对象，包含以下属性   获取绑定的值<ul>
+<li>instance: 当前组件的实例，一般推荐指令和组件无关，如果有需要使用组件上下文ViewModel，可以从这里获取</li>
+<li>value: 指令的值，即上面示例中的“yellow“</li>
+<li>oldValue: 指令的前一个值，在beforeUpdate和Updated 中，可以和value是相同的内容。</li>
+<li>arg: 传给指令的参数，例如v-on:click中的click。</li>
+<li>modifiers: 包含修饰符的对象。例如v-on.stop:click 可以获取到一个{stop:true}的对象</li>
+</ul>
+</li>
+<li>vnode: Vue 编译生成的虚拟节点,</li>
+<li>prevVNode: Update时的上一个虚拟节点</li>
+</ul>
+</li>
+</ul>
 
         </div>
 
@@ -245,19 +195,19 @@ updated: function () &#123;
     
 <nav class="article-nav">
   
-    <a href="/ckzktd6qe00010wv947ll8kzu.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/ckzkundlg0005psv90031dbi8.html" id="article-nav-newer" class="article-nav-link-wrap">
       <div class="article-nav-caption">下一篇</div>
       <div class="article-nav-title">
         
-          19_vue-cli工作中如何自定义一个过滤器
+          23_vue-router如何响应路由参数的变化
         
       </div>
     </a>
   
   
-    <a href="/ckzktd6q400000wv90edjdd1i.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/ckzkth9ho0000awv91ouzgrxo.html" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-caption">上一篇</div>
-      <div class="article-nav-title">17_vue监听键盘事件的按键修饰符</div>
+      <div class="article-nav-title">21_vue的自定义指令</div>
     </a>
   
 </nav>
@@ -266,15 +216,15 @@ updated: function () &#123;
     <section class="share">
         <div class="share-title">分享</div>
         <a class="share-item" target="_blank"
-            href="https://twitter.com/share?text=18_vue生命周期和生命周期钩子函数 - 小豆子的博客&url=https://dtting.top/ckzktd6qg00020wv9emgh00qy.html">
+            href="https://twitter.com/share?text=22_自定义指令的钩子函数及其参数 - 小豆子的博客&url=https://dtting.top/ckzkundlc0001psv9hu3jf7ol.html">
             <box-icon type='logo' name='twitter'></box-icon>
         </a>
         <a class="share-item" target="_blank"
-            href="https://www.facebook.com/sharer.php?title=18_vue生命周期和生命周期钩子函数 - 小豆子的博客&u=https://dtting.top/ckzktd6qg00020wv9emgh00qy.html">
+            href="https://www.facebook.com/sharer.php?title=22_自定义指令的钩子函数及其参数 - 小豆子的博客&u=https://dtting.top/ckzkundlc0001psv9hu3jf7ol.html">
             <box-icon name='facebook-square' type='logo' ></box-icon>
         </a>
         <!-- <a class="share-item" target="_blank"
-            href="https://service.weibo.com/share/share.php?title=18_vue生命周期和生命周期钩子函数 - 小豆子的博客&url=https://dtting.top/ckzktd6qg00020wv9emgh00qy.html&pic=">
+            href="https://service.weibo.com/share/share.php?title=22_自定义指令的钩子函数及其参数 - 小豆子的博客&url=https://dtting.top/ckzkundlc0001psv9hu3jf7ol.html&pic=">
             <div class="n-icon n-icon-weibo"></div>
         </a> -->
     </section>
