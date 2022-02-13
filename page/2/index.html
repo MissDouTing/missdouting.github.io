@@ -108,6 +108,151 @@
   
     
       <article
+id="post-26_vue-router实现动态加载路由组件"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkundle0002psv96iew9v2y.html">26_vue-router实现动态加载路由组件</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <p>当打包构建应用时，Javascript 包会变得非常大，影响页面加载。如果我们能把不同路由对应的组件分割成不同的代码块，然后当路由被访问的时候才加载对应组件，这样就更加高效了。</p>
+<p>结合 Vue 的异步组件和 Webpack 的代码分割功能，轻松实现路由组件的懒加载。</p>
+<p>第一步：定义一个能够被 Webpack 自动代码分割的异步组件。</p>
+<pre><code>//在src/router/index.js里面引入异步引入组件
+const index = () =&gt; import(&#39;../page/list/index.vue&#39;);
+</code></pre>
+<p>第二步：在路由配置中什么都不需要改变，只需要像往常一样使用 index。</p>
+<pre><code>const router = new VueRouter(&#123;
+  routes: [
+    &#123; path: &#39;/index&#39;, component: index,name:&quot;index&quot; &#125;
+  ]
+&#125;)
+</code></pre>
+<p>第三步：在build/webpack.base.conf.js下的output属性，新增chunkFilename。</p>
+<pre><code>output: &#123;
+    path: config.build.assetsRoot,
+    filename: &#39;[name].js&#39;,
+    //新增chunkFilename属性
+    chunkFilename: &#39;[name].js&#39;,
+    publicPath: process.env.NODE_ENV === &#39;production&#39;
+      ? config.build.assetsPublicPath
+      : config.dev.assetsPublicPath
+  &#125;,
+</code></pre>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T05:33:38.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-25_vue-router如何定义嵌套路由"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkundlh0006psv976562exa.html">25_vue-router如何定义嵌套路由</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <p>嵌套路由  :  是路由的多层嵌套。</p>
+<p><code>第一步：</code>需要在一个被渲染的组件中嵌套 <code>&lt;router-view&gt;</code>组件用于呈现子路由。</p>
+<pre><code>const User = &#123;
+  template: `
+    &lt;div class=&quot;user&quot;&gt;
+      &lt;h2&gt;User&lt;/h2&gt;
+      &lt;router-view&gt;&lt;/router-view&gt;
+    &lt;/div&gt;
+  `
+&#125;
+</code></pre>
+<p><code>第二步：</code>在嵌套的出口中渲染组件，在<code>VueRouter</code> 的参数中使用<code>children</code>配置：</p>
+<pre><code>const router = createRouter(&#123;
+  routes: [
+    &#123; 
+      path: &#39;/user/:id&#39;, 
+      component: User,
+      children: [
+        &#123;
+          // 当 /user/:id/profile 匹配成功，
+          // UserProfile 会被渲染在 User 的 &lt;router-view&gt; 中
+          path: &#39;profile&#39;,
+          component: UserProfile
+        &#125;,
+        &#123;
+          // 当 /user/:id/posts 匹配成功
+          // UserPosts 会被渲染在 User 的 &lt;router-view&gt; 中
+          path: &#39;posts&#39;,
+          component: UserPosts
+        &#125;
+      ]
+    &#125;
+  ]
+&#125;)
+</code></pre>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T05:31:49.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
 id="post-24_vue-router导航解析流程"
 class="article article-type-post"
 >
@@ -735,179 +880,6 @@ updated: function () &#123;
 
     
   
-    
-      <article
-id="post-17_vue监听键盘事件的按键修饰符"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/ckzktd6q400000wv90edjdd1i.html">17_vue监听键盘事件的按键修饰符</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <p>我们可以通过按键修饰符来监听键盘事件中的按键 。<code>Vue</code>允许为 <code>v-on</code>在监听键盘事件时添加<code>按键修饰符</code>：</p>
-<pre><code>&lt;input v-on:keyup.enter=&quot;submit&quot;&gt;
-
-&lt;!-- 缩写语法 --&gt;
-&lt;input @keyup.enter=&quot;submit&quot;&gt;
-</code></pre>
-<p><strong>全部的按键别名：</strong></p>
-<pre><code>- .enter
-- .tab
-- .delete (捕获“删除”和“退格”键)
-- .esc
-- .space
-- .up
-- .down
-- .left
-- .right
-</code></pre>
-<p><strong>系统修饰键：</strong></p>
-<blockquote>
-<p>2.1.0 新增</p>
-</blockquote>
-<pre><code>可以用如下修饰符来实现仅在按下相应按键时才触发鼠标或键盘事件的监听器。
-- .ctrl
-- .alt
-- .shift
-- .meta
-
-&lt;!-- Alt + C --&gt;
-&lt;input @keyup.alt.67=&quot;clear&quot;&gt;
-
-&lt;!-- Ctrl + Click --&gt;
-&lt;div @click.ctrl=&quot;doSomething&quot;&gt;Do something&lt;/div&gt;
-</code></pre>
-<blockquote>
-<p>2.5.0 新增</p>
-</blockquote>
-<pre><code>.exact修饰符允许你控制由精确的系统修饰符组合触发的事件。
-
-&lt;!-- 即使 Alt 或 Shift 被一同按下时也会触发 --&gt;
-&lt;button @click.ctrl=&quot;onClick&quot;&gt;A&lt;/button&gt;
-
-&lt;!-- 有且只有 Ctrl 被按下的时候才触发 --&gt;
-&lt;button @click.ctrl.exact=&quot;onCtrlClick&quot;&gt;A&lt;/button&gt;
-
-&lt;!-- 没有任何系统修饰符被按下的时候才触发 --&gt;
-&lt;button @click.exact=&quot;onClick&quot;&gt;A&lt;/button&gt;
-</code></pre>
-<p><strong>鼠标按钮修饰符：</strong></p>
-<blockquote>
-<p>2.2.0 新增</p>
-</blockquote>
-<pre><code>- .left
-- .right
-- .middle
-
-这些修饰符会限制处理函数仅响应特定的鼠标按钮。
-</code></pre>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-02-13T05:01:26.000Z" itemprop="datePublished">2022-02-13</time>
-</div>
-    
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
-    
-      <article
-id="post-16_vue常用的修饰符"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/ckzktjh8p00007kv91brh8040.html">16_vue常用的修饰符</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <h2 id="v-on指令常用修饰符"><a href="#v-on指令常用修饰符" class="headerlink" title="v-on指令常用修饰符"></a>v-on指令常用修饰符</h2><pre><code>- .stop - 调用 event.stopPropagation()，禁止事件冒泡。
-- .prevent - 调用 event.preventDefault()，阻止事件默认行为。
-- .capture - 添加事件侦听器时使用 capture 模式。
-- .self - 只当事件是从侦听器绑定的元素本身触发时才触发回调。
-- .&#123;keyCode | keyAlias&#125; - 只当事件是从特定键触发时才触发回调。
-- .native - 监听组件根元素的原生事件。
-- .once - 只触发一次回调。
-- .left - (2.2.0) 只当点击鼠标左键时触发。
-- .right - (2.2.0) 只当点击鼠标右键时触发。
-- .middle - (2.2.0) 只当点击鼠标中键时触发。
-
-
-
-
-//注意： 如果是在自己封装的组件或者是使用一些第三方的UI库时，会发现一些事件并不起效果，这时就需要用.native修饰符了，如当我们使用element-ui中的el-input组件时的@keyup.enter事件：
-&lt;el-input
-  v-model=&quot;inputName&quot;
-  placeholder=&quot;搜索你的文件&quot;
-  @keyup.enter.native=&quot;searchFile(params)&quot;
-  &gt;
-&lt;/el-input&gt;
-</code></pre>
-<h2 id="v-bind指令常用修饰符"><a href="#v-bind指令常用修饰符" class="headerlink" title="v-bind指令常用修饰符"></a>v-bind指令常用修饰符</h2><pre><code>- .prop   被用于绑定 DOM 属性 (property)。(差别在哪里？)
-- .camel  (2.1.0+) 将 kebab-case 特性名转换为 camelCase. (从 2.1.0 开始支持)
-- .sync (2.3.0+) 语法糖，会扩展成一个更新父组件绑定值的 v-on 侦听器。
-</code></pre>
-<h2 id="v-model-指令常用修饰符"><a href="#v-model-指令常用修饰符" class="headerlink" title="v-model 指令常用修饰符"></a>v-model 指令常用修饰符</h2><pre><code>- .lazy    取代 input 监听 change 事件
-- .number  输入字符串转为数字
-- .trim    输入首尾空格过滤
-</code></pre>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-02-13T04:55:12.000Z" itemprop="datePublished">2022-02-13</time>
-</div>
-    
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
 
   
     <nav class="pagination">
@@ -948,6 +920,14 @@ class="article article-type-post"
       <ul>
         
           <li>
+            <a href="/ckzkuw9720000fov9cqsm66ik.html">37_new一个对象内部过程</a>
+          </li>
+        
+          <li>
+            <a href="/ckzkuw9770001fov96aba3xt7.html">36_prototype和__proto__的关系</a>
+          </li>
+        
+          <li>
             <a href="/ckzkundlj0009psv92wak8gvv.html">35_vue3的hook与react的hook不同点</a>
           </li>
         
@@ -957,14 +937,6 @@ class="article article-type-post"
         
           <li>
             <a href="/ckzkundlk000apsv9940c90jb.html">33_vue-cli打包后会生成哪些文件</a>
-          </li>
-        
-          <li>
-            <a href="/ckzkundlm000cpsv9cyb7hf2r.html">32_vue利用keep-alive标签实现组件缓存功能</a>
-          </li>
-        
-          <li>
-            <a href="/ckzkundll000bpsv9aqur46ce.html">31_vue-cli工程中如何使用背景图</a>
           </li>
         
       </ul>
