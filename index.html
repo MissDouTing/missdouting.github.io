@@ -108,6 +108,99 @@
   
     
       <article
+id="post-13_函数的去抖和节流"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzks19kt00001wv9405u4kt5.html">13_函数的去抖和节流</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <h2 id="函数的去抖"><a href="#函数的去抖" class="headerlink" title="函数的去抖"></a>函数的去抖</h2><p>函数调用n秒后才会执行，如果函数在n秒内被调用的话则函数不执行，重新计算执行时间。函数去抖主要避免快速多次执行函数（操作DOM，加载资源等等）给内存带来大量的消耗从而一定程度上降低性能问题。</p>
+<p>  函数去抖的应用场景：<br>    1.监控键盘keypress事件，每当内容变化的时候就向服务器发送请求<br>    2.在页面滚动的时候监控页面的滚动事件，会频繁执行scroll事件<br>    3.监控页面的resize事件，拉动窗口改变大小的时候，resize事件被频繁的执行</p>
+<p>上面三种场景中都会频繁触发指定事件，比如第一种情况，每当输入框内容变化之后就向服务器发送请求，可能会导致一秒钟向服务器请求很多次，这显然是不合理的，我们可以使用函数去抖来优化。</p>
+<pre><code>//loadsh里有去抖函数的封装
+
+ &lt;input type=&quot;text&quot; oninput=&quot;textInput()&quot;&gt;
+       
+       //模拟发送请求的方法
+        function ajax() &#123;
+            console.log(&quot;发送请求&quot;)
+        &#125;
+        //文本框输入内容的时候频繁的触发func方法
+        var func = debounce(ajax,1000)
+        function textInput() &#123;
+            func();
+        &#125;
+    
+        //函数去抖方法的封装
+        //debounce: 当调用动作n毫秒后，才会执行该动作，若在这n毫秒内又调用此动作则将重新计算执行时间。
+        function debounce(method, delay) &#123;
+            var timer = null;
+            return function () &#123;
+                var context = this
+                var args = arguments;
+                clearTimeout(timer);
+                timer = setTimeout(function () &#123;
+                    method.apply(context, args);
+                &#125;, delay);
+            &#125;
+        &#125;
+</code></pre>
+<h2 id="函数的节流"><a href="#函数的节流" class="headerlink" title="函数的节流"></a>函数的节流</h2><p>函数节流（throttle）：函数预先设定一个执行周期(或者节流阀)，当调用动作的时刻大于等于执行周期则执行该动作，然后进入下一个新周期。</p>
+<pre><code>function throttle(method,duration)&#123;
+        var  begin = new Date();
+        return function()&#123;
+            var context = this
+            var args=arguments
+            var current=new Date();
+            if(current-begin&gt;=duration)&#123;
+                 method.apply(context,args);
+                 begin = current;
+            &#125;
+        &#125;
+&#125;
+function resizehandler()&#123;
+    console.log(++n);
+&#125;
+window.onresize=throttle(resizehandler,500);
+</code></pre>
+<p>函数节流的应用场景：<br>1.上拉下拉刷新，每拉动一次彻底完毕之后才可以下一次拉动<br>2.图片轮播动画，每一张图片动画完成之后才开始下一个图片的动画</p>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-13T04:33:24.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
 id="post-12_跨域问题的解决方案"
 class="article article-type-post"
 >
@@ -896,65 +989,6 @@ class="article article-type-post"
 
     
   
-    
-      <article
-id="post-03_node的使用方法"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/ckumountd0000bwv92b8h4784.html">03_node的使用方法</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <h2 id="如何用npm去安装工具包？"><a href="#如何用npm去安装工具包？" class="headerlink" title="如何用npm去安装工具包？"></a>如何用npm去安装工具包？</h2><p>1.可以在cmd中使用npm对要下载的工具包进行全局安装，如命令npm install hexo-cli -g（该命令是对hexo包进行全局安装）</p>
-<p>2.也可以在vscode中对文件右击从终端打开，使用npm对要下载的工具包进行全局安装，或者仅对建立的文件进行局部安装，如命令npm install express（该命令是对express包进行局部安装）。</p>
-<p>这里的从终端打开，有两种终端方式：一是powershell终端。在文件夹中按住shift键右击空白区，出现在此处打开powershell窗口，这是powershell在文件中的打开方式，而在vscode中打开powershell需要配置settings，设置–搜索框中输入settings–点击“在settings.json中编辑”–以json格式输入对应的设置powershell的代码。而是cmd终端。在桌面win+r，输入cmd，出现cmd窗口，这是cmd在电脑中的打开方式，而在vscode中打开cmd也需要配置settings，设置–搜索框中输入settings–点击“在settings.json中编辑”–以json格式输入对应的设置cmd的代码。如下图所示</p>
-<img src="imgs/2021.10.11.2/图片1.png">
-如何看vscode中的终端设置的是哪个终端？在vscode从终端打开后，终端窗口的右边显示powershell或者cmd。如下图所示
-
-<img src="imgs/2021.10.11.2/图片2.png">
-
-<h2 id="vscode安装工具包及使用步骤："><a href="#vscode安装工具包及使用步骤：" class="headerlink" title="vscode安装工具包及使用步骤："></a>vscode安装工具包及使用步骤：</h2><p>1.在vscode中，先建立一个空文件（注意文件名不要和工具包名一样）。</p>
-<p>2.把这个文件从终端打开，输入命令npm init -y（init是启动的意思，注意这个是使用的node，需要先在cmd中全局安装node，才可以在vscode中使用node和npm的命令），空文件夹下会自动出现package.json文件。</p>
-<img src="imgs/2021.10.11.2/图片3.png">
-
-<p>3.继续输入命令npm install 包名 –save ，如npm install express –save（这是安装express包的命令），下图是输入npm install express –save命令例子</p>
-<img src="imgs/2021.10.11.2/图片4.png">
-
-<p>4.安装完成，之后就可以根据你安装的工具包的官网，去查文档使用你的工具包了。</p>
-
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2021-10-11T12:57:11.000Z" itemprop="datePublished">2021-10-11</time>
-</div>
-    
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
 
   
     <nav class="pagination">
@@ -995,6 +1029,10 @@ class="article article-type-post"
       <ul>
         
           <li>
+            <a href="/ckzks19kt00001wv9405u4kt5.html">13_函数的去抖和节流</a>
+          </li>
+        
+          <li>
             <a href="/ckzkrt8zl0000ycv9adxhabkz.html">12_跨域问题的解决方案</a>
           </li>
         
@@ -1008,10 +1046,6 @@ class="article article-type-post"
         
           <li>
             <a href="/ckz0tqj9l0000mcv968j96rzy.html">09_mongodb数据库使用流程</a>
-          </li>
-        
-          <li>
-            <a href="/ckwvnv7iz0000l8v934zt8fgu.html">08_js经典输出顺序问题</a>
           </li>
         
       </ul>
