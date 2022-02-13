@@ -108,6 +108,72 @@
   
     
       <article
+id="post-10_Vue-diff算法原理"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/ckzkqxjap0000wov90uh3hgic.html">10_Vue-diff算法原理</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <img src="imgs/2022.02.13/图片1.png">
+
+<ul>
+<li>Vue.js通过编译将template 模板转换成渲染函数(render ) ，执行渲染函数就可以得到一个虚拟节点树</li>
+<li>VNode 虚拟节点：（它可以代表一个真实的 dom 节点。）通过 createElement 方法能将 VNode 渲染成 dom 节点。（简单地说，vnode可以理解成节点描述对象，它描述了应该怎样去创建真实的DOM节点。）</li>
+<li>patch(也叫做patching算法)：虚拟DOM最核心的部分，它可以将vnode 渲染成真实的DOM，这个过程是对比新旧虚拟节点之间有哪些不同，然后根据对比结果找出需要更新的的节点进行更新。（这点我们从单词含义就可以看出， patch本身就有补丁、修补的意思，其实际作用是在现有DOM上进行修改来实现更新视图的目的。Vue的Virtual DOM Patching算法是基于Snabbdom的实现，并在些基础上作了很多的调整和改进。）</li>
+</ul>
+<img src="imgs/2022.02.13/图片2.png">
+
+<h2 id="a-Vue2-x-diff算法原理"><a href="#a-Vue2-x-diff算法原理" class="headerlink" title="a) Vue2.x diff算法原理"></a>a) Vue2.x diff算法原理</h2><p>传统diff算法通过循环递归对节点进行依次对比效率低下，算法复杂度达到O(N^3)，主要原因在于其追求完全比对和最小修改，而React、Vue则是放弃了完全比对及最小修改，才实现从O(N^3) =&gt; O(N)。</p>
+<p>Vue2 diff过程整体遵循深度优先、同层比较的策略。 当数据发生改变时，会调用Dep.notify通知所有Watcher，调用patch给真实的DOM打补丁，更新相应的视图。 </p>
+<img src="imgs/2022.02.13/图片3.png">
+
+<h2 id="b-Vue3-0-diff"><a href="#b-Vue3-0-diff" class="headerlink" title="b) Vue3.0 diff"></a>b) Vue3.0 diff</h2><p>vue2.x中的虚拟dom是进行<strong>「全量的对比」</strong>，在运行时会对所有节点生成一个虚拟节点树，当页面数据发生变更好，会遍历判断virtual dom所有节点（包括一些不会变化的节点）有没有发生变化；虽然说diff算法确实减少了多DOM节点的直接操作，但是这个<strong>「减少是有成本的」</strong>，如果是复杂的大型项目，必然存在很复杂的父子关系的VNode,<strong>「而Vue2.x的diff算法，会不断地递归调用 patchVNode，不断堆叠而成的几毫秒，最终就会造成 VNode 更新缓慢」</strong>。 </p>
+<p>在Vue3.0中，在这个模版编译时，编译器会在动态标签末尾加上 /* Text*/ PatchFlag。<strong>「也就是在生成VNode的时候，同时打上标记，在这个基础上再进行核心的diff算法」</strong>并且 PatchFlag 会标识动态的属性类型有哪些，比如这里 的TEXT 表示只有节点中的文字是动态的。而patchFlag的类型也很多。这里直接引用一张图片。</p>
+<img src="imgs/2022.02.13/图片4.png">
+
+<p>其中大致可以分为两类：</p>
+<ul>
+<li>当 patchFlag 的值「大于」 0 时，代表所对应的元素在 patchVNode 时或 render 时是可以被优化生成或更新的。</li>
+<li>当 patchFlag 的值「小于」 0 时，代表所对应的元素在 patchVNode 时，是需要被 full diff，即进行递归遍历 VNode tree 的比较更新过程。</li>
+</ul>
+<p>总结：<strong>「Vue3.0对于不参与更新的元素，做静态标记并提示，只会被创建一次，在渲染时直接复用。」</strong></p>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-02-12T08:05:50.000Z" itemprop="datePublished">2022-02-12</time>
+</div>
+    
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
 id="post-09_mongodb数据库使用流程"
 class="article article-type-post"
 >
@@ -1033,6 +1099,10 @@ foo.prop = 123;
       <ul>
         
           <li>
+            <a href="/ckzkth9ho0000awv91ouzgrxo.html">21_vue的自定义指令</a>
+          </li>
+        
+          <li>
             <a href="/ckzktd6qh00030wv9e41w20ox.html">20_vue等单页面应用及其优缺点</a>
           </li>
         
@@ -1046,10 +1116,6 @@ foo.prop = 123;
         
           <li>
             <a href="/ckzktd6q400000wv90edjdd1i.html">17_vue监听键盘事件的按键修饰符</a>
-          </li>
-        
-          <li>
-            <a href="/ckzksi8950000p0v9hlb9ajwq.html">15_什么是vuex</a>
           </li>
         
       </ul>

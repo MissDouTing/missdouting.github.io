@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Archive | 2022/1 | 小豆子的博客</title>
+    <title>21_vue的自定义指令 | 小豆子的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     
@@ -26,7 +26,7 @@
 
 
     <script>
-        window.isPost = false
+        window.isPost = true
         window.aomori = {
             
             
@@ -104,35 +104,125 @@
         <div class="main">
             <section class="inner">
                 <section class="inner-main">
-                    <section class="archives-cover"></section>
+                    <div class="post">
+    <article id="post-ckzkth9ho0000awv91ouzgrxo" class="article article-type-post" itemscope
+    itemprop="blogPost">
 
+    <div class="article-inner">
 
-    
-    
-    
-    
-    <section class="archives-wrap">
-        <div class="archive-year-wrap">
-        <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
+        
+          
+        
+        
+        
+
+        
+        <header class="article-header">
+            
   
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/ckz0tqj9l0000mcv968j96rzy.html">09_mongodb数据库使用流程</a>
+    <h1 class="article-title" itemprop="name">
+      21_vue的自定义指令
     </h1>
   
+
+        </header>
+        
+
+        <div class="article-more-info article-more-info-post hairline">
+
+            <div class="article-date">
+  <time datetime="2022-02-13T05:16:47.000Z" itemprop="datePublished">2022-02-13</time>
+</div>
+
+            
+
+            
+
+            
+
+        </div>
+
+        <div class="article-entry post-inner-html hairline" itemprop="articleBody">
+            <h2 id="什么是vue的自定义指令？"><a href="#什么是vue的自定义指令？" class="headerlink" title="什么是vue的自定义指令？"></a>什么是vue的自定义指令？</h2><p>Vue里面有许多内置的指令，比如<code>v-if</code>和<code>v-show</code>，这些丰富的指令能满足我们的绝大部分业务需求，不过在需要一些特殊功能时，我们仍然希望对<code>DOM</code>进行底层的操作，这时就要用到自定义指令。</p>
+<h2 id="使用方法？"><a href="#使用方法？" class="headerlink" title="使用方法？"></a>使用方法？</h2><pre><code>app.directive(&#39;focus&#39;, &#123;
+    beforeMount: function (el) &#123; 
+        // 每当指令绑定到元素上的时候，会立即执行这个beforeMount函数，只执行一次
+        // 注意： 在每个函数中，第一个参数永远是el，表示被绑定了指令的那个元素，这个el参数，是一个原生的JS对象
+        // 在元素刚绑定了指令的时候还没有插入到DOM中去的时候调用focus方法没有作用。因为，一个元素只有插入DOM之后才能获取焦点
+        // el.focus()
+    &#125;,
+    mounted: function (el) &#123;  
+        // 指定绑定的远古三插入到DOM中的时候执行【触发1次】
+        el.focus()
+    &#125;,
+    updated : function (el) &#123;  
+        // 在包含组件的 VNode 及其子组件的 VNode 更新后调用
+    &#125;
+&#125;)
+</code></pre>
+
+        </div>
+
+    </div>
+
+    
+
+    
+
+    
+
+    
+<div class="article-copyright hairline">
+  <p>
+    本作品采用 <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a> 进行许可。
+  </p>
+</div>
+
+
+    
+
+    
+<nav class="article-nav">
+  
+  
+    <a href="/ckzktd6qh00030wv9e41w20ox.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-caption">上一篇</div>
+      <div class="article-nav-title">20_vue等单页面应用及其优缺点</div>
+    </a>
+  
+</nav>
+
+
+    <section class="share">
+        <div class="share-title">分享</div>
+        <a class="share-item" target="_blank"
+            href="https://twitter.com/share?text=21_vue的自定义指令 - 小豆子的博客&url=https://dtting.top/ckzkth9ho0000awv91ouzgrxo.html">
+            <box-icon type='logo' name='twitter'></box-icon>
+        </a>
+        <a class="share-item" target="_blank"
+            href="https://www.facebook.com/sharer.php?title=21_vue的自定义指令 - 小豆子的博客&u=https://dtting.top/ckzkth9ho0000awv91ouzgrxo.html">
+            <box-icon name='facebook-square' type='logo' ></box-icon>
+        </a>
+        <!-- <a class="share-item" target="_blank"
+            href="https://service.weibo.com/share/share.php?title=21_vue的自定义指令 - 小豆子的博客&url=https://dtting.top/ckzkth9ho0000awv91ouzgrxo.html&pic=">
+            <div class="n-icon n-icon-weibo"></div>
+        </a> -->
+    </section>
 
 </article>
 
 
-    </div></section>
 
 
 
 
+
+
+
+
+
+
+</div>
                 </section>
             </section>
 
@@ -144,6 +234,12 @@
 <div class="widget" id="widget">
     
       
+  <div class="widget-wrap">
+    <div class="widget-inner">
+      <div class="toc post-toc-html"></div>
+    </div>
+  </div>
+
     
       
 
